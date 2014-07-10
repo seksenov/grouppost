@@ -1,48 +1,39 @@
-<html>
-    <head>
-        <title>Group Post</title>
-    </head>
-    
-    <body>
-        <h1>About Group Post</h1>
-        
-        <!--
-        <?php
-        echo "Hello World!";
-        ?>
--->
+<!doctype html>
+<html ng-app="postItApp"> <!--ng-app="postItApp">-->
+  <head>
+    <script src="http://ajax.aspnetcdn.com/ajax/mobileservices/MobileServices.Web-1.1.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/myStyle.css">
+    <link rel="stylesheet" typle="text/css" href="css/bootstrap.css">
+  </head>
+<body>
+    <div ng-controller="PostItController"> <!-- ng-controller="PostItController"> -->
+      <div class = "row text-center">
+        <label class= "labelClass">PostIt:</label>
+        <input id="someInput" class="input" type="text" ng-model="PostIt" placeholder="Enter your PostIt Note"> <!-- onfocus="clearInputText"> -->
+        <!--ng-model="PostIt">-->
+        <button type="button" id="postButton" onClick="addItem(false,'');">Post!</button>
+        <!-- <button type="button" onClick="addPostIt();">Add PostIt</button> -->
+      </div>
+      <hr>
+      <!-- The PostIt message you're currently entering! -->
+      <h1 class = "row text-center">Your PostIt message is: {{ PostIt }}</h1>
+      
+      <div class = "row text-center" id = "postItNotes">
+        <!-- This is where the PostIt Notes Get Added -->
 
-        <p>Group post is an online platform where friends can share PostIt Notes with pics online!</p>
-        <p>Coming Soon!</p>
-        <!--
-        <h2>Some Yolo Problems Examples</h2>
-        <ul>
-            <li>Drink too much and miss work</li>
-            <li>Work Hard Play Hard</li>
-            <li>Cashin Out</li>
-            <li>YOLO Hard</li>
-            <li>Yolo in my 'Stang</li>
-        </ul>
-        
-        <div id="imageMustang">
-            <img src="myMustang.JPG" width="40%" alt="2014 Ford Mustang GT Picture"/><br/>
-            <caption>2014 Ford Mustang GT</caption>
-        </div>
-        
-        <footer>Copyright 2014 <a href="http://www.google.com">YoloProblems.com</a>
-        
-        </footer>
-        
--->
-        <button type="button" onclick="myFunction()">Date</button>
 
-        <p id="demo"></p>
+      </div>
 
-        <script>
-            function myFunction() {
-                document.getElementById("demo").innerHTML = Date();
-            }
-        </script>   
-        
-    </body>
+    </div>
+
+   
+
+    <script src="js/lib/angular.js"></script>
+    <script src="js/lib/angular-route.js"></script>
+    <script src="js/lib/angular-animate.js"></script>
+    <script src="js/lib/jquery-2.1.1.js"></script>
+    <script src="js/mainScript.js"></script>
+  
+
+  </body>
 </html>
