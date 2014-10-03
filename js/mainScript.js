@@ -122,13 +122,18 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       console.log("YOOOO------------------------------: " + tags[1])
       console.log("YOOOO------------------------------: " + tags[2])
 
+      var d = +tags[1];
+      var delay = d * 1000; 
+
+      console.log("This is the delay: " + delay);
+
       if (tags[1])
       {
         var object = window.CommunicatorWinRT;
 
         if(object) {
           console.log("FOUND SENDING NOTIFICATION IN: " + tags[1]);
-          var delay = +tags[1];
+          //var delay = +tags[1];
           object.toastMessage(postMessage, delay);
         }
         else {
