@@ -183,9 +183,9 @@ function addPostIt (isInit, postText, plusOne){
       userTable.insert(item);
 
       //Do the check for the delay and add use it to show a notification
-      console.log(postMessage);
+      console.log(postText);
 
-      var tags = postMessage.split('#');
+      var tags = postText.split('#');
 
       console.log("YOOOO------------------------------: " + tags[0])
       console.log("YOOOO------------------------------: " + tags[1])
