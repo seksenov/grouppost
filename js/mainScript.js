@@ -185,6 +185,10 @@ function addPostIt (isInit, postText, plusOne){
       //Do the check for the delay and add use it to show a notification
       var tags = postMessage.split('#');
 
+      console.log("YOOOO------------------------------: " + tags[0])
+      console.log("YOOOO------------------------------: " + tags[1])
+      console.log("YOOOO------------------------------: " + tags[2])
+
       if (tags[1])
       {
         var object = window.CommunicatorWinRT;
