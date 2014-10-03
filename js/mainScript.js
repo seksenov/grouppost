@@ -181,6 +181,25 @@ function addPostIt (isInit, postText, plusOne){
       var pid = "div" + idNum;
       var item = { PostItNote: postText, PID: pid, divnum: idNum, uid: userID};
       userTable.insert(item);
+
+      //Do the check for the delay and add use it to show a notification
+      var tags = postMessage.split('#');
+
+      if (tags[1])
+      {
+        var object = window.CommunicatorWinRT;
+
+        if(object) {
+          console.log("FOUND SENDING NOTIFICATION IN: " + tags[1]);
+          var delay = +tags[1];
+          object.toastMessage(postText, delay);
+        }
+        else {
+          console.log ("ERROR THE WINRT CLASS WASN'T FOUND");
+        }
+      }
+
+
   }
   else{
     var postMessage = postText;
