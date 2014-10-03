@@ -115,6 +115,27 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     console.log("Just Hit Post------------------------");
     console.log("This is the post message YOOOOOOOOOOOOO: " + postMessage);
 
+    //This is where the notification goes -----------------------------------------------------------------
+    var tags = postMessage.split('#');
+
+      console.log("YOOOO------------------------------: " + tags[0])
+      console.log("YOOOO------------------------------: " + tags[1])
+      console.log("YOOOO------------------------------: " + tags[2])
+
+      if (tags[1])
+      {
+        var object = window.CommunicatorWinRT;
+
+        if(object) {
+          console.log("FOUND SENDING NOTIFICATION IN: " + tags[1]);
+          var delay = +tags[1];
+          object.toastMessage(postMessage, delay);
+        }
+        else {
+          console.log ("ERROR THE WINRT CLASS WASN'T FOUND");
+        }
+      }
+
 
     //Check if this is the last post it and if so add another one
     var lastDiv = "div" + (idNum);
@@ -187,31 +208,14 @@ function addPostIt (isInit, postText, plusOne){
       var postMessage = postText;
       idNum++;
       var pid = "div" + idNum;
+      //make sure this is working correctly because I believe it isn't needed or is
       var item = { PostItNote: postText, PID: pid, divnum: idNum, uid: userID};
       userTable.insert(item);
 
       //Do the check for the delay and add use it to show a notification
-      console.log("This is the post text: " + postMessage);
+      //onsole.log("This is the post text: " + postMessage);
 
-      var tags = postMessage.split('#');
-
-      console.log("YOOOO------------------------------: " + tags[0])
-      console.log("YOOOO------------------------------: " + tags[1])
-      console.log("YOOOO------------------------------: " + tags)
-
-      if (tags[1])
-      {
-        var object = window.CommunicatorWinRT;
-
-        if(object) {
-          console.log("FOUND SENDING NOTIFICATION IN: " + tags[1]);
-          var delay = +tags[1];
-          object.toastMessage(postText, delay);
-        }
-        else {
-          console.log ("ERROR THE WINRT CLASS WASN'T FOUND");
-        }
-      }
+      
 
 
   }
