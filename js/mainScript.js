@@ -3,14 +3,13 @@ var app = angular.module('postItApp', []);
 
 var idNum;
 
-var userID = '10152621751097597';
+var userID;
 
 var notesArray = [];
 
 app.controller('PostItController', function($scope) {
   
 });
-
 
 var client = new WindowsAzure.MobileServiceClient(
 "https://grouppostbetadb.azure-mobile.net/",
@@ -19,6 +18,61 @@ var client = new WindowsAzure.MobileServiceClient(
 
 var userTable=null;
 userTable=client.getTable("userTable");
+
+//do the FB init stuff
+//function checkLoginState() {
+//    FB.getLoginStatus(function(response) {
+//      statusChangeCallback(response);
+//    });
+//  }
+
+window.fbAsyncInit = function() {
+
+  console.log("Yo! ------------------ initializing FB");
+
+  FB.init({
+    appId      : '821945741172950',
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.1' // use version 2.1
+
+
+  });
+
+  // Now that we've initialized the JavaScript SDK, we call 
+  // FB.getLoginStatus().  This function gets the state of the
+  // person visiting this page and can return one of three states to
+  // the callback you provide.  They can be:
+  //
+  // 1. Logged into your app ('connected')
+  // 2. Logged into Facebook, but not your app ('not_authorized')
+  // 3. Not logged into Facebook and can't tell if they are logged into
+  //    your app or not.
+  //
+  // These three cases are handled in the callback function.
+
+  //FB.getLoginStatus(function(response) {
+  //  statusChangeCallback(response);
+  //});
+
+  console.log("Yo! ------------------ about to get the uid");
+
+  FBuid();
+
+};
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+//Get the user FB uid of the person logged in
+
 
 //var item = { text: "1: This is Static" };
 //client.getTable("Item").insert(item);
@@ -49,8 +103,36 @@ function selectCanvas(canvasID)
 
 }
 
-getPostIts();
-  
+function FBLogout() {
+  FB.logout(function(response) {
+        console.log("Person is now logged out");
+        window.location.href = "Index.html";
+        console.log("They should also be redirected");
+  });
+}
+
+function FBuid() {
+
+  FB.getLoginStatus(function(response) {
+    if (response.status === 'connected') {
+      userID = response.authResponse.userID;
+      console.log('Logged in.');
+      console.log('The user id is: ' + userID);
+      //Get all the post it's from the DB and display them on the page
+      getPostIts();
+    }
+    else {
+      //FB.login();
+      console.log('Not logged in');
+      window.location.href = "Index.html";
+    }
+  });
+}
+/*
+$(document).on('click', 'div', function () {
+    alert(this.id);
+});
+*/
 
 function selectDiv(divID, buttonID, isPlus, dcID)
 {
@@ -102,71 +184,19 @@ function selectDiv(divID, buttonID, isPlus, dcID)
   //This is what gets executed when the post button is hit
   else{
     //Update the PostIt note in the DB
-    var postMessage = div.innerHTML;
-
     var query = userTable;
     query.where({ PID: divID, uid: userID }).read().then(function (postIts) {
       console.log(postIts[0].PostItNote);
       postIts[0].PostItNote = div.innerHTML;
       userTable.update(postIts[0]);
     });
-    
-    //This is where the update happeens ***********
-    console.log("Just Hit Post------------------------");
-    console.log("This is the post message YOOOOOOOOOOOOO: " + postMessage);
-
-    //This is where the notification goes -----------------------------------------------------------------
-    var tags = postMessage.split('#');
-
-      console.log("YOOOO------------------------------: " + tags[0])
-      console.log("YOOOO------------------------------: " + tags[1])
-      console.log("YOOOO------------------------------: " + tags[2])
-
-      var d = +tags[1];
-      var delay = d * 1000; 
-
-      console.log("This is the delay: " + delay);
-
-      if (tags[1])
-      {
-        var object = window.CommunicatorWinRT;
-
-        if(object) {
-          console.log("FOUND SENDING NOTIFICATION IN: " + tags[1]);
-          //var delay = +tags[1];
-          object.toastMessage(postMessage, delay);
-        }
-        else {
-          console.log ("ERROR THE WINRT CLASS WASN'T FOUND");
-        }
-      }
-
-
     //Check if this is the last post it and if so add another one
     var lastDiv = "div" + (idNum);
     console.log("This is the last div: " + lastDiv);
     if(divID == lastDiv)
     {     
-      //-------------------------------this is where the aniamtions has to go
-
-
-      
       addPostIt(false, "", true);
-      //this is whre the animation should go
-    //$('#' + dcID).addClass('animated rollIn');   
-      // wait for animation end
-    //$('#' + dcID).one('webkitAnimationEnd oanimationend msAnimationEnd animationend',   
-    //function(e) {
-    // code to execute after transition ends
-    //$('#' + dcID).remove();
-    //  $('#' + dcID).removeClass('animated rollIn');
-    //});
-      
     }
-
-    //editable.on('input', function() {
-    //  return filter_newlines(div);
-    //});
     filter_newlines(divID);
     div.style.backgroundColor = '#FFFF99';
     div.contentEditable = 'false'; 
@@ -213,16 +243,8 @@ function addPostIt (isInit, postText, plusOne){
       var postMessage = postText;
       idNum++;
       var pid = "div" + idNum;
-      //make sure this is working correctly because I believe it isn't needed or is
       var item = { PostItNote: postText, PID: pid, divnum: idNum, uid: userID};
       userTable.insert(item);
-
-      //Do the check for the delay and add use it to show a notification
-      //onsole.log("This is the post text: " + postMessage);
-
-      
-
-
   }
   else{
     var postMessage = postText;
@@ -274,12 +296,8 @@ function addPostIt (isInit, postText, plusOne){
       // wait for animation end
     $('#' + dcID).one('webkitAnimationEnd oanimationend msAnimationEnd animationend',   
     function(e) {
-    // code to execute after transition ends
-    //$('#' + dcID).remove();
       $('#' + dcID).removeClass('animated rollIn');
     });
-
-
   }
   else {
     //Add the edit button
@@ -310,110 +328,6 @@ function changeColor (color) {
      var div = document.getElementById(notesArray[i]);
      div.style.backgroundColor = color;
   }
-}
-
-function addItem(isInit, postText)
-{
-
-
-    if(!isInit) {
-      var postMessage = document.getElementById("someInput").value;
-      var item = { PostItNote: document.getElementById("someInput").value};
-      userTable.insert(item);
-    }
-    else{
-      var postMessage = postText;
-    }
-
-    var canvas = document.createElement('canvas');
-    canvas.id = "canvasStyle" + idNum;
-    canvas.width = 300;
-    canvas.height = 300;
-    idNum += 1;
-    console.log(canvas.id);
-
-    document.body.appendChild(canvas); // adds the canvas to the body element
-    document.getElementById('postItNotes').appendChild(canvas);
-
-    //add an event listener to every canvas
-    canvas.addEventListener("click", function (e) { selectCanvas(canvas.id); });
-
-    
-    var context=canvas.getContext("2d");
-    var maxWidth = 300;
-    var lineHeight = 35;
-    var x = 5;
-    var y = 35;
-    context.font = 'bold 30px Comic Sans MS';
-    context.fillStyle = '#333';
-
-    wrapText(context, postMessage, x, y, maxWidth, lineHeight);
-
-    //Clear the value of the input field
-    document.getElementById("someInput").value = '';
-
-    //$('#postItNotes').append(canvas);
-}
-
-//This function supports multi line text wrap within canvas
-function wrapText(context, text, x, y, maxWidth, lineHeight) {
-  var words = text.split(' ');
-  var line = '';
-
-  console.log("WORDS: " + words);
-
-  for(var n = 0; n < words.length; n++) {
-    var testLine = line + words[n] + ' ';
-    var metrics = context.measureText(testLine);
-    var testWidth = metrics.width;
-    if (testWidth > maxWidth) {
-
-      if (n>0)
-      {
-        context.fillText(line, x, y);
-        line = words[n] + ' ';
-        y += lineHeight; 
-      }
-      else
-      {
-        line = testLine;
-      }
-       
-
-      //This is the extra checker if for a single word that is too long
-      if (context.measureText(line).width > maxWidth) // && line.split(' ').cou)
-      {
-        console.log("This word: " + line + "is too long!!!!");
-        var letters = line.split("");
-        //console.log(letters);
-        var word = '';
-        //Do work here to figure out where to split the word
-        for(var i=0; i < letters.length; i++) {
-
-          var testWord = word + letters[i];
-          var wordWidth = context.measureText(testWord).width;
-
-          //console.log("This is the testWord width: " + wordWidth);
-
-          if (wordWidth > (maxWidth-16) && i > 0) {
-            word += "-";
-            context.fillText(word, x, y);
-            word = letters[i];
-            y+= lineHeight;
-          }
-          else
-          {
-            word = testWord;
-          }
-        }
-        line = word;
-      }
-    }
-    else {
-      line = testLine;
-    }
-  }
-  context.fillText(line, x, y);
 }
 
 //Function to have the Enter key post as well as clicking the button
