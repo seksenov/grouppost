@@ -348,6 +348,7 @@ function getPostIts(){
 
   query.where({ uid: userID }).read().then(function (postIts) {
     console.log("Yo the number of PostITs is: " + postIts.length);
+    console.log("This is ater the post its number");
     console.log("THis is what the first post it says: " + postIts[0].PostItNote);
     
     for (var i = 0; i < postIts.length; i++) {
