@@ -19,8 +19,6 @@
     margin-top: 25px;
 }
 
-<<<<<<< HEAD
-=======
 .titleText {
     font-family: "post_noteregular";
     font-weight: 600;
@@ -90,7 +88,6 @@
 
 }
 
->>>>>>> 94d2d4c2fa2f12d901dff148971232935a36f926
 .labelClass {
 
     font-size: 35px;
@@ -112,9 +109,6 @@ canvas {
     background-color: #FFFF99;
 }
 
-<<<<<<< HEAD
-
-=======
 /* url('fonts/post_note-webfont.woff') format('woff'), */
 
 @font-face {
@@ -307,4 +301,3 @@ border-collapse: separate;
 }
 
 */
->>>>>>> 94d2d4c2fa2f12d901dff148971232935a36f926
