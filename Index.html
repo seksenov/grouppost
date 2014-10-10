@@ -1,39 +1,112 @@
-<!doctype html>
-<html ng-app="postItApp"> <!--ng-app="postItApp">-->
-  <head>
-    <script src="http://ajax.aspnetcdn.com/ajax/mobileservices/MobileServices.Web-1.1.3.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/myStyle.css">
-    <link rel="stylesheet" typle="text/css" href="css/bootstrap.css">
-  </head>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Facebook Login JavaScript Example</title>
+<meta charset="UTF-8">
+</head>
 <body>
-    <div ng-controller="PostItController"> <!-- ng-controller="PostItController"> -->
-      <div class = "row text-center">
-        <label class= "labelClass">PostIt:</label>
-        <input id="someInput" class="input" type="text" ng-model="PostIt" placeholder="Enter your PostIt Note"> <!-- onfocus="clearInputText"> -->
-        <!--ng-model="PostIt">-->
-        <button type="button" id="postButton" onClick="addItem(false,'');">Post!</button>
-        <!-- <button type="button" onClick="addPostIt();">Add PostIt</button> -->
-      </div>
-      <hr>
-      <!-- The PostIt message you're currently entering! -->
-      <h1 class = "row text-center">Your PostIt message is: {{ PostIt }}</h1>
-      
-      <div class = "row text-center" id = "postItNotes">
-        <!-- This is where the PostIt Notes Get Added -->
+<script>
+  //Force into https://
+  if (window.location.protocol != "https:") {
+  //  console.log("Forced the page to load into https://");
+    window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
+  }
 
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
 
-      </div>
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
 
-    </div>
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '939972909350279',
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.1' // use version 2.1
+  });
 
-   
+  // Now that we've initialized the JavaScript SDK, we call 
+  // FB.getLoginStatus().  This function gets the state of the
+  // person visiting this page and can return one of three states to
+  // the callback you provide.  They can be:
+  //
+  // 1. Logged into your app ('connected')
+  // 2. Logged into Facebook, but not your app ('not_authorized')
+  // 3. Not logged into Facebook and can't tell if they are logged into
+  //    your app or not.
+  //
+  // These three cases are handled in the callback function.
 
-    <script src="js/lib/angular.js"></script>
-    <script src="js/lib/angular-route.js"></script>
-    <script src="js/lib/angular-animate.js"></script>
-    <script src="js/lib/jquery-2.1.1.js"></script>
-    <script src="js/mainScript.js"></script>
-  
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
 
-  </body>
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {
+      console.log('Successful login for: ' + response.name);
+      document.getElementById('status').innerHTML =
+        'Thanks for logging in, ' + response.name + '!';
+      console.log("executing redirect");
+      window.location.href = "postBoard.html";
+      console.log("done with redirect");
+    });
+  }
+</script>
+
+<!--
+  Below we include the Login Button social plugin. This button uses
+  the JavaScript SDK to present a graphical Login button that triggers
+  the FB.login() function when clicked.
+-->
+
+<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
+
+<div id="status">
+</div>
+
+</body>
+
 </html>

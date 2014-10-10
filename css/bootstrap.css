@@ -897,9 +897,15 @@ html {
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
+<<<<<<< HEAD
   line-height: 1.42857143;
   color: #333;
   background-color: #fff;
+=======
+  line-height: 1;
+  color: #333;
+  /*background-color: #fff;*/
+>>>>>>> 94d2d4c2fa2f12d901dff148971232935a36f926
 }
 input,
 button,
@@ -3421,7 +3427,13 @@ tbody.collapse.in {
   opacity: 0;
 }
 .input-group {
+<<<<<<< HEAD
   position: relative;
+=======
+  position: fixed;
+  top: 8px;
+  left: 265px;
+>>>>>>> 94d2d4c2fa2f12d901dff148971232935a36f926
   display: table;
   border-collapse: separate;
 }
@@ -3495,7 +3507,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .input-group-addon,
 .input-group-btn {
+<<<<<<< HEAD
   width: 1%;
+=======
+  /*width: 1%;*/
+>>>>>>> 94d2d4c2fa2f12d901dff148971232935a36f926
   white-space: nowrap;
   vertical-align: middle;
 }
