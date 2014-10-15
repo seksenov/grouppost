@@ -9,7 +9,7 @@ if (window.location.protocol != "https:") {
 //Setup the Facebook SDK
 window.fbAsyncInit = function() {
 	FB.init({
-	  appId      : '748913388496088',
+	  appId      : '821945741172950',
 	  xfbml      : true,
 	  version    : 'v2.1'
 	});
@@ -28,7 +28,7 @@ window.fbAsyncInit = function() {
  //DO the manual FB login
 function loginFB() {
     console.log("Starting Facebook login");
-    window.location.href = 'https://www.facebook.com/dialog/oauth?client_id=748913388496088&redirect_uri=https://grouppost.azurewebsites.net/postBoard.html';
+    window.location.href = 'https://www.facebook.com/dialog/oauth?client_id=821945741172950&redirect_uri=https://grouppost.azurewebsites.net/postBoard.html';
 
     //console.log('Successful login for: ' + response.name);
    //document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
