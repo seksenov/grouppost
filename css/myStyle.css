@@ -41,7 +41,7 @@
 .editButton {
 
     position:relative; 
-    right: -275px;
+    right: -265px;
     bottom: 50px;
     cursor: pointer;
     color: black;
@@ -52,7 +52,7 @@
 .postButton {
 
     position:relative; 
-    right: -275px;
+    right: -265px;
     bottom: 50px;
     cursor: pointer;
     color: #009900;
@@ -73,8 +73,8 @@
 .plusButton {
 
     position: relative;
-    right: -25px;
-    bottom: 300px;
+    right: -17px;
+    bottom: 290px;
 }
 
 #fbLogout {
