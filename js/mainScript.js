@@ -184,6 +184,9 @@ function selectDiv(divID, buttonID, isPlus, dcID)
   //This is what gets executed when the post button is hit
   else{
     //Update the PostIt note in the DB
+    var postMessage = div.innerHTML;
+
+    //Update the PostIt note in the DB
     var query = userTable;
     query.where({ PID: divID, uid: userID }).read().then(function (postIts) {
       console.log(postIts[0].PostItNote);
