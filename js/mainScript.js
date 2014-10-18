@@ -190,6 +190,34 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       postIts[0].PostItNote = div.innerHTML;
       userTable.update(postIts[0]);
     });
+    //This is where the notification goes -----------------------------------------------------------------
+    var tags = postMessage.split('#');
+
+      console.log("YOOOO------------------------------: " + tags[0])
+      console.log("YOOOO------------------------------: " + tags[1])
+      console.log("YOOOO------------------------------: " + tags[2])
+
+      var d = +tags[1];
+      var delay = d * 1000; 
+
+      console.log("This is the delay: " + delay);
+
+      if (tags[1])
+      {
+        //Feature detection for Windows notifications
+        var object = window.CommunicatorWinRT;
+
+        if(object) {
+          console.log("FOUND SENDING NOTIFICATION IN: " + tags[1]);
+          //var delay = +tags[1];
+          object.toastMessage(postMessage, delay);
+        }
+        else {
+          console.log ("ERROR THE WINRT CLASS WASN'T FOUND");
+        }
+      }
+    //End of Windows notification code
+
     //Check if this is the last post it and if so add another one
     var lastDiv = "div" + (idNum);
     console.log("This is the last div: " + lastDiv);
