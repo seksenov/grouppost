@@ -249,7 +249,7 @@ body {
 html {
     display:table;
     /*background: url(../images/corkBoardBack.jpg) no-repeat center center fixed;*/
-    background-size:  #2980b9;
+    background-color:  #2980b9;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
