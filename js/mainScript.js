@@ -148,7 +148,8 @@ function selectDiv(divID, buttonID, isPlus, dcID)
   if (div.contentEditable === 'false'){
     //This is where the color is changed
     //can all divs change color at the same time
-    div.style.backgroundColor = '#FFFF00';
+    //div.style.backgroundColor = '#FFFF00';
+    div.style.backgroundColor = '#f1c40f';
     div.contentEditable = 'true';
     cursorManager.setEndOfContenteditable(div);
     div.focus();
@@ -229,7 +230,9 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       addPostIt(false, "", true);
     }
     filter_newlines(divID);
-    div.style.backgroundColor = '#FFFF99';
+    //unselected div
+    //div.style.backgroundColor = '#FFFF99';
+    div.style.backgroundColor = '#f39c12';
     div.contentEditable = 'false'; 
     button.className = 'editButton fa fa-pencil-square-o';
   }
@@ -302,7 +305,8 @@ function addPostIt (isInit, postText, plusOne){
   console.log("Here logging the div ID: " + div.id);
   console.log(div.className);
 
-  div.style.backgroundColor = '#FFFF99';
+  //div.style.backgroundColor = '#FFFF99';
+  div.style.backgroundColor = '#f39c12';
 
   //Add the div to the body and within the parent canvas div
   //document.body.appendChild(div); // adds the canvas to the body element
