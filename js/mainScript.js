@@ -5,10 +5,10 @@ var idNum;
 
 var userID;
 var userName;
-//var location = {
-//  latitude: "",
-//  longitude: ""
-//}; //lat long pair
+var location = {
+  latitude: "",
+  longitude: ""
+}; //lat long pair
 
 var notesArray = [];
 
