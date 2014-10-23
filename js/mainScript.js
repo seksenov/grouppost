@@ -18,10 +18,10 @@ var client = new WindowsAzure.MobileServiceClient(
 );
 
 
-var location = {
-  latitude: "",
-  longitude: ""
-};
+//var location = {
+//  latitude: "",
+//  longitude: ""
+//};
 
 
 var my_awesome_script = document.createElement('script');
