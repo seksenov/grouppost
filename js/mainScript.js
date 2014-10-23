@@ -7,6 +7,8 @@ var userID;
 
 var notesArray = [];
 
+var myDataRef = new Firebase('https://test-chat-ks.firebaseio.com/');
+
 app.controller('PostItController', function($scope) {
   
 });
@@ -194,6 +196,8 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       postIts[0].PostItNote = div.innerHTML;
       userTable.update(postIts[0]);
     });
+    //Update the firebase
+    myDataRef.push({name: userID, text: div.innerHTML});
     //This is where the notification goes -----------------------------------------------------------------
     var tags = postMessage.split('#');
 
