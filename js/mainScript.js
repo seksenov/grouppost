@@ -127,8 +127,8 @@ function FBuid() {
 
       //Get the name of the user
       FB.api('/me', {fields: 'name'}, function(response) {
-        console.log(response);
-        userName = response;
+        console.log(response.name);
+        userName = response.name;
       });
 
       //Get all the post it's from the DB and display them on the page
