@@ -4,6 +4,7 @@ var app = angular.module('postItApp', []);
 var idNum;
 
 var userID;
+var userName;
 
 var notesArray = [];
 
@@ -123,6 +124,13 @@ function FBuid() {
       userID = response.authResponse.userID;
       console.log('Logged in.');
       console.log('The user id is: ' + userID);
+
+      //Get the name of the user
+      FB.api('/me', {fields: 'name'}, function(response) {
+        console.log(response);
+        userName = response;
+      });
+
       //Get all the post it's from the DB and display them on the page
       getPostIts();
     }
@@ -200,7 +208,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       userTable.update(postIts[0]);
     });
     //Update the firebase
-    myDataRef.push({name: userID, text: div.innerHTML});
+    myDataRef.push({name: userName, text: div.innerHTML});
     //This is where the notification goes -----------------------------------------------------------------
     var tags = postMessage.split('#');
 
