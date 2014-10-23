@@ -5,6 +5,10 @@ var idNum;
 
 var userID;
 var userName;
+var location = {
+  latitude: "";
+  longitude: "";
+}; //lat long pair
 
 var notesArray = [];
 
@@ -146,6 +150,19 @@ $(document).on('click', 'div', function () {
     alert(this.id);
 });
 */
+function getGeoLoc () {
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(setPosition);
+  }
+  else {
+    console.log("browser doesn't support position");
+  }
+}
+
+function setPosition (position) {
+  location.latitude = position.coords.latitude;
+  location.longitude = position.coords.longitude;
+}
 
 function selectDiv(divID, buttonID, isPlus, dcID)
 {
@@ -208,7 +225,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       userTable.update(postIts[0]);
     });
     //Update the firebase
-    myDataRef.push({name: userName, text: div.innerHTML});
+    myDataRef.push({name: userName, text: div.innerHTML, loc: location});
     //This is where the notification goes -----------------------------------------------------------------
     var tags = postMessage.split('#');
 
