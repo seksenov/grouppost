@@ -7,8 +7,6 @@ var userID;
 
 var notesArray = [];
 
-var myDataRef = new Firebase('https://test-chat-ks.firebaseio.com/');
-
 app.controller('PostItController', function($scope) {
   
 });
@@ -17,6 +15,11 @@ var client = new WindowsAzure.MobileServiceClient(
 "https://grouppostbetadb.azure-mobile.net/",
 "hyCoAnJjoajhcntTKrzmnBPJaxKCiw45"
 );
+
+var my_awesome_script = document.createElement('script');
+my_awesome_script.setAttribute('src','https://cdn.firebase.com/js/client/1.1.1/firebase.js');
+document.head.appendChild(my_awesome_script);
+var myDataRef = new Firebase('https://test-chat-ks.firebaseio.com/');
 
 var userTable=null;
 userTable=client.getTable("userTable");
