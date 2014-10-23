@@ -233,7 +233,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     //Get the location
     getGeoLoc();
     //Update the firebase
-    myDataRef.push({name: userName, text: div.innerHTML, location: loc});
+    myDataRef.push({name: userName, text: div.innerHTML, lat: loc.latitude, lon: loc.longitude});
     //This is where the notification goes -----------------------------------------------------------------
     var tags = postMessage.split('#');
 
