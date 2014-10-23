@@ -6,8 +6,8 @@ var idNum;
 var userID;
 var userName;
 var location = {
-  latitude: "";
-  longitude: "";
+  latitude: "",
+  longitude: ""
 }; //lat long pair
 
 var notesArray = [];
