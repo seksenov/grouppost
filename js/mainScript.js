@@ -6,6 +6,11 @@ var idNum;
 var userID;
 var userName;
 
+var location = {
+  latitude: "",
+  longitude: ""
+}; //lat long pair
+
 var notesArray = [];
 
 app.controller('PostItController', function($scope) {
@@ -16,13 +21,6 @@ var client = new WindowsAzure.MobileServiceClient(
 "https://grouppostbetadb.azure-mobile.net/",
 "hyCoAnJjoajhcntTKrzmnBPJaxKCiw45"
 );
-
-
-//var location = {
-//  latitude: "",
-//  longitude: ""
-//};
-
 
 var my_awesome_script = document.createElement('script');
 my_awesome_script.setAttribute('src','https://cdn.firebase.com/js/client/1.1.1/firebase.js');
