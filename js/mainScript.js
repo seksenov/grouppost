@@ -3,6 +3,8 @@ var app = angular.module('postItApp', []);
 
 var idNum;
 
+var loc = {};
+
 var userID;
 var userName;
 
@@ -161,8 +163,11 @@ function getGeoLoc () {
 }
 
 function setPosition (position) {
-  location.latitude = position.coords.latitude;
-  location.longitude = position.coords.longitude;
+  loc.latitude = position.coords.latitude;
+  loc.longitude = position.coords.longitude;
+  console.log("The geoloc of the note is:");
+  console.log(loc);
+
 }
 
 function selectDiv(divID, buttonID, isPlus, dcID)
@@ -225,8 +230,10 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       postIts[0].PostItNote = div.innerHTML;
       userTable.update(postIts[0]);
     });
+    //Get the location
+    getGeoLoc();
     //Update the firebase
-    myDataRef.push({name: userName, text: div.innerHTML, loc: location});
+    myDataRef.push({name: userName, text: div.innerHTML, location: loc});
     //This is where the notification goes -----------------------------------------------------------------
     var tags = postMessage.split('#');
 
