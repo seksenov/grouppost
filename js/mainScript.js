@@ -152,7 +152,7 @@ function FBuid() {
       //Get all the post it's from the DB and display them on the page
       getPostIts();
       //call the function to add all the items to the container for animation
-      initMasonry();
+      //initMasonry();
     }
     else {
       //FB.login();
