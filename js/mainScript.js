@@ -90,17 +90,6 @@ window.fbAsyncInit = function() {
 //var item = { text: "1: This is Static" };
 //client.getTable("Item").insert(item);
 
-function initMasonry() {
-  var $container = $('#container');
-  // initialize
-  $container.masonry({
-    columnWidth: 300,
-    itemSelector: '.postIt'
-  });
-}
-
-//Do all the stuff to animate resizing
-
 //Select the clicked canvas
 function selectCanvas(canvasID)
 {
@@ -151,8 +140,6 @@ function FBuid() {
 
       //Get all the post it's from the DB and display them on the page
       getPostIts();
-      //call the function to add all the items to the container for animation
-      //initMasonry();
     }
     else {
       //FB.login();
