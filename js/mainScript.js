@@ -116,6 +116,13 @@ function selectCanvas(canvasID)
 
 }
 
+function initEventListeners() {
+  //Facebook logout button
+  var logoutButton = $('#fbLogout');
+  logoutButton.addEventListener("click", function (e) { FBLogout(); });
+
+}
+
 function FBLogout() {
   FB.logout(function(response) {
         console.log("Person is now logged out");
@@ -140,6 +147,7 @@ function FBuid() {
 
       //Get all the post it's from the DB and display them on the page
       getPostIts();
+      initEventListeners();
     }
     else {
       //FB.login();
