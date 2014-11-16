@@ -116,13 +116,6 @@ function selectCanvas(canvasID)
 
 }
 
-function initEventListeners() {
-  //Facebook logout button
-  var logoutButton = $('#fbLogout');
-  logoutButton.addEventListener("click", function (e) { FBLogout(); });
-
-}
-
 function FBLogout() {
   FB.logout(function(response) {
         console.log("Person is now logged out");
@@ -155,6 +148,14 @@ function FBuid() {
       window.location.href = "Index.html";
     }
   });
+}
+
+function initEventListeners() {
+  //Facebook logout button
+  var logoutButton = document.getElementById('fbLogout');
+  logoutButton.addEventListener("click", function (e) { FBLogout(); });
+  console.log("----ADDED EVENT LISTENERS----");
+
 }
 /*
 $(document).on('click', 'div', function () {
