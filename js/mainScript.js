@@ -222,7 +222,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     {     
       addPostIt(false, "", true);
     }
-    filter_newlines(divID);
+    //filter_newlines(divID);
     //unselected div
     //div.style.backgroundColor = '#FFFF99';
     div.style.backgroundColor = '#f39c12';
