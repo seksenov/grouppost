@@ -8,11 +8,6 @@ var loc = {};
 var userID;
 var userName;
 
-//var location = {
- // latitude: "",
-//  longitude: ""
-//}; //lat long pair
-
 var notesArray = [];
 
 app.controller('PostItController', function($scope) {
@@ -32,13 +27,6 @@ var myDataRef = new Firebase('https://test-chat-ks.firebaseio.com/');
 var userTable=null;
 userTable=client.getTable("userTable");
 
-//do the FB init stuff
-//function checkLoginState() {
-//    FB.getLoginStatus(function(response) {
-//      statusChangeCallback(response);
-//    });
-//  }
-
 window.fbAsyncInit = function() {
 
   console.log("Yo! ------------------ initializing FB");
@@ -52,18 +40,6 @@ window.fbAsyncInit = function() {
 
 
   });
-
-  // Now that we've initialized the JavaScript SDK, we call 
-  // FB.getLoginStatus().  This function gets the state of the
-  // person visiting this page and can return one of three states to
-  // the callback you provide.  They can be:
-  //
-  // 1. Logged into your app ('connected')
-  // 2. Logged into Facebook, but not your app ('not_authorized')
-  // 3. Not logged into Facebook and can't tell if they are logged into
-  //    your app or not.
-  //
-  // These three cases are handled in the callback function.
 
   //FB.getLoginStatus(function(response) {
   //  statusChangeCallback(response);
@@ -83,38 +59,6 @@ window.fbAsyncInit = function() {
     js.src = "//connect.facebook.net/en_US/sdk.js";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
-
-//Get the user FB uid of the person logged in
-
-
-//var item = { text: "1: This is Static" };
-//client.getTable("Item").insert(item);
-
-//Select the clicked canvas
-function selectCanvas(canvasID)
-{
-  //console.log(canvasID);
-  //var ctx = document.getElementById(canvasID).getContext("2d");
-
-  var cvs = document.getElementById(canvasID); //The canvas
-  var cvsBack = cvs.style.background; //The canvas background
-  var ctx = cvs.getContext("2d");
-
-  var color = $( canvasID ).css( "background" );
-
-  console.log(color);
-
-  if(cvsBack == '#FFFF00')
-  {
-    cvs.background = '#FFFF99';
-    
-  }
-  else
-  {
-    cvs.style.background = '#FFFF00'; 
-  }
-
-}
 
 function FBLogout() {
   FB.logout(function(response) {
@@ -196,7 +140,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     //div.style.backgroundColor = '#FFFF00';
     div.style.backgroundColor = '#f1c40f';
     div.contentEditable = 'true';
-    cursorManager.setEndOfContenteditable(div);
+    //cursorManager.setEndOfContenteditable(div);
     div.focus();
     
     //PLus Post it note
@@ -278,7 +222,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     {     
       addPostIt(false, "", true);
     }
-    filter_newlines(divID);
+    //filter_newlines(divID);
     //unselected div
     //div.style.backgroundColor = '#FFFF99';
     div.style.backgroundColor = '#f39c12';
@@ -290,7 +234,6 @@ function selectDiv(divID, buttonID, isPlus, dcID)
 function deleteDiv(divID, dcID, buttonID) {
   console.log("deleting div");
 
-  
   var lastDiv = "div" + (idNum);
   if(divID != lastDiv)
   {
@@ -421,7 +364,6 @@ $("#someInput").keyup(function(event){
   }
 });
 
-
 //Read the DB and pull old PostITs
 function getPostIts(){ 
   var query = userTable; //Give it column name
@@ -498,73 +440,3 @@ function filter_newlines(divID) {
     }
     return _results;
   }
-
-//Namespace management idea from http://enterprisejquery.com/2010/10/how-good-c-habits-can-encourage-bad-javascript-habits-part-1/
-(function( cursorManager ) {
-
-    //From: http://www.w3.org/TR/html-markup/syntax.html#syntax-elements
-    var voidNodeTags = ['AREA', 'BASE', 'BR', 'COL', 'EMBED', 'HR', 'IMG', 'INPUT', 'KEYGEN', 'LINK', 'MENUITEM', 'META', 'PARAM', 'SOURCE', 'TRACK', 'WBR', 'BASEFONT', 'BGSOUND', 'FRAME', 'ISINDEX'];
-
-    //From: http://stackoverflow.com/questions/237104/array-containsobj-in-javascript
-    Array.prototype.contains = function(obj) {
-        var i = this.length;
-        while (i--) {
-            if (this[i] === obj) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    //Basic idea from: http://stackoverflow.com/questions/19790442/test-if-an-element-can-contain-text
-    function canContainText(node) {
-        if(node.nodeType == 1) { //is an element node
-            return !voidNodeTags.contains(node.nodeName);
-        } else { //is not an element node
-            return false;
-        }
-    };
-
-    function getLastChildElement(el){
-        var lc = el.lastChild;
-        while(lc.nodeType != 1) {
-            if(lc.previousSibling)
-                lc = lc.previousSibling;
-            else
-                break;
-        }
-        return lc;
-    }
-
-    //Based on Nico Burns's answer
-    cursorManager.setEndOfContenteditable = function(contentEditableElement)
-    {
-
-        while(getLastChildElement(contentEditableElement) &&
-              canContainText(getLastChildElement(contentEditableElement))) {
-            contentEditableElement = getLastChildElement(contentEditableElement);
-        }
-
-        var range,selection;
-        if(document.createRange)//Firefox, Chrome, Opera, Safari, IE 9+
-        {    
-            range = document.createRange();//Create a range (a range is a like the selection but invisible)
-            range.selectNodeContents(contentEditableElement);//Select the entire contents of the element with the range
-            range.collapse(false);//collapse the range to the end point. false means collapse to end rather than the start
-            selection = window.getSelection();//get the selection object (allows you to change selection)
-            selection.removeAllRanges();//remove any selections already made
-            selection.addRange(range);//make the range you have just created the visible selection
-        }
-        else if(document.selection)//IE 8 and lower
-        { 
-            range = document.body.createTextRange();//Create a range (a range is a like the selection but invisible)
-            range.moveToElementText(contentEditableElement);//Select the entire contents of the element with the range
-            range.collapse(false);//collapse the range to the end point. false means collapse to end rather than the start
-            range.select();//Select the range (make it the visible selection
-        }
-    }
-
-}( window.cursorManager = window.cursorManager || {}));
-
-
-
