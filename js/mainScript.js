@@ -231,7 +231,7 @@ function windowsNotify (tags) {
       else {
         console.log ("ERROR THE WINRT CLASS WASN'T FOUND");
       }
-    }
+    
     //End of Windows notification code
 }
 
