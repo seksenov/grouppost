@@ -187,9 +187,31 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     getGeoLoc();
     //Update the firebase
     myDataRef.push({name: userName, text: div.innerHTML, location: loc});
+    
     //This is where the notification goes -----------------------------------------------------------------
     var tags = postMessage.split('#');
+    if(tags[1])
+    {
+      windowsNotify(tags);  
+    }
 
+    //Check if this is the last post it and if so add another one
+    var lastDiv = "div" + (idNum);
+    console.log("This is the last div: " + lastDiv);
+    if(divID == lastDiv)
+    {     
+      addPostIt(false, "", true);
+    }
+    //filter_newlines(divID);
+    //unselected div
+    //div.style.backgroundColor = '#FFFF99';
+    div.style.backgroundColor = '#f39c12';
+    div.contentEditable = 'false'; 
+    button.className = 'editButton fa fa-pencil-square-o';
+  }
+}
+
+function windowsNotify (tags) {
       console.log("YOOOO------------------------------: " + tags[0])
       console.log("YOOOO------------------------------: " + tags[1])
       console.log("YOOOO------------------------------: " + tags[2])
@@ -214,21 +236,6 @@ function selectDiv(divID, buttonID, isPlus, dcID)
         }
       }
     //End of Windows notification code
-
-    //Check if this is the last post it and if so add another one
-    var lastDiv = "div" + (idNum);
-    console.log("This is the last div: " + lastDiv);
-    if(divID == lastDiv)
-    {     
-      addPostIt(false, "", true);
-    }
-    //filter_newlines(divID);
-    //unselected div
-    //div.style.backgroundColor = '#FFFF99';
-    div.style.backgroundColor = '#f39c12';
-    div.contentEditable = 'false'; 
-    button.className = 'editButton fa fa-pencil-square-o';
-  }
 }
 
 function deleteDiv(divID, dcID, buttonID) {
@@ -392,13 +399,7 @@ function getPostIts(){
       else {
         addPostIt(true, postIts[i].PostItNote, false);
       }
-      
-
       console.log("Running through the loop!!");
-
-      //if(postIts[i].divnum > idNum) {
-        
-      //}
     }
     console.log("here --------------");
     console.log("---------------THis is the lenght of postit's: " + postIts.length);
@@ -411,35 +412,6 @@ function getPostIts(){
 
   console.log("FINISHED GETTING PostIts");
 }
-
-//The text does not overflow out of the div
-function filter_newlines(divID) {
-    var divString = '#' + divID;
-    var div = $(divString);
-
-    var node, prev, _i, _len, _ref, _results;
-    prev = null;
-    _ref = div.contents();
-    _results = [];
-    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      node = _ref[_i];
-      if (node.nodeType === 3) {
-        node.nodeValue = node.nodeValue.replace('\n', '');
-        if (prev) {
-          node.nodeValue = prev.nodeValue + node.nodeValue;
-          $(prev).remove();
-        }
-        _results.push(prev = node);
-      } else if (node.tagName.toLowerCase() === 'br') {
-        _results.push($(node).remove());
-      } else {
-        $(node).css('display', 'inline');
-        filter_newlines($(node));
-        _results.push(prev = null);
-      }
-    }
-    return _results;
-  }
 
 //Namespace management idea from http://enterprisejquery.com/2010/10/how-good-c-habits-can-encourage-bad-javascript-habits-part-1/
 (function( cursorManager ) {
@@ -508,6 +480,3 @@ function filter_newlines(divID) {
     }
 
 }( window.cursorManager = window.cursorManager || {}));
-
-
-
