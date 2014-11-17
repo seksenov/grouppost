@@ -188,11 +188,15 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     //Update the firebase
     myDataRef.push({name: userName, text: div.innerHTML, location: loc});
     
-    //This is where the notification goes -----------------------------------------------------------------
+    //This is where the windows notification goes -----------------------------------------------------------------
     var tags = postMessage.split('#');
-    if(tags[1])
-    {
-      windowsNotify(tags, window.CommunicatorWinRT);  
+    if(tags[1]) {
+      if (window.CommunicatorWinRT) {
+        windowsNotify(tags, window.CommunicatorWinRT);  
+      }
+      else {
+        console.log ("ERROR THE WINRT CLASS WASN'T FOUND");
+      }
     }
 
     //Check if this is the last post it and if so add another one
@@ -212,27 +216,14 @@ function selectDiv(divID, buttonID, isPlus, dcID)
 }
 
 function windowsNotify (tags, object) {
-      console.log("YO The notification message is-----: " + tags[0]);
-      console.log("YO The notification delay is-------: " + tags[1]);
-
-      var d = +tags[1];
-      var delay = d * 1000; 
-
-      console.log("This is the delay: " + delay);
-
-      //Feature detection for Windows notifications
-      //var object = window.CommunicatorWinRT;
-
-      if(object) {
-        console.log("FOUND SENDING NOTIFICATION IN: " + tags[1]);
-        //var delay = +tags[1];
-        object.toastMessage(postMessage, delay);
-      }
-      else {
-        console.log ("ERROR THE WINRT CLASS WASN'T FOUND");
-      }
-    
-    //End of Windows notification code
+  console.log("YO The notification message is-----: " + tags[0]);
+  console.log("YO The notification delay is-------: " + tags[1]);
+  //Multiply the delay by 1000
+  var d = +tags[1];
+  var delay = d * 1000; 
+  console.log("This is the delay: " + delay);
+  //Call the WinRT class
+  object.toastMessage(postMessage, delay);
 }
 
 function deleteDiv(divID, dcID, buttonID) {
