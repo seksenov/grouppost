@@ -212,8 +212,8 @@ function selectDiv(divID, buttonID, isPlus, dcID)
 }
 
 function windowsNotify (tags) {
-      console.log("YO The notification message is-----: " + tags[0])
-      console.log("YO The notification delay is-------: " + tags[1])
+      console.log("YO The notification message is-----: " + tags[0]);
+      console.log("YO The notification delay is-------: " + tags[1]);
 
       var d = +tags[1];
       var delay = d * 1000; 
