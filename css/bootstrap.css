@@ -3423,7 +3423,7 @@ tbody.collapse.in {
 .input-group {
   position: fixed;
   top: 8px;
-  left: 980px;
+  right: 110px;
   display: table;
   border-collapse: separate;
 }
