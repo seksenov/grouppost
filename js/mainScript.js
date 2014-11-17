@@ -222,9 +222,10 @@ function windowsNotify (tags, object) {
   //Multiply the delay by 1000
   var d = +tags[1];
   var delay = d * 1000; 
+  var notifyText = tags[0];
   console.log("This is the delay: " + delay);
   //Call the WinRT class
-  object.toastMessage(postMessage, delay);
+  object.toastMessage(notifyText, delay);
 }
 
 function deleteDiv(divID, dcID, buttonID) {
