@@ -192,7 +192,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     var tags = postMessage.split('#');
     if(tags[1])
     {
-      windowsNotify(tags);  
+      windowsNotify(tags, window.CommunicatorWinRT);  
     }
 
     //Check if this is the last post it and if so add another one
@@ -211,7 +211,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
   }
 }
 
-function windowsNotify (tags) {
+function windowsNotify (tags, object) {
       console.log("YO The notification message is-----: " + tags[0]);
       console.log("YO The notification delay is-------: " + tags[1]);
 
@@ -221,7 +221,7 @@ function windowsNotify (tags) {
       console.log("This is the delay: " + delay);
 
       //Feature detection for Windows notifications
-      var object = window.CommunicatorWinRT;
+      //var object = window.CommunicatorWinRT;
 
       if(object) {
         console.log("FOUND SENDING NOTIFICATION IN: " + tags[1]);
