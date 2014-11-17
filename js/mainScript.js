@@ -192,8 +192,8 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     var tags = postMessage.split('#');
     if(tags[1]) {
       if (window.CommunicatorWinRT) {
-        windowsNotify(tags, window.CommunicatorWinRT);  
-      }
+        console.log ("THE WINRT CLASS WAS FOUND");
+        windowsNotify(tags, window.CommunicatorWinRT); 
       else {
         console.log ("ERROR THE WINRT CLASS WASN'T FOUND");
       }
@@ -223,7 +223,7 @@ function windowsNotify (tags, object) {
   var delay = d * 1000; 
   console.log("This is the delay: " + delay);
   //Call the WinRT class
-  object.toastMessage(postMessage, delay);
+  object.toastMessage(tags[0], delay);
 }
 
 function deleteDiv(divID, dcID, buttonID) {
