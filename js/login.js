@@ -4,7 +4,7 @@ if (window.location.protocol != "https:") {
    window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
 }
 
-var loginB = document.getElementById('login');
+var loginB = document.getElementById("loginB");
 loginB.addEventListener("click", loginFB);
 
 //Setup the Facebook SDK
