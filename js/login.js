@@ -4,9 +4,6 @@ if (window.location.protocol != "https:") {
    window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
 }
 
-var loginB = document.getElementById("loginB");
-loginB.addEventListener("click", loginFB);
-
 //Setup the Facebook SDK
 window.fbAsyncInit = function() {
 	FB.init({
@@ -15,6 +12,11 @@ window.fbAsyncInit = function() {
 	  version    : 'v2.1'
 	});
 };
+
+$( document ).ready(function() {
+  var loginB = document.getElementById("loginB");
+  loginB.addEventListener("click", loginFB);
+});
 
 (function(d, s, id){
  var js, fjs = d.getElementsByTagName(s)[0];
