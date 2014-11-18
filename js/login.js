@@ -5,7 +5,7 @@ if (window.location.protocol != "https:") {
 }
 
 var loginB = document.getElementById('login');
-loginB.addEventListener("click", function (e) { loginFB(); });
+loginB.addEventListener("click", loginFB);
 
 //Setup the Facebook SDK
 window.fbAsyncInit = function() {
