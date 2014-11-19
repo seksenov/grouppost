@@ -30,11 +30,6 @@ $( document ).ready(function() {
   userTable=client.getTable("userTable");
 });
 
-
-
-
-
-
 window.fbAsyncInit = function() {
 
   console.log("Yo! ------------------ initializing FB");
