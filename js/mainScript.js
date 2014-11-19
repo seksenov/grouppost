@@ -19,17 +19,18 @@ var client = new WindowsAzure.MobileServiceClient(
 "hyCoAnJjoajhcntTKrzmnBPJaxKCiw45"
 );
 
-//var my_awesome_script = document.createElement('script');
-//my_awesome_script.setAttribute('src','https://cdn.firebase.com/js/client/1.1.1/firebase.js');
-//document.head.appendChild(my_awesome_script);
+var my_awesome_script = document.createElement('script');
+my_awesome_script.setAttribute('src','https://cdn.firebase.com/js/client/1.1.1/firebase.js');
+document.head.appendChild(my_awesome_script);
 
 $( document ).ready(function() {
-  var myDataRef = new Firebase('https://test-chat-ks.firebaseio.com/');
+  //var myDataRef = new Firebase('https://test-chat-ks.firebaseio.com/');
   //var loginB = document.getElementById("loginB");
   //loginB.addEventListener("click", loginFB);
+  console.log("READY EVENT FIRED-----------------------------------------------------------");
 });
 
-//var myDataRef = new Firebase('https://test-chat-ks.firebaseio.com/');
+var myDataRef = new Firebase('https://test-chat-ks.firebaseio.com/');
 
 var userTable=null;
 userTable=client.getTable("userTable");
