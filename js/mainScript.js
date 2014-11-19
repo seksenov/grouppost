@@ -15,6 +15,7 @@ app.controller('PostItController', function($scope) {
 });
 
 var client; //Azure Mobile Services Client
+var userTable=null; //Azure DB table
 
 var firebaseRef; //Firebase data reference
 
@@ -25,12 +26,14 @@ $( document ).ready(function() {
   client = new WindowsAzure.MobileServiceClient(
   "https://grouppostbetadb.azure-mobile.net/",
   "hyCoAnJjoajhcntTKrzmnBPJaxKCiw45");
+  //init the Azure table
+  userTable=client.getTable("userTable");
 });
 
 
 
-var userTable=null;
-userTable=client.getTable("userTable");
+
+
 
 window.fbAsyncInit = function() {
 
