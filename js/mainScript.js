@@ -3,10 +3,10 @@ var app = angular.module('postItApp', []);
 
 var idNum;
 
-var loc = {};
+var loc = {}; //stores note location
 
-var userID;
-var userName;
+var userID; //FB User ID
+var userName; //FB User Name
 
 var notesArray = [];
 
@@ -14,22 +14,17 @@ app.controller('PostItController', function($scope) {
   
 });
 
-var client = new WindowsAzure.MobileServiceClient(
-"https://grouppostbetadb.azure-mobile.net/",
-"hyCoAnJjoajhcntTKrzmnBPJaxKCiw45"
-);
+var client; //Azure Mobile Services Client
 
-var myDataRef;
-
-//var my_awesome_script = document.createElement('script');
-//my_awesome_script.setAttribute('src','https://cdn.firebase.com/js/client/1.1.1/firebase.js');
-//document.head.appendChild(my_awesome_script);
+var firebaseRef; //Firebase data reference
 
 $( document ).ready(function() {
-  myDataRef = new Firebase('https://test-chat-ks.firebaseio.com/');
-  //var loginB = document.getElementById("loginB");
-  //loginB.addEventListener("click", loginFB);
-  console.log("READY EVENT FIRED-----------------------------------------------------------");
+  //init firebase data ref
+  firebaseRef = new Firebase('https://test-chat-ks.firebaseio.com/');
+  //init AMS client
+  client = new WindowsAzure.MobileServiceClient(
+  "https://grouppostbetadb.azure-mobile.net/",
+  "hyCoAnJjoajhcntTKrzmnBPJaxKCiw45");
 });
 
 
@@ -196,7 +191,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     //Get the location
     getGeoLoc();
     //Update the firebase
-    myDataRef.push({name: userName, text: div.innerHTML, location: loc});
+    firebaseDB.push({name: userName, text: div.innerHTML, location: loc});
     
     //This is where the windows notification goes -----------------------------------------------------------------
     var tags = postMessage.split('#');
