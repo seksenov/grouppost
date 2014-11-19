@@ -17,11 +17,11 @@ app.controller('PostItController', function($scope) {
 var client; //Azure Mobile Services Client
 var userTable=null; //Azure DB table
 
-var firebaseRef; //Firebase data reference
+var firebaseDataRef; //Firebase data reference
 
 $( document ).ready(function() {
   //init firebase data ref
-  firebaseRef = new Firebase('https://test-chat-ks.firebaseio.com/');
+  firebaseDataRef = new Firebase('https://test-chat-ks.firebaseio.com/');
   //init AMS client
   client = new WindowsAzure.MobileServiceClient(
   "https://grouppostbetadb.azure-mobile.net/",
@@ -194,7 +194,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     //Get the location
     getGeoLoc();
     //Update the firebase
-    firebaseDB.push({name: userName, text: div.innerHTML, location: loc});
+    firebaseDataRef.push({name: userName, text: div.innerHTML, location: loc});
     
     //This is where the windows notification goes -----------------------------------------------------------------
     var tags = postMessage.split('#');
