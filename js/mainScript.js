@@ -159,6 +159,13 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       //console.log("This is dcID: " + dcID);
       //console.log("This is the id of the container: " + $('#'+ dcID).id);
       $('#'+ dcID).append(newButton);
+
+      //Add the camera button
+      var cButton = document.createElement('a');
+      cButton.id = "cameraB" + idNum;
+      cButton.className = 'cameraButton fa fa-camera';
+      cButton.addEventListener("click", function (e) { ( addPicture(ddiv.id, dcID, cButton.id)); });
+      cContainer.appendChild(dButton); 
       
       //Add the delete button
       var dButton=document.createElement('a');
@@ -229,6 +236,10 @@ function windowsNotify (tags, object) {
   console.log("This is the delay: " + delay);
   //Call the WinRT class
   object.toastMessage(notifyText, delay);
+}
+
+function addPicture(divID, dcID, buttonID) {
+
 }
 
 function deleteDiv(divID, dcID, buttonID) {
@@ -335,6 +346,13 @@ function addPostIt (isInit, postText, plusOne){
     //TODO add oneplus arg
     button.addEventListener("click", function (e) { selectDiv(div.id, button.id, false, dcID); });
     dContainer.appendChild(button);
+
+    //Add the camera button
+    var cButton = document.createElement('a');
+    cButton.id = "cameraB" + idNum;
+    cButton.className = 'cameraButton fa fa-camera';
+    cButton.addEventListener("click", function (e) { ( addPicture(ddiv.id, dcID, cButton.id)); });
+    cContainer.appendChild(dButton); 
 
     //Add the delete button
     var dButton=document.createElement('a');
