@@ -238,6 +238,16 @@ function windowsNotify (tags, object) {
   object.toastMessage(notifyText, delay);
 }
 
+function hasGetUserMedia() {
+  return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia || navigator.msGetUserMedia);
+}
+
+var errorCallback = function(e) {
+    console.log('Reeeejected!', e);
+};
+
+
 function takePicture(divID, dcID, buttonID) {
   console.log('Take picture invoked');
   if (window.cameraWinRT) {
@@ -246,6 +256,25 @@ function takePicture(divID, dcID, buttonID) {
   else {
     //WinRT not found take pic another way
     console.log("Camera WinRT API not found");
+    if (hasGetUserMedia()) {
+      console.log("getUserMedia is supported");
+      //cross-browser dance
+      navigator.getUserMedia  = navigator.getUserMedia ||
+      navigator.webkitGetUserMedia ||
+      navigator.mozGetUserMedia ||
+      navigator.msGetUserMedia;
+      //get the video
+      var video = document.querySelector('video');
+      //Get the Media stream
+      navigator.getUserMedia({video: true}, function(stream)
+      {
+        video.src = window.URL.createObjectURL(stream);
+      }, errorCallback);
+
+    }
+    else {
+      console.log("getUserMedia() is not supported in this browser");
+    }
   }
 }
 
