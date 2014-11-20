@@ -161,11 +161,11 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       $('#'+ dcID).append(newButton);
 
       //Add the camera button
-      //var cButton = document.createElement('a');
-      //cButton.id = "cameraB" + idNum;
-      //cButton.className = 'cameraButton fa fa-camera';
+      var cButton = document.createElement('a');
+      cButton.id = "cameraB" + idNum;
+      cButton.className = 'cameraButton fa fa-camera';
       //cButton.addEventListener("click", function (e) { ( addPicture(ddiv.id, dcID, cButton.id)); });
-      //cContainer.appendChild(dButton); 
+      $('#'+ dcID).append(cButton); 
       
       //Add the delete button
       var dButton=document.createElement('a');
@@ -348,11 +348,11 @@ function addPostIt (isInit, postText, plusOne){
     dContainer.appendChild(button);
 
     //Add the camera button
-    //var cButton = document.createElement('a');
-    //cButton.id = "cameraB" + idNum;
-    //cButton.className = 'cameraButton fa fa-camera';
-    //cButton.addEventListener("click", function (e) { ( addPicture(ddiv.id, dcID, cButton.id)); });
-    //cContainer.appendChild(dButton); 
+    var cButton = document.createElement('a');
+    cButton.id = "cameraB" + idNum;
+    cButton.className = 'cameraButton fa fa-camera';
+    cButton.addEventListener("click", function (e) { ( addPicture(ddiv.id, dcID, cButton.id)); });
+    cContainer.appendChild(dButton); 
 
     //Add the delete button
     var dButton=document.createElement('a');
