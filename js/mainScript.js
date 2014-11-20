@@ -244,7 +244,8 @@ function takePicture(divID, dcID, buttonID) {
     windowsCapture(window.cameraWinRT);
   }
   else {
-    console.log(Camera WinRT API not found);
+    //WinRT not found take pic another way
+    console.log("Camera WinRT API not found");
   }
 }
 
