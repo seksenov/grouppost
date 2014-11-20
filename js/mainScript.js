@@ -239,7 +239,8 @@ function windowsNotify (tags, object) {
 }
 
 function takePicture(divID, dcID, buttonID) {
-  console.log('Take oicture invoked');
+  console.log('Take picture invoked');
+  /*
   var object = window.cameraWinRT;
   if (object) {
      object.capturePicture();
@@ -247,6 +248,7 @@ function takePicture(divID, dcID, buttonID) {
   else {
     console.log(WinRT API not found);
   }
+  */
 }
 
 function deleteDiv(divID, dcID, buttonID) {
