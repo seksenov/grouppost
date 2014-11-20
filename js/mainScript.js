@@ -349,10 +349,10 @@ function addPostIt (isInit, postText, plusOne){
 
     //Add the camera button
     var cButton = document.createElement('a');
-    //cButton.id = "cameraB" + idNum;
-    //cButton.className = 'cameraButton fa fa-camera';
-    //cButton.addEventListener("click", function (e) { ( addPicture(ddiv.id, dcID, cButton.id)); });
-    //cContainer.appendChild(dButton); 
+    cButton.id = "cameraB" + idNum;
+    cButton.className = 'cameraButton fa fa-camera';
+    cButton.addEventListener("click", function (e) { ( addPicture(ddiv.id, dcID, cButton.id)); });
+    dContainer.appendChild(cButton); 
 
     //Add the delete button
     var dButton=document.createElement('a');
