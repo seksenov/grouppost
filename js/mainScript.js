@@ -164,7 +164,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       var cButton = document.createElement('a');
       cButton.id = "cameraB" + idNum;
       cButton.className = 'cameraButton fa fa-camera';
-      cButton.addEventListener("click", function (e) { ( takePicture(ddiv.id, dcID, cButton.id)); });
+      cButton.addEventListener("click", function (e) { ( takePicture(div.id, dcID, cButton.id)); });
       $('#'+ dcID).append(cButton); 
       
       //Add the delete button
@@ -240,7 +240,6 @@ function windowsNotify (tags, object) {
 
 function takePicture(divID, dcID, buttonID) {
   console.log('Take picture invoked');
-  /*
   var object = window.cameraWinRT;
   if (object) {
      object.capturePicture();
@@ -248,7 +247,6 @@ function takePicture(divID, dcID, buttonID) {
   else {
     console.log(WinRT API not found);
   }
-  */
 }
 
 function deleteDiv(divID, dcID, buttonID) {
@@ -360,7 +358,7 @@ function addPostIt (isInit, postText, plusOne){
     var cButton = document.createElement('a');
     cButton.id = "cameraB" + idNum;
     cButton.className = 'cameraButton fa fa-camera';
-    cButton.addEventListener("click", function (e) { ( takePicture(ddiv.id, dcID, cButton.id)); });
+    cButton.addEventListener("click", function (e) { ( takePicture(div.id, dcID, cButton.id)); });
     dContainer.appendChild(cButton); 
 
     //Add the delete button
