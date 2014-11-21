@@ -269,14 +269,11 @@ function imageToDataUri(img, width, height) {
     // create an off-screen canvas
     var canvas = document.createElement('canvas'),
         ctx = canvas.getContext('2d');
-
     // set its dimension to target size
     canvas.width = width;
     canvas.height = height;
-
     // draw source image into the off-screen canvas:
     ctx.drawImage(img, 0, 0, width, height);
-
     // encode image to data-uri with base64 version of compressed image
     return canvas.toDataURL();
 }
@@ -286,24 +283,11 @@ function windowsCapture (object, divID) {
   //Get the base64 image from WinRT and do stuff with it
   object.capturePicture().then(function(base64pic){
     //Taking the picture succeeded 
-    //var output = document.createElement("p");
-    //output.innerHTML = "Success";
-    //document.body.appendChild(output);
-    //var dicIDOut = document.createElement("p");
-    //dicIDOut.innerHTML = divID;
-    //document.body.appendChild(dicIDOut);
     var photo = document.createElement("img");
     photo.setAttribute('src', "data:image/png;base64,"+base64pic);
-    //photo.style.height = '300px';
-    //photo.style.width = '300px';
     var resizedImage = imageToDataUri(photo, 300, 300);
-    //document.getElementById(divID).style.backgroundImage = "data:image/png;base64,"+base64pic;
     //$("#"+divID).css("background-image", "url('data:image/png;base64," + base64pic + "')");
     $("#"+divID).css("background-image", "url(" + resizedImage + ")");
-    //document.body.appendChild(photo);
-
-
-
   }, function(err) {
     //Taking the picture failed
     console.log("There was an error: ");
@@ -320,7 +304,7 @@ function gumCapture (divID, dcID, buttonID) {
   
 
   var video = document.createElement("video");
-  var canvas = document.createElement("canvas");
+  //var canvas = document.createElement("canvas");
   var photo = document.createElement("img");
   //Set the video id
   var videoId = "v" + divID;
@@ -337,23 +321,23 @@ function gumCapture (divID, dcID, buttonID) {
   video.id = "thevideo";
 
   //Set the position of the canvas
-  canvas.style.position = "absolute";
-  canvas.style.top = rect.top + 'px';
-  canvas.style.left = rect.left + 'px';
-  canvas.style.height = rect.height + 'px';
-  canvas.style.width = rect.width + 'px';
-  canvas.style.zIndex = '25';
-  canvas.style.display = 'none';
+  //canvas.style.position = "absolute";
+ //canvas.style.top = rect.top + 'px';
+  //canvas.style.left = rect.left + 'px';
+  //canvas.style.height = rect.height + 'px';
+  //canvas.style.width = rect.width + 'px';
+  //canvas.style.zIndex = '25';
+  //canvas.style.display = 'none';
 
-  document.body.appendChild(canvas);
+  //document.body.appendChild(canvas);
 
   //Set the style
-  photo.style.position = "absolute";
-  photo.style.top = rect.top + 'px';
-  photo.style.left = rect.left + 'px';
-  photo.style.height = rect.height + 'px';
-  photo.style.width = rect.width + 'px';
-  photo.style.zIndex = '30';
+  //photo.style.position = "absolute";
+  //photo.style.top = rect.top + 'px';
+  //photo.style.left = rect.left + 'px';
+  //photo.style.height = rect.height + 'px';
+  //photo.style.width = rect.width + 'px';
+  //photo.style.zIndex = '30';
   //
 
   
@@ -381,12 +365,15 @@ function gumCapture (divID, dcID, buttonID) {
       }
       video.play();
       setTimeout(function(){
-        console.log("Took an image");
-        canvas.getContext('2d').drawImage(video, 0, 0, 300, 300);
-        var img = canvas.toDataURL("image/png");
-        photo.setAttribute('src', img) ;
-        console.log(canvas);
-        console.log(img);     
+        //console.log("Took an image");
+        //canvas.getContext('2d').drawImage(video, 0, 0, 300, 300);
+        //var img = canvas.toDataURL("image/png");
+        //photo.setAttribute('src', img) ;
+        //console.log(canvas);
+        //console.log(img);
+        var resizedImage = imageToDataUri(video, 300, 300);
+        //$("#"+divID).css("background-image", "url('data:image/png;base64," + base64pic + "')");
+        $("#"+divID).css("background-image", "url(" + resizedImage + ")");    
       }, 100); 
        
     },
