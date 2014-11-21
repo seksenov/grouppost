@@ -271,7 +271,7 @@ function windowsCapture (object) {
 
 //Take the picture through GUM API
 function gumCapture (divID, dcID, buttonID) {
-  document.getElementById(buttonID).removeEventListener("click", takePicture(divID, dcID, buttonID) );
+  //document.getElementById(buttonID).removeEventListener("click", takePicture(divID, dcID, buttonID) );
   
 
   var video = document.createElement("video");
@@ -315,7 +315,7 @@ function gumCapture (divID, dcID, buttonID) {
   //add the video to the DOM
   document.body.appendChild(video);
 
-  document.getElementById(buttonID).addEventListener("click", takePic(divID, dcID, buttonID, video, rect.height, 
+  //document.getElementById(buttonID).addEventListener("click", takePic(divID, dcID, buttonID, video, rect.height, 
     rect.width, rect.top, rect.left) );
 }
 
@@ -339,9 +339,9 @@ function takePic (divID, dcID, buttonID, video, height, width, top, left) {
 
 
 
-  document.getElementById(buttonID).removeEventListener("click", takePic(divID, dcID, buttonID, video, rect.height, 
-    rect.width, rect.top, rect.left) );
-  document.getElementById(buttonID).addEventListener("click", takePicture(divID, dcID, buttonID) );
+  //document.getElementById(buttonID).removeEventListener("click", takePic(divID, dcID, buttonID, video, rect.height, 
+    //rect.width, rect.top, rect.left) );
+  //document.getElementById(buttonID).addEventListener("click", takePicture(divID, dcID, buttonID) );
 }
 
 
