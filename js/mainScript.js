@@ -329,12 +329,13 @@ function takePic (divID, dcID, buttonID, video, height, width, top, left) {
   canvas.style.top = top + 'px';
   canvas.style.left = left + 'px';
   canvas.style.position = "absolute";
+  canvas.style.zIndex = '30';
 
   canvas.getContext('2d').drawImage(video, 0, 0, width, height);
   var data = canvas.toDataURL('image/png');
   photo.setAttribute('src', data);
 
-  video.parentNode.removeChild(video);
+  //video.parentNode.removeChild(video);
 
 
 
