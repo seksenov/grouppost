@@ -275,6 +275,8 @@ function windowsCapture (object) {
     document.body.appendChild(output);
     var photo = document.createElement("img");
     photo.setAttribute('src', "data:image/png;base64,"+base64pic);
+    photo.style.height = '300px';
+    photo.style.width = '300px';
     document.body.appendChild(photo);
 
 
