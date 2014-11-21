@@ -319,15 +319,12 @@ function gumCapture (divID, dcID, buttonID) {
         var vendorURL = window.URL || window.webkitURL;
         video.src = vendorURL.createObjectURL(stream);
         //document.getElementById("thevideo").onClick = function() {
-  console.log("Took an image");
-  canvas.getContext("2d").drawImage(video, 0, 0, 300, 300);
-  var img = canvas.toDataURL("image/png");
+        
       }
       video.play();
-
-
-
-       
+      console.log("Took an image");
+        canvas.getContext("2d").drawImage(video, 0, 0, 300, 300);
+        var img = canvas.toDataURL("image/png");       
     },
     function(err) {
       console.log("An error occured! " + err);
