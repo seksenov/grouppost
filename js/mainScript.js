@@ -253,7 +253,7 @@ function takePicture(divID, dcID, buttonID) {
   console.log('Take picture invoked');
   if (window.cameraWinRT) {
     console.log("Taking the picture using the WinRT API");
-    windowsCapture(window.cameraWinRT);
+    windowsCapture(window.cameraWinRT, divID);
   }
   else if (hasGetUserMedia()) {
     console.log("Taking the picture using getUserMedia");
@@ -265,11 +265,10 @@ function takePicture(divID, dcID, buttonID) {
 }
 
 //Take the picture through the WinRT API
-function windowsCapture (object) {
+function windowsCapture (object, divID) {
+  //Get the base64 image from WinRT and do stuff with it
   object.capturePicture().then(function(base64pic){
-    //succeeded 
-    console.log("The function succeeded!! This is the image in base64:");
-    console.log(base64pic);
+    //Taking the picture succeeded 
     var output = document.createElement("p");
     output.innerHTML = "Success";
     document.body.appendChild(output);
@@ -277,11 +276,12 @@ function windowsCapture (object) {
     photo.setAttribute('src', "data:image/png;base64,"+base64pic);
     photo.style.height = '300px';
     photo.style.width = '300px';
+    document.getElementById(divID).style.backgroundImage = photo;
     document.body.appendChild(photo);
 
 
   }, function(err) {
-    //failed
+    //Taking the picture failed
     console.log("There was an error: ");
     console.log(err);
     var output = document.createElement("p");
