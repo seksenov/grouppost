@@ -279,6 +279,8 @@ function gumCapture (divID, dcID, buttonID) {
   video.style.position = "absolute";
   video.style.top = rect.top + 'px';
   video.style.left = rect.left + 'px';
+  video.style.height = rect.height + 'px';
+  video.style.width = rect.width + 'px';
   video.style.zIndex = '20';
   //add the video to the DOM
   document.body.appendChild(video);
