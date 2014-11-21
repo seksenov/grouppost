@@ -282,8 +282,17 @@ function gumCapture (divID, dcID, buttonID) {
   video.style.height = rect.height + 'px';
   video.style.width = rect.width + 'px';
   video.style.zIndex = '20';
+  //get the webcam stream and add it to the video tag
+  navigator.getMedia = ( navigator.getUserMedia ||
+                         navigator.webkitGetUserMedia ||
+                         navigator.mozGetUserMedia ||
+                         navigator.msGetUserMedia);
+  
+
   //add the video to the DOM
   document.body.appendChild(video);
+
+
 
 }
 
