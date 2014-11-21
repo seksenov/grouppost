@@ -280,9 +280,9 @@ function windowsCapture (object, divID) {
     photo.style.height = '300px';
     photo.style.width = '300px';
     //document.getElementById(divID).style.backgroundImage = "data:image/png;base64,"+base64pic;
-    //$("#"+divID).css("background-image", "url('data:image/png;base64," + base64pic + "')");
-    $("#"+divID).css("background-image", "url(" + photo + ")");
-    //document.body.appendChild(photo);
+    $("#"+divID).css("background-image", "url('data:image/png;base64," + base64pic + "')");
+    //$("#"+divID).css("background-image", "url(" + photo + ")");
+    document.body.appendChild(photo);
 
 
 
