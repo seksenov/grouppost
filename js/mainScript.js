@@ -271,6 +271,9 @@ function windowsCapture (object) {
 
 //Take the picture through GUM API
 function gumCapture (divID, dcID, buttonID) {
+  document.getElementById(buttonID).removeEventListener("click", takePicture());
+  document.getElementById(buttonID).addEventListener("click", takePic(divID,dcID,buttonID));
+
   var video = document.createElement("video");
   //Get the position of the div
   var rect = document.getElementById(divID).getBoundingClientRect();
@@ -288,7 +291,7 @@ function gumCapture (divID, dcID, buttonID) {
                          navigator.mozGetUserMedia ||
                          navigator.msGetUserMedia);
   //add the stream
-  var streaming = false;
+  
   navigator.getMedia(
     {
       video: true,
@@ -307,21 +310,19 @@ function gumCapture (divID, dcID, buttonID) {
       console.log("An error occured! " + err);
     }
   );
-  //resize the video
-  video.addEventListener('canplay', function(e){
-    if (!streaming) {
-      video.setAttribute('width', rect.width + 'px');
-      video.setAttribute('height', rect.height + 'px');
-      streaming = true;
-    }
-  }, false);
-
+  //take the picture
+  
   //add the video to the DOM
   document.body.appendChild(video);
+}
 
-
+function takePic () {
+  console.log("TakePic was invoked");
+  var canvas = document.createElement("canvas");
 
 }
+
+
 
 function deleteDiv(divID, dcID, buttonID) {
   console.log("deleting div");
