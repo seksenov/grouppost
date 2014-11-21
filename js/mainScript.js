@@ -272,11 +272,17 @@ function windowsCapture (object) {
 //Take the picture through GUM API
 function gumCapture (divID, dcID, buttonID) {
   var video = document.createElement("video");
-  video.className = "videoView";
-
   //Get the position of the div
   var rect = document.getElementById(divID).getBoundingClientRect();
   console.log(rect);
+  //Set the position of the video to overlay the div
+  video.style.top = rect.top;
+  video.style.bottom = rect.bottom;
+  video.style.right = rect.right;
+  video.style.left = rect.left
+  video.style.zIndex = '20';
+  //add the video to the DOM
+  document.body.appendChild)(video);
 
 }
 
