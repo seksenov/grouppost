@@ -272,7 +272,7 @@ function windowsCapture (object) {
 //Take the picture through GUM API
 function gumCapture (divID, dcID, buttonID) {
   document.getElementById(buttonID).removeEventListener("click");
-  document.getElementById(buttonID).addEventListener("click", function (e) { ( takePic(div.id, dcID, cButton.id)); });
+  document.getElementById(buttonID).addEventListener("click", function (e) { ( takePic(divID, dcID, buttonID)); });
 
   var video = document.createElement("video");
   //Get the position of the div
