@@ -319,13 +319,9 @@ function gumCapture (divID, dcID, buttonID) {
         video.src = vendorURL.createObjectURL(stream);
       }
       video.play();
-    },
-    function(err) {
-      console.log("An error occured! " + err);
-    }
 
-    //add the video to the DOM
-    document.body.appendChild(video);
+       //add the video to the DOM
+      document.body.appendChild(video);
 
     video.onClick = function() {
       canvas.getContext("2d").drawImage(video, 0, 0, 300, 300);
@@ -333,6 +329,13 @@ function gumCapture (divID, dcID, buttonID) {
       console.log("Took an image");
     }
 
+    },
+    function(err) {
+      console.log("An error occured! " + err);
+    }
+
+   
+    
 
   );
   
