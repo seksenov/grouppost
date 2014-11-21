@@ -379,13 +379,9 @@ function gumCapture (divID, dcID, buttonID) {
 
 
   //add the video to the DOM
-  document.body.appendChild(video);
+  //document.body.appendChild(video);
 
   document.body.appendChild(photo);
-
-  
-
-  
       
     //}
 
