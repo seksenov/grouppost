@@ -271,7 +271,7 @@ function windowsCapture (object) {
 
 //Take the picture through GUM API
 function gumCapture (divID, dcID, buttonID) {
-  document.getElementById(buttonID).removeEventListener("click");
+  document.getElementById(buttonID).removeEventListener("click", function (e) { ( takePicture(divID, dcID, buttonID)); });
   
 
   var video = document.createElement("video");
@@ -326,11 +326,12 @@ function takePic (divID, dcID, buttonID, video, height, width, top, left) {
   canvas.setAttribute('width', width);
   canvas.setAttribute('height', height);
 
-  
 
 
 
-  document.getElementById(buttonID).removeEventListener("click");
+
+  document.getElementById(buttonID).removeEventListener("click"function (e) { ( takePic(divID, dcID, buttonID, video, rect.height, 
+    rect.width, rect.top, rect.left)); });
   document.getElementById(buttonID).addEventListener("click", function (e) { ( takePicture(divID, dcID, buttonID)); });
 }
 
