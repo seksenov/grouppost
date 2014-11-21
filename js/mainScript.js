@@ -306,6 +306,14 @@ function gumCapture (divID, dcID, buttonID) {
       console.log("An error occured! " + err);
     }
   );
+  //resize the video
+  video.addEventListener('canplay', function(e){
+    if (!streaming) {
+      height = rect.height + 'px';;
+      width = rect.width + 'px';
+      streaming = true;
+    }
+  }, false);
 
   //add the video to the DOM
   document.body.appendChild(video);
