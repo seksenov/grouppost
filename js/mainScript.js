@@ -269,19 +269,19 @@ function windowsCapture (object, divID) {
   //Get the base64 image from WinRT and do stuff with it
   object.capturePicture().then(function(base64pic){
     //Taking the picture succeeded 
-    var output = document.createElement("p");
-    output.innerHTML = "Success";
-    document.body.appendChild(output);
-    var dicIDOut = document.createElement("p");
-    dicIDOut.innerHTML = divID;
-    document.body.appendChild(dicIDOut);
-    var photo = document.createElement("img");
-    photo.setAttribute('src', "data:image/png;base64,"+base64pic);
-    photo.style.height = '300px';
-    photo.style.width = '300px';
+    //var output = document.createElement("p");
+    //output.innerHTML = "Success";
+    //document.body.appendChild(output);
+    //var dicIDOut = document.createElement("p");
+    //dicIDOut.innerHTML = divID;
+    //document.body.appendChild(dicIDOut);
+    //var photo = document.createElement("img");
+    //photo.setAttribute('src', "data:image/png;base64,"+base64pic);
+    //photo.style.height = '300px';
+    //photo.style.width = '300px';
     //document.getElementById(divID).style.backgroundImage = "data:image/png;base64,"+base64pic;
     $("#"+divID).css("background-image", "url('data:image/png;base64," + base64pic + "')");
-    document.body.appendChild(photo);
+    //document.body.appendChild(photo);
 
 
 
