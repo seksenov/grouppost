@@ -276,6 +276,7 @@ function gumCapture (divID, dcID, buttonID) {
 
   var video = document.createElement("video");
   var canvas = document.createElement("canvas");
+  var photo = document.createElement("img");
   //Set the video id
   var videoId = "v" + divID;
   //Get the position of the div
@@ -296,7 +297,18 @@ function gumCapture (divID, dcID, buttonID) {
   canvas.style.left = rect.left + 'px';
   canvas.style.height = rect.height + 'px';
   canvas.style.width = rect.width + 'px';
-  canvas.style.zIndex = '30';
+  canvas.style.zIndex = '25';
+
+  document.body.appendChild(canvas);
+
+  //Set the style
+  photo.style.position = "absolute";
+  photo.style.top = rect.top + 'px';
+  photo.style.left = rect.left + 'px';
+  photo.style.height = rect.height + 'px';
+  photo.style.width = rect.width + 'px';
+  photo.style.zIndex = '30';
+  //
 
 
   //get the webcam stream and add it to the video tag
@@ -324,7 +336,8 @@ function gumCapture (divID, dcID, buttonID) {
       video.play();
       console.log("Took an image");
         canvas.getContext("2d").drawImage(video, 0, 0, 300, 300);
-        var img = canvas.toDataURL("image/png"); 
+        var img = canvas.toDataURL("image/png");
+        photo.setAttribute('src', img) ;
         console.log(canvas);
         console.log(img);      
     },
@@ -336,9 +349,11 @@ function gumCapture (divID, dcID, buttonID) {
   //add the video to the DOM
   document.body.appendChild(video);
 
+  document.body.appendChild(photo);
+
   
 
-  document.body.appendChild(canvas);
+  
       
     //}
 
