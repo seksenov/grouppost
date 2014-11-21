@@ -266,7 +266,15 @@ function takePicture(divID, dcID, buttonID) {
 
 //Take the picture through the WinRT API
 function windowsCapture (object) {
-  object.capturePicture();
+  object.capturePicture().then(function(base64pic){
+    //succeeded 
+    console.log("The function succeeded!! This is the image in base64:");
+    console.log(base64pic);
+  }, function(err) {
+    //failed
+    console.log("There was an error: ");
+    console.log(err);
+  });
 }
 
 //Take the picture through GUM API
