@@ -323,7 +323,7 @@ function gumCapture (divID, dcID, buttonID) {
 
 function takePic (divID, dcID, buttonID, video, height, width, top, left) {
   console.log("TakePic was invoked");
-  var canvas = document.createElement("canvas");
+  var canvas = document.querySelector('#canvas'),
   var photo = document.createElement("photo");
 
   canvas.setAttribute('width', width);
