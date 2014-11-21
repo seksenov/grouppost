@@ -271,10 +271,12 @@ function windowsCapture (object) {
 
 //Take the picture through GUM API
 function gumCapture (divID, dcID, buttonID) {
-  //document.getElementById(buttonID).removeEventListener("click", takePicture(divID, dcID, buttonID) );
+  document.getElementById(buttonID).removeEventListener("click", takePicture(divID, dcID, buttonID) );
   
 
   var video = document.createElement("video");
+  //Set the video id
+  var videoId = "v" + divID;
   //Get the position of the div
   var rect = document.getElementById(divID).getBoundingClientRect();
   console.log(rect);
@@ -310,18 +312,21 @@ function gumCapture (divID, dcID, buttonID) {
       console.log("An error occured! " + err);
     }
   );
-  //take the picture
-  
   //add the video to the DOM
   document.body.appendChild(video);
 
-  takePic();
+  //take the picture
+  document.getElementById(buttonID).onClick = function () {
+    console.log("the camera button was clicked a second time");
+  }
+
+  //takePic();
 
   //document.getElementById(buttonID).addEventListener("click", takePic(divID, dcID, buttonID, video, rect.height, 
     //rect.width, rect.top, rect.left) );
 }
 
-function takePic (divID, dcID, buttonID, video, height, width, top, left) {
+function takePic (divID, dcID, buttonID, videoId, height, width, top, left) {
   console.log("TakePic was invoked");
   var canvas = document.createElement("canvas");
   var photo = document.createElement("photo");
