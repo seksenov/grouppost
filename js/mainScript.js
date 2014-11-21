@@ -288,7 +288,7 @@ function gumCapture (divID, dcID, buttonID) {
                          navigator.mozGetUserMedia ||
                          navigator.msGetUserMedia);
   //add the stream
-  var streaming = false,
+  var streaming = false;
   navigator.getMedia(
     {
       video: true,
