@@ -316,7 +316,7 @@ function gumCapture (divID, dcID, buttonID) {
   document.body.appendChild(video);
 
   //document.getElementById(buttonID).addEventListener("click", takePic(divID, dcID, buttonID, video, rect.height, 
-    rect.width, rect.top, rect.left) );
+    //rect.width, rect.top, rect.left) );
 }
 
 function takePic (divID, dcID, buttonID, video, height, width, top, left) {
