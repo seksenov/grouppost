@@ -322,11 +322,19 @@ function gumCapture (divID, dcID, buttonID) {
 function takePic (divID, dcID, buttonID, video, height, width, top, left) {
   console.log("TakePic was invoked");
   var canvas = document.createElement("canvas");
+  var photo = document.createElement("photo");
 
   canvas.setAttribute('width', width);
   canvas.setAttribute('height', height);
+  canvas.style.top = top + 'px';
+  canvas.style.left = left + 'px';
+  canvas.style.position = "absolute";
 
+  canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+  var data = canvas.toDataURL('image/png');
+  photo.setAttribute('src', data);
 
+  video.parentNode.removeChild(video);
 
 
 
