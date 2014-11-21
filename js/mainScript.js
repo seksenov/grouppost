@@ -288,6 +288,7 @@ function gumCapture (divID, dcID, buttonID) {
                          navigator.mozGetUserMedia ||
                          navigator.msGetUserMedia);
   //add the stream
+  var streaming = false,
   navigator.getMedia(
     {
       video: true,
@@ -309,8 +310,8 @@ function gumCapture (divID, dcID, buttonID) {
   //resize the video
   video.addEventListener('canplay', function(e){
     if (!streaming) {
-      height = rect.height + 'px';;
-      width = rect.width + 'px';
+      video.setAttribute('width', rect.width + 'px');
+      video.setAttribute('height', rect.height + 'px');
       streaming = true;
     }
   }, false);
