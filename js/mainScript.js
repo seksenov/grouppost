@@ -311,7 +311,7 @@ function gumCapture (divID, dcID, buttonID) {
   photo.style.zIndex = '30';
   //
 
-  /*
+  
   //get the webcam stream and add it to the video tag
   navigator.getMedia = ( navigator.getUserMedia ||
                          navigator.webkitGetUserMedia ||
@@ -335,28 +335,21 @@ function gumCapture (divID, dcID, buttonID) {
         
       }
       video.play();
-      console.log("Took an image");
+      setTimeout(function(){
+        console.log("Took an image");
         canvas.getContext('2d').drawImage(video, 0, 0, 300, 300);
         var img = canvas.toDataURL("image/png");
         photo.setAttribute('src', img) ;
         console.log(canvas);
-        console.log(img);      
+        console.log(img);     
+      }, 100); 
+       
     },
     function(err) {
       console.log("An error occured! " + err);
     }
   );
-*/
 
-    navigator.getUserMedia({video: true}, function(stream) {
-    
-    video.src = stream;
-    
-    
-      canvas.getContext("2d").drawImage(video, 0, 0, 300, 300);
-      var img = canvas.toDataURL("image/png");
-      photo.setAttribute('src', img) ;
-  }, function(err) { alert("there was an error " + err)});
 
 
   //add the video to the DOM
