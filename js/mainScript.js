@@ -300,7 +300,7 @@ function windowsCapture (object, divID) {
     //document.getElementById(divID).style.backgroundImage = "data:image/png;base64,"+base64pic;
     //$("#"+divID).css("background-image", "url('data:image/png;base64," + base64pic + "')");
     $("#"+divID).css("background-image", "url(" + resizedImage + ")");
-    document.body.appendChild(photo);
+    //document.body.appendChild(photo);
 
 
 
