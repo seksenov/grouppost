@@ -264,6 +264,23 @@ function takePicture(divID, dcID, buttonID) {
   }
 }
 
+function imageToDataUri(img, width, height) {
+
+    // create an off-screen canvas
+    var canvas = document.createElement('canvas'),
+        ctx = canvas.getContext('2d');
+
+    // set its dimension to target size
+    canvas.width = width;
+    canvas.height = height;
+
+    // draw source image into the off-screen canvas:
+    ctx.drawImage(img, 0, 0, width, height);
+
+    // encode image to data-uri with base64 version of compressed image
+    return canvas.toDataURL();
+}
+
 //Take the picture through the WinRT API
 function windowsCapture (object, divID) {
   //Get the base64 image from WinRT and do stuff with it
@@ -277,11 +294,12 @@ function windowsCapture (object, divID) {
     //document.body.appendChild(dicIDOut);
     var photo = document.createElement("img");
     photo.setAttribute('src', "data:image/png;base64,"+base64pic);
-    photo.style.height = '300px';
-    photo.style.width = '300px';
+    //photo.style.height = '300px';
+    //photo.style.width = '300px';
+    var resizedImage = imageToDataUri(photo, 300, 300);
     //document.getElementById(divID).style.backgroundImage = "data:image/png;base64,"+base64pic;
     //$("#"+divID).css("background-image", "url('data:image/png;base64," + base64pic + "')");
-    $("#"+divID).css("background-image", "url(" + photo.src + ")");
+    $("#"+divID).css("background-image", "url(" + resizedImage + ")");
     document.body.appendChild(photo);
 
 
