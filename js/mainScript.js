@@ -271,7 +271,7 @@ function windowsCapture (object) {
 
 //Take the picture through GUM API
 function gumCapture (divID, dcID, buttonID) {
-  document.getElementById(buttonID).removeEventListener("click", takePicture(divID, dcID, buttonID) );
+  //document.getElementById(buttonID).removeEventListener("click", takePicture(divID, dcID, buttonID) );
   
 
   var video = document.createElement("video");
@@ -316,9 +316,9 @@ function gumCapture (divID, dcID, buttonID) {
   document.body.appendChild(video);
 
   //take the picture
-  document.getElementById(buttonID).onClick = function () {
-    console.log("the camera button was clicked a second time");
-  }
+  //document.getElementById(buttonID).onClick = function () {
+  //  console.log("the camera button was clicked a second time");
+  //}
 
   //takePic();
 
