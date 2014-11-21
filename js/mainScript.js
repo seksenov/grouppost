@@ -315,6 +315,8 @@ function gumCapture (divID, dcID, buttonID) {
   //add the video to the DOM
   document.body.appendChild(video);
 
+  takePic();
+
   //document.getElementById(buttonID).addEventListener("click", takePic(divID, dcID, buttonID, video, rect.height, 
     //rect.width, rect.top, rect.left) );
 }
@@ -334,6 +336,8 @@ function takePic (divID, dcID, buttonID, video, height, width, top, left) {
   canvas.getContext('2d').drawImage(video, 0, 0, width, height);
   var data = canvas.toDataURL('image/png');
   photo.setAttribute('src', data);
+
+  document.body.appendChild(canvas);
 
   //video.parentNode.removeChild(video);
 
