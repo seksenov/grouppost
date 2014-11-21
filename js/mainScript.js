@@ -282,7 +282,7 @@ function gumCapture (divID, dcID, buttonID) {
   video.style.left = rect.left
   video.style.zIndex = '20';
   //add the video to the DOM
-  document.body.appendChild)(video);
+  document.body.appendChild(video);
 
 }
 
