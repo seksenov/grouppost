@@ -321,25 +321,23 @@ function gumCapture (divID, dcID, buttonID) {
       }
       video.play();
 
-    }
-
+       
     },
     function(err) {
       console.log("An error occured! " + err);
     }
+  );
 
-    //add the video to the DOM
+  //add the video to the DOM
       document.body.appendChild(video);
 
      document.getElementById("thevideo").onClick = function() {
       console.log("Took an image");
       canvas.getContext("2d").drawImage(video, 0, 0, 300, 300);
       var img = canvas.toDataURL("image/png");
+      
+    }
 
-   
-    
-
-  );
   
 
   //take the picture
