@@ -324,7 +324,9 @@ function gumCapture (divID, dcID, buttonID) {
       video.play();
       console.log("Took an image");
         canvas.getContext("2d").drawImage(video, 0, 0, 300, 300);
-        var img = canvas.toDataURL("image/png");       
+        var img = canvas.toDataURL("image/png"); 
+        console.log(canvas);
+        console.log(img);      
     },
     function(err) {
       console.log("An error occured! " + err);
