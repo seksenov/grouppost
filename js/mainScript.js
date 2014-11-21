@@ -272,7 +272,7 @@ function windowsCapture (object) {
 //Take the picture through GUM API
 function gumCapture (divID, dcID, buttonID) {
   document.getElementById(buttonID).removeEventListener("click");
-  document.getElementById(buttonID).addEventListener("click", function (e) { ( takePic(divID, dcID, buttonID)); });
+  
 
   var video = document.createElement("video");
   //Get the position of the div
@@ -314,12 +314,24 @@ function gumCapture (divID, dcID, buttonID) {
   
   //add the video to the DOM
   document.body.appendChild(video);
+
+  document.getElementById(buttonID).addEventListener("click", function (e) { ( takePic(divID, dcID, buttonID, video, rect.height, 
+    rect.width, rect.top, rect.left)); });
 }
 
-function takePic () {
+function takePic (divID, dcID, buttonID, video, height, width, top, left) {
   console.log("TakePic was invoked");
   var canvas = document.createElement("canvas");
 
+  canvas.setAttribute('width', width);
+  canvas.setAttribute('height', height);
+
+  
+
+
+
+  document.getElementById(buttonID).removeEventListener("click");
+  document.getElementById(buttonID).addEventListener("click", function (e) { ( takePicture(divID, dcID, buttonID)); });
 }
 
 
