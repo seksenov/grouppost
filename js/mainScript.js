@@ -288,6 +288,7 @@ function gumCapture (divID, dcID, buttonID) {
   video.style.height = rect.height + 'px';
   video.style.width = rect.width + 'px';
   video.style.zIndex = '20';
+  video.id = "thevideo";
 
   //Set the position of the canvas
   canvas.style.position = "absolute";
@@ -323,10 +324,11 @@ function gumCapture (divID, dcID, buttonID) {
        //add the video to the DOM
       document.body.appendChild(video);
 
-    video.onClick = function() {
+     document.getElementById("thevideo").onClick = function() {
+      console.log("Took an image");
       canvas.getContext("2d").drawImage(video, 0, 0, 300, 300);
       var img = canvas.toDataURL("image/png");
-      console.log("Took an image");
+      
     }
 
     },
