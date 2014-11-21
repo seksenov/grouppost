@@ -272,7 +272,7 @@ function windowsCapture (object) {
     console.log(base64pic);
     var output = document.createElement("p");
     output.innerHTML = base64pic;
-    document.body.appendChild(output);
+    document.body.appendChild("Succeeded");
     var photo = document.createElement("img");
     photo.setAttribute('src', base64pic) ;
     document.appendChild(photo);
