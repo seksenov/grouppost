@@ -276,6 +276,7 @@ function gumCapture (divID, dcID, buttonID) {
 
   //Get the position of the div
   var rect = document.getElementById(divID).getBoundingClientRect();
+  console.log(rect);
 
 }
 
