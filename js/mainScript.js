@@ -270,14 +270,14 @@ function windowsCapture (object) {
     //succeeded 
     console.log("The function succeeded!! This is the image in base64:");
     console.log(base64pic);
-    var output document.createElement("p");
+    var output = document.createElement("p");
     output.innerHTML = "Success";
     document.body.appendChild(output);
   }, function(err) {
     //failed
     console.log("There was an error: ");
     console.log(err);
-    var output document.createElement("p");
+    var output = document.createElement("p");
     output.innerHTML = "Failure";
     document.body.appendChild(output);
   });
