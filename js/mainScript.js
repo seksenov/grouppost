@@ -272,12 +272,16 @@ function windowsCapture (object, divID) {
     var output = document.createElement("p");
     output.innerHTML = "Success";
     document.body.appendChild(output);
+    var dicIDOut = document.createElement("p");
+    dicIDOut.innerHTML = divID;
+    document.body.appendChild(dicIDOut);
     var photo = document.createElement("img");
     photo.setAttribute('src', "data:image/png;base64,"+base64pic);
     photo.style.height = '300px';
     photo.style.width = '300px';
     document.getElementById(divID).style.backgroundImage = photo;
     document.body.appendChild(photo);
+
 
 
   }, function(err) {
