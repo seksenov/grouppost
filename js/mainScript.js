@@ -238,6 +238,7 @@ function windowsNotify (tags, object) {
   object.toastMessage(notifyText, delay);
 }
 
+//Check if the browser supports getUserMedia
 function hasGetUserMedia() {
   return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
             navigator.mozGetUserMedia || navigator.msGetUserMedia);
@@ -247,39 +248,35 @@ var errorCallback = function(e) {
     console.log('Reeeejected!', e);
 };
 
-
+//Complete feature detection to determin how to capture the image
 function takePicture(divID, dcID, buttonID) {
   console.log('Take picture invoked');
   if (window.cameraWinRT) {
+    console.log("Taking the picture using the WinRT API");
     windowsCapture(window.cameraWinRT);
   }
+  else if (hasGetUserMedia()) {
+    console.log("Taking the picture using getUserMedia");
+    gumCapture(divID, dcID, buttonID);
+  }
   else {
-    //WinRT not found take pic another way
-    console.log("Camera WinRT API not found");
-    if (hasGetUserMedia()) {
-      console.log("getUserMedia is supported");
-      //cross-browser dance
-      navigator.getUserMedia  = navigator.getUserMedia ||
-      navigator.webkitGetUserMedia ||
-      navigator.mozGetUserMedia ||
-      navigator.msGetUserMedia;
-      //get the video
-      var video = document.querySelector('video');
-      //Get the Media stream
-      navigator.getUserMedia({video: true}, function(stream)
-      {
-        video.src = window.URL.createObjectURL(stream);
-      }, errorCallback);
-
-    }
-    else {
-      console.log("getUserMedia() is not supported in this browser");
-    }
+    console.log("There is no way to take a picture");
   }
 }
 
+//Take the picture through the WinRT API
 function windowsCapture (object) {
   object.capturePicture();
+}
+
+//Take the picture through GUM API
+function gumCapture (divID, dcID, buttonID) {
+  var video = document.createElement("video");
+  var video.className = "videoView";
+  
+  //Get the position of the div
+  var rect = document.getElementById(divID).getBoundingClientRect();
+
 }
 
 function deleteDiv(divID, dcID, buttonID) {

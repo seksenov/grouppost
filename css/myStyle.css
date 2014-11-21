@@ -40,6 +40,12 @@
     z-index: 1;
 }
 
+.videoView {
+    height: 300px;
+    width: 300px;
+
+}
+
 .editButton {
 
     position:relative; 
