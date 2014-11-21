@@ -330,7 +330,7 @@ function takePic (divID, dcID, buttonID, video, height, width, top, left) {
 
 
 
-  document.getElementById(buttonID).removeEventListener("click"function (e) { ( takePic(divID, dcID, buttonID, video, rect.height, 
+  document.getElementById(buttonID).removeEventListener("click", function (e) { ( takePic(divID, dcID, buttonID, video, rect.height, 
     rect.width, rect.top, rect.left)); });
   document.getElementById(buttonID).addEventListener("click", function (e) { ( takePicture(divID, dcID, buttonID)); });
 }
