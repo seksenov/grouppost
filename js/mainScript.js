@@ -302,7 +302,7 @@ function windowsCapture (object, divID) {
 
 //Take the picture through GUM API
 function gumCapture (divID, dcID, buttonID) {
-  //document.getElementById(buttonID).removeEventListener("click", takePicture(divID, dcID, buttonID) );
+  document.getElementById(buttonID).removeEventListener("click", arguments.callee) );
   
   var video = document.createElement("video");
   //var canvas = document.createElement("canvas");
@@ -344,18 +344,34 @@ function gumCapture (divID, dcID, buttonID) {
         
       }
       video.play();
-      console.log("passing the video to be captured");
+      //console.log("passing the video to be captured");
+      /*
       setTimeout(function(){
         var resizedImage = imageToDataUri(video, 300, 300);
         //$("#"+divID).css("background-image", "url('data:image/png;base64," + base64pic + "')");
         $("#"+divID).css("background-image", "url(" + resizedImage + ")");    
-      }, 100); 
-       
+      }, 100);
+      */ 
     },
     function(err) {
       console.log("An error occured! " + err);
     }
   );
+
+  document.getElementById(buttonID).addEventListener("click", function (e) { ( setBackground(video, divID));) );
+
+  document.body.appendChild(video);
+}
+
+function setBackground (video, divID) {
+
+  console.log("YO!----------- The image background was set -------------YO!");
+
+  var resizedImage = imageToDataUri(video, 300, 300);
+  $("#"+divID).css("background-image", "url(" + resizedImage + ")");
+
+  document.body.removeChild(video);  
+
 }
 
 function takePic (divID, dcID, buttonID, videoId, height, width, top, left) {
