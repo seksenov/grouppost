@@ -302,7 +302,6 @@ function windowsCapture (object, divID) {
 function gumCapture (divID, dcID, buttonID) {
   //document.getElementById(buttonID).removeEventListener("click", takePicture(divID, dcID, buttonID) );
   
-
   var video = document.createElement("video");
   //var canvas = document.createElement("canvas");
   var photo = document.createElement("img");
@@ -319,27 +318,6 @@ function gumCapture (divID, dcID, buttonID) {
   video.style.width = rect.width + 'px';
   video.style.zIndex = '20';
   video.id = "thevideo";
-
-  //Set the position of the canvas
-  //canvas.style.position = "absolute";
- //canvas.style.top = rect.top + 'px';
-  //canvas.style.left = rect.left + 'px';
-  //canvas.style.height = rect.height + 'px';
-  //canvas.style.width = rect.width + 'px';
-  //canvas.style.zIndex = '25';
-  //canvas.style.display = 'none';
-
-  //document.body.appendChild(canvas);
-
-  //Set the style
-  //photo.style.position = "absolute";
-  //photo.style.top = rect.top + 'px';
-  //photo.style.left = rect.left + 'px';
-  //photo.style.height = rect.height + 'px';
-  //photo.style.width = rect.width + 'px';
-  //photo.style.zIndex = '30';
-  //
-
   
   //get the webcam stream and add it to the video tag
   navigator.getMedia = ( navigator.getUserMedia ||
@@ -365,12 +343,6 @@ function gumCapture (divID, dcID, buttonID) {
       }
       video.play();
       setTimeout(function(){
-        //console.log("Took an image");
-        //canvas.getContext('2d').drawImage(video, 0, 0, 300, 300);
-        //var img = canvas.toDataURL("image/png");
-        //photo.setAttribute('src', img) ;
-        //console.log(canvas);
-        //console.log(img);
         var resizedImage = imageToDataUri(video, 300, 300);
         //$("#"+divID).css("background-image", "url('data:image/png;base64," + base64pic + "')");
         $("#"+divID).css("background-image", "url(" + resizedImage + ")");    
@@ -381,27 +353,6 @@ function gumCapture (divID, dcID, buttonID) {
       console.log("An error occured! " + err);
     }
   );
-
-
-
-  //add the video to the DOM
-  //document.body.appendChild(video);
-
-  document.body.appendChild(photo);
-      
-    //}
-
-  
-
-  //take the picture
-  //document.getElementById(buttonID).onClick = function () {
-  //  console.log("the camera button was clicked a second time");
-  //}
-
-  //takePic();
-
-  //document.getElementById(buttonID).addEventListener("click", takePic(divID, dcID, buttonID, video, rect.height, 
-    //rect.width, rect.top, rect.left) );
 }
 
 function takePic (divID, dcID, buttonID, videoId, height, width, top, left) {
