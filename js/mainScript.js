@@ -163,9 +163,9 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       
       //Add the camera button
       var cButton = document.createElement('a');
-      cButton.id = "cameraB" + idNum;
+      cButton.id = "cameraB" + buttonID;
       cButton.className = 'cameraButton fa fa-camera';
-      //cButton.addEventListener("click", function (e) { takePicture(div.id, dcID, cButton.id) });
+      cButton.addEventListener("click", function (e) { takePicture(div.id, dcID, cButton.id) });
       $('#'+ dcID).append(cButton); 
       
 
@@ -471,7 +471,7 @@ function addPostIt (isInit, postText, plusOne){
     plus.type = "image";
     plus.className = "plusButton"
     //TODO add oneplue arg
-    plus.addEventListener("click", function (e) { selectDiv(div.id, plus.id, true, dcID); });
+    plus.addEventListener("click", function (e) {e.stopPropagation(); selectDiv(div.id, plus.id, true, dcID); });
     dContainer.appendChild(plus);
 
     //this is whre the animation should go
