@@ -164,7 +164,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       var cButton = document.createElement('a');
       cButton.id = "cameraB" + idNum;
       cButton.className = 'cameraButton fa fa-camera';
-      cButton.addEventListener("click", takePicture(div.id, dcID, cButton.id) );
+      cButton.addEventListener("click", function (e) { takePicture(div.id, dcID, cButton.id) });
       $('#'+ dcID).append(cButton); 
       
       //Add the delete button
