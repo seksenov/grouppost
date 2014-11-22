@@ -471,7 +471,7 @@ function addPostIt (isInit, postText, plusOne){
     plus.type = "image";
     plus.className = "plusButton"
     //TODO add oneplue arg
-    plus.addEventListener("click", function (e) {e.stopPropagation(); selectDiv(div.id, plus.id, true, dcID); });
+    plus.addEventListener("click", function (e) { selectDiv(div.id, plus.id, true, dcID); });
     dContainer.appendChild(plus);
 
     //this is whre the animation should go
