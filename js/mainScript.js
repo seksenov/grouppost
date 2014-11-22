@@ -314,8 +314,8 @@ function gumCapture (divID, dcID, buttonID) {
   console.log(rect);
   //Set the position of the video to overlay the div
   //video.style.position = "absolute";
-  video.style.top = 0;
-  video.style.left = 0;
+  //video.style.top = 0;
+  //video.style.left = 0;
   video.style.height = "300px";
   video.style.width = "300px";
   //video.style.zIndex = '20';
