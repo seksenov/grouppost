@@ -363,14 +363,15 @@ function setBackground (video, divID, dcID, buttonID) {
 
   console.log("YO!----------- The image background was set -------------YO!");
 
-  video.pause();
-
-  video.src = "";
 
   document.getElementById(divID).removeChild(video);
 
   var resizedImage = imageToDataUri(video, 300, 300);
   $("#"+divID).css("background-image", "url(" + resizedImage + ")");
+
+  video.pause();
+
+  video.src = null;
 
   var old_element = document.getElementById(buttonID);
   var new_element = old_element.cloneNode(true);
