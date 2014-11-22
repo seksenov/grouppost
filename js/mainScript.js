@@ -348,14 +348,6 @@ function gumCapture (divID, dcID, buttonID) {
         
       }
       video.play();
-      //console.log("passing the video to be captured");
-      /*
-      setTimeout(function(){
-        var resizedImage = imageToDataUri(video, 300, 300);
-        //$("#"+divID).css("background-image", "url('data:image/png;base64," + base64pic + "')");
-        $("#"+divID).css("background-image", "url(" + resizedImage + ")");    
-      }, 100);
-      */ 
     },
     function(err) {
       console.log("An error occured! " + err);
@@ -371,6 +363,8 @@ function setBackground (video, divID, dcID, buttonID) {
 
   console.log("YO!----------- The image background was set -------------YO!");
 
+  video.stop();
+
   document.getElementById(divID).removeChild(video);
 
   var resizedImage = imageToDataUri(video, 300, 300);
@@ -381,14 +375,7 @@ function setBackground (video, divID, dcID, buttonID) {
   old_element.parentNode.replaceChild(new_element, old_element);
 
   document.getElementById(buttonID).addEventListener("click", function (e) { ( takePicture(divID, dcID, buttonID)); });
-
-
-  //document.body.removeChild(video);  
-  //$( "#thevideo" ).remove();
-
 }
-
-
 
 function deleteDiv(divID, dcID, buttonID) {
   console.log("deleting div");
