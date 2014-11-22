@@ -341,18 +341,18 @@ function gumCapture (divID, dcID, buttonID) {
         //document.getElementById("thevideo").onClick = function() {
         
       }
-      //video.play();
-      setTimeout(function(){
-        var resizedImage = imageToDataUri(video, 300, 300);
-        //$("#"+divID).css("background-image", "url('data:image/png;base64," + base64pic + "')");
-        $("#"+divID).css("background-image", "url(" + resizedImage + ")");    
-      }, 100); 
-       
+      //video.play();   
     },
     function(err) {
       console.log("An error occured! " + err);
     }
   );
+
+  setTimeout(function(){
+        var resizedImage = imageToDataUri(video, 300, 300);
+        //$("#"+divID).css("background-image", "url('data:image/png;base64," + base64pic + "')");
+        $("#"+divID).css("background-image", "url(" + resizedImage + ")");    
+      }, 100); 
 }
 
 function takePic (divID, dcID, buttonID, videoId, height, width, top, left) {
