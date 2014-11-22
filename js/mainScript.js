@@ -302,7 +302,11 @@ function windowsCapture (object, divID) {
 
 //Take the picture through GUM API
 function gumCapture (divID, dcID, buttonID) {
-  document.getElementById(buttonID).removeEventListener("click", arguments.callee);
+  //document.getElementById(buttonID).removeEventListener("click", arguments.callee);
+  //Get rid of all event listeners
+  var old_element = document.getElementById(buttonID);
+  var new_element = old_element.cloneNode(true);
+  old_element.parentNode.replaceChild(new_element, old_element);
   
   var video = document.createElement("video");
   //var canvas = document.createElement("canvas");
@@ -371,6 +375,11 @@ function setBackground (video, divID) {
 
   var resizedImage = imageToDataUri(video, 300, 300);
   $("#"+divID).css("background-image", "url(" + resizedImage + ")");
+
+  var old_element = document.getElementById(buttonID);
+  var new_element = old_element.cloneNode(true);
+  old_element.parentNode.replaceChild(new_element, old_element);
+
 
   //document.body.removeChild(video);  
   //$( "#thevideo" ).remove();
