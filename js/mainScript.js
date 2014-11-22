@@ -316,8 +316,8 @@ function gumCapture (divID, dcID, buttonID) {
   //video.style.position = "absolute";
   video.style.top = 0;
   video.style.left = 0;
-  //video.style.height = rect.height + 'px';
-  //video.style.width = rect.width + 'px';
+  video.style.height = "300px";
+  video.style.width = "300px";
   //video.style.zIndex = '20';
   video.id = divID + "video";
   
