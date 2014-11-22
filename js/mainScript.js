@@ -313,9 +313,9 @@ function gumCapture (divID, dcID, buttonID) {
   var rect = document.getElementById(divID).getBoundingClientRect();
   console.log(rect);
   //Set the position of the video to overlay the div
-  //video.style.position = "absolute";
-  //video.style.top = 0;
-  //video.style.left = 0;
+  video.style.position = "relative";
+  video.style.top = "-38px";
+  video.style.left = "-10px";
   video.style.height = "300px";
   video.style.width = "300px";
   //video.style.zIndex = '20';
@@ -372,33 +372,6 @@ function setBackground (video, divID) {
   //document.body.removeChild(video);  
   $( "#thevideo" ).remove();
 
-}
-
-function takePic (divID, dcID, buttonID, videoId, height, width, top, left) {
-  console.log("TakePic was invoked");
-  var canvas = document.createElement("canvas");
-  var photo = document.createElement("photo");
-
-  canvas.setAttribute('width', width);
-  canvas.setAttribute('height', height);
-  canvas.style.top = top + 'px';
-  canvas.style.left = left + 'px';
-  canvas.style.position = "absolute";
-  canvas.style.zIndex = '30';
-
-  canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-  var data = canvas.toDataURL('image/png');
-  photo.setAttribute('src', data);
-
-  document.body.appendChild(canvas);
-
-  //video.parentNode.removeChild(video);
-
-
-
-  //document.getElementById(buttonID).removeEventListener("click", takePic(divID, dcID, buttonID, video, rect.height, 
-    //rect.width, rect.top, rect.left) );
-  //document.getElementById(buttonID).addEventListener("click", takePicture(divID, dcID, buttonID) );
 }
 
 
