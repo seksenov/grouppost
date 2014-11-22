@@ -369,7 +369,8 @@ function setBackground (video, divID) {
   var resizedImage = imageToDataUri(video, 300, 300);
   $("#"+divID).css("background-image", "url(" + resizedImage + ")");
 
-  document.body.removeChild(video);  
+  //document.body.removeChild(video);  
+  video.remove();
 
 }
 
