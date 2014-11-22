@@ -370,7 +370,7 @@ function setBackground (video, divID) {
   $("#"+divID).css("background-image", "url(" + resizedImage + ")");
 
   //document.body.removeChild(video);  
-  video.remove();
+  $( "#thevideo" ).remove();
 
 }
 
