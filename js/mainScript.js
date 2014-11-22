@@ -366,11 +366,13 @@ function setBackground (video, divID) {
 
   console.log("YO!----------- The image background was set -------------YO!");
 
+  document.getElementById(divID).removeChild(video);
+
   var resizedImage = imageToDataUri(video, 300, 300);
   $("#"+divID).css("background-image", "url(" + resizedImage + ")");
 
   //document.body.removeChild(video);  
-  $( "#thevideo" ).remove();
+  //$( "#thevideo" ).remove();
 
 }
 
