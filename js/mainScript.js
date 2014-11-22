@@ -160,14 +160,14 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       //console.log("This is the id of the container: " + $('#'+ dcID).id);
       $('#'+ dcID).append(newButton);
 
-      /*
+      
       //Add the camera button
       var cButton = document.createElement('a');
       cButton.id = "cameraB" + idNum;
       cButton.className = 'cameraButton fa fa-camera';
-      cButton.addEventListener("click", function (e) { takePicture(div.id, dcID, cButton.id) });
+      //cButton.addEventListener("click", function (e) { takePicture(div.id, dcID, cButton.id) });
       $('#'+ dcID).append(cButton); 
-      */
+      
 
       //Add the delete button
       var dButton=document.createElement('a');
