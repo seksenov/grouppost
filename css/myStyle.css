@@ -46,6 +46,10 @@
 
 }
 
+.innerDiv {
+    position: relative;
+}
+
 .editButton {
 
     position:relative; 

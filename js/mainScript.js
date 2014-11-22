@@ -313,9 +313,9 @@ function gumCapture (divID, dcID, buttonID) {
   var rect = document.getElementById(divID).getBoundingClientRect();
   console.log(rect);
   //Set the position of the video to overlay the div
-  video.style.position = "relative";
+  video.style.position = "absolute";
   video.style.top = "-38px";
-  video.style.left = "-10px";
+  video.style.left = "0px";
   video.style.height = "300px";
   video.style.width = "300px";
   //video.style.zIndex = '20';
@@ -432,7 +432,7 @@ function addPostIt (isInit, postText, plusOne){
 
   var div = document.createElement('div');
   div.id = "div" + idNum;
-  div.className = "col-centered col-fixed postIt";
+  div.className = "col-centered col-fixed postIt innerDiv";
   div.contentEditable = 'false';
 
   //add the div ID to the array of divs
