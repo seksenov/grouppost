@@ -362,12 +362,12 @@ function gumCapture (divID, dcID, buttonID) {
     }
   );
 
-  document.getElementById(buttonID).addEventListener("click", function (e) { setBackground(video, divID); });
+  document.getElementById(buttonID).addEventListener("click", function (e) { setBackground(video, divID, dcID buttonID); });
   console.log("-------A VIDEO IS BEING APPENDED-----------VIDEO ADDED----------");
   document.getElementById(divID).appendChild(video);
 }
 
-function setBackground (video, divID) {
+function setBackground (video, divID, dcID, buttonID) {
 
   console.log("YO!----------- The image background was set -------------YO!");
 
@@ -379,6 +379,8 @@ function setBackground (video, divID) {
   var old_element = document.getElementById(buttonID);
   var new_element = old_element.cloneNode(true);
   old_element.parentNode.replaceChild(new_element, old_element);
+
+  cButton.addEventListener("click", function (e) { ( takePicture(divID, dcID, buttonID)); });
 
 
   //document.body.removeChild(video);  
