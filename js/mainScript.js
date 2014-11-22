@@ -380,7 +380,7 @@ function setBackground (video, divID, dcID, buttonID) {
   var new_element = old_element.cloneNode(true);
   old_element.parentNode.replaceChild(new_element, old_element);
 
-  cButton.addEventListener("click", function (e) { ( takePicture(divID, dcID, buttonID)); });
+  document.getElementById(buttonID).addEventListener("click", function (e) { ( takePicture(divID, dcID, buttonID)); });
 
 
   //document.body.removeChild(video);  
