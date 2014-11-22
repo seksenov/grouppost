@@ -302,7 +302,7 @@ function windowsCapture (object, divID) {
 
 //Take the picture through GUM API
 function gumCapture (divID, dcID, buttonID) {
-  document.getElementById(buttonID).removeEventListener("click", arguments.callee) );
+  document.getElementById(buttonID).removeEventListener("click", arguments.callee);
   
   var video = document.createElement("video");
   //var canvas = document.createElement("canvas");
