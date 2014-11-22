@@ -363,8 +363,6 @@ function setBackground (video, divID, dcID, buttonID) {
 
   console.log("YO!----------- The image background was set -------------YO!");
 
-  video.stop();
-
   video.pause();
 
   video.src = "";
