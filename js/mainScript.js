@@ -359,6 +359,7 @@ function gumCapture (divID, dcID, buttonID) {
   );
 
   document.getElementById(buttonID).addEventListener("click", function (e) { setBackground(video, divID); });
+  console.log("-------A VIDEO IS BEING APPENDED-----------VIDEO ADDED----------");
   document.getElementById(divID).appendChild(video);
 }
 
