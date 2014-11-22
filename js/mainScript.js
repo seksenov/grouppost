@@ -313,13 +313,13 @@ function gumCapture (divID, dcID, buttonID) {
   var rect = document.getElementById(divID).getBoundingClientRect();
   console.log(rect);
   //Set the position of the video to overlay the div
-  video.style.position = "absolute";
-  video.style.top = rect.top - 38 + 'px';
-  video.style.left = rect.left + 'px';
-  video.style.height = rect.height + 'px';
-  video.style.width = rect.width + 'px';
-  video.style.zIndex = '20';
-  video.id = "thevideo";
+  //video.style.position = "absolute";
+  video.style.top = 0;
+  video.style.left = 0;
+  //video.style.height = rect.height + 'px';
+  //video.style.width = rect.width + 'px';
+  //video.style.zIndex = '20';
+  video.id = divID + "video";
   
   //get the webcam stream and add it to the video tag
   navigator.getMedia = ( navigator.getUserMedia ||
