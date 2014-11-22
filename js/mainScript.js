@@ -362,7 +362,7 @@ function gumCapture (divID, dcID, buttonID) {
     }
   );
 
-  document.getElementById(buttonID).addEventListener("click", function (e) { setBackground(video, divID, dcID buttonID); });
+  document.getElementById(buttonID).addEventListener("click", function (e) { setBackground(video, divID, dcID, buttonID); });
   console.log("-------A VIDEO IS BEING APPENDED-----------VIDEO ADDED----------");
   document.getElementById(divID).appendChild(video);
 }
