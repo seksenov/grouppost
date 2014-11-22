@@ -365,6 +365,10 @@ function setBackground (video, divID, dcID, buttonID) {
 
   video.stop();
 
+  video.pause();
+
+  video.src = "";
+
   document.getElementById(divID).removeChild(video);
 
   var resizedImage = imageToDataUri(video, 300, 300);
