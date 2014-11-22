@@ -341,7 +341,7 @@ function gumCapture (divID, dcID, buttonID) {
         //document.getElementById("thevideo").onClick = function() {
         
       }
-      video.play();
+      //video.play();
       setTimeout(function(){
         var resizedImage = imageToDataUri(video, 300, 300);
         //$("#"+divID).css("background-image", "url('data:image/png;base64," + base64pic + "')");
