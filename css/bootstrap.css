@@ -3080,11 +3080,6 @@ input[type="reset"].btn-block,
 input[type="button"].btn-block {
   width: 100%;
 }
-button.btn,
-input[type="submit"].btn {
-  *padding-top: 3px;
-  *padding-bottom: 3px;
-}
 .fade {
   opacity: 0;
   -webkit-transition: opacity .15s linear;
