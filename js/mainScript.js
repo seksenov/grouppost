@@ -369,6 +369,16 @@ function setBackground (video, divID, dcID, buttonID) {
   var resizedImage = imageToDataUri(video, 300, 300);
   $("#"+divID).css("background-image", "url(" + resizedImage + ")");
 
+  //Update the PostIt note in the DB
+  var query = userTable;
+  query.where({ PID: divID, uid: userID }).read().then(function (postIts) {
+    console.log(postIts[0].PostItNote);
+    //Add the pic here
+
+    //postIts[0].PostItNote = div.innerHTML;
+    //userTable.update(postIts[0]);
+  });
+
   //video.pause();
   //video.src = null;
 
@@ -417,7 +427,7 @@ function addPostIt (isInit, postText, plusOne){
       var postMessage = postText;
       idNum++;
       var pid = "div" + idNum;
-      var item = { PostItNote: postText, PID: pid, divnum: idNum, uid: userID};
+      var item = { PostItNote: postText, PID: pid, divnum: idNum, uid: userID, image: null};
       userTable.insert(item);
   }
   else{
