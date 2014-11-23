@@ -698,3 +698,16 @@
 .btn-youtube.active {
   background-color: #3e0309 \9;
 }
+/* A quick, extra large button */
+.btn-xlarge {
+    padding: 14px 26px;
+    font-size: 21.5px;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+}
+
+.btn-xlarge [class^="icon-"],
+.btn-xlarge [class*=" icon-"] {
+    margin-top: 4px;
+}
