@@ -420,7 +420,7 @@ function deleteDiv(divID, dcID, buttonID) {
   }
 }
 
-function addPostIt (isInit, postText, plusOne){
+function addPostIt (isInit, postText, plusOne, imageString){
 
   if(!isInit) {
       var postMessage = postText;
@@ -508,6 +508,11 @@ function addPostIt (isInit, postText, plusOne){
     dButton.addEventListener("click", function (e) { deleteDiv(div.id, dcID, dButton.id); });
     dContainer.appendChild(dButton);
   }
+  //Set the backround of the div if one exists imageString
+  if (imageString) {
+    divID = div.id;
+    $("#"+divID).css("background-image", "url(" + imageString + ")");
+  }
 
   //Clear the value of the input field
   //document.getElementById("someInput").value = '';
@@ -550,11 +555,11 @@ function getPostIts(){
       idNum = postIts[i].divnum;
       if(i == postIts.length-1) {
         //TODO: add args for last post
-        addPostIt(true, '', true);
+        addPostIt(true, '', true, null);
         console.log("-----YO! in the loop i is #: " + i);
       }
       else {
-        addPostIt(true, postIts[i].PostItNote, false);
+        addPostIt(true, postIts[i].PostItNote, false, postIts[i].image);
       }
       console.log("Running through the loop!!");
     }
