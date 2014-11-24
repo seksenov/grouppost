@@ -323,6 +323,10 @@ body {
           transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
+.logoLarge {
+    width: 25%;
+}
+
 /*
 
 .searchInput {
