@@ -16,6 +16,9 @@ window.fbAsyncInit = function() {
 $( document ).ready(function() {
   var loginB = document.getElementById("loginB");
   loginB.addEventListener("click", loginFB);
+
+  var logoPic = document.getElementById("logoPic");
+  logoPic.src = "images/AddNote.png";
 });
 
 (function(d, s, id){
