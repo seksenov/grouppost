@@ -17,8 +17,8 @@ $( document ).ready(function() {
   var loginB = document.getElementById("loginB");
   loginB.addEventListener("click", loginFB);
 
-  var logoPic = document.getElementById("logoPic");
-  logoPic.src = "images/logo.png";
+  //var logoPic = document.getElementById("logoPic");
+  //logoPic.src = "images/logo.png";
 });
 
 (function(d, s, id){
