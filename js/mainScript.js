@@ -389,7 +389,6 @@ function storeImage (divID, resizedImage) {
   //Update the PostIt note in the DB
   var query = userTable;
   query.where({ PID: divID, uid: userID }).read().then(function (postIts) {
-    console.log(postIts[0].PostItNote);
     //Add the pic here
     postIts[0].image = resizedImage;
     userTable.update(postIts[0]);
