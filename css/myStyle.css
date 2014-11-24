@@ -218,6 +218,8 @@ h1 {
     max-width:99%;
     margin-top: 60px;
 }
+
+.loginContainer{width: 25%; margin-top: 25%;}
 /*
 [class*="col-"] {
     padding-top:10px;
