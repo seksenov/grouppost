@@ -18,7 +18,7 @@ $( document ).ready(function() {
   loginB.addEventListener("click", loginFB);
 
   var logoPic = document.getElementById("logoPic");
-  logoPic.src = "images/note27.svg";
+  logoPic.src = "images/logo.svg";
 });
 
 (function(d, s, id){
