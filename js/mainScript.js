@@ -297,9 +297,9 @@ function windowsCapture (object, divID) {
     //Taking the picture failed
     console.log("There was an error: ");
     console.log(err);
-    var output = document.createElement("p");
-    output.innerHTML = "Failure";
-    document.body.appendChild(output);
+    //var output = document.createElement("p");
+    //output.innerHTML = "Failure";
+    //document.body.appendChild(output);
   });
 }
 
