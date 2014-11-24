@@ -289,7 +289,10 @@ function windowsCapture (object, divID) {
     photo.setAttribute('src', "data:image/png;base64,"+base64pic);
     var resizedImage = imageToDataUri(photo, 300, 300);
     //$("#"+divID).css("background-image", "url('data:image/png;base64," + base64pic + "')");
+    //add the image as a background
     $("#"+divID).css("background-image", "url(" + resizedImage + ")");
+    //Add the image to the DB
+    storeImage(divID, resizedImage);
   }, function(err) {
     //Taking the picture failed
     console.log("There was an error: ");
@@ -371,7 +374,18 @@ function setBackground (video, divID, dcID, buttonID) {
 
   //video.pause();
   //video.src = null;
+  //Add the image to the DB
+  storeImage(divID, resizedImage);
 
+  var old_element = document.getElementById(buttonID);
+  var new_element = old_element.cloneNode(true);
+  old_element.parentNode.replaceChild(new_element, old_element);
+
+  document.getElementById(buttonID).addEventListener("click", function (e) { ( takePicture(divID, dcID, buttonID)); });
+}
+
+//Add the image to the DB
+function storeImage (divID, resizedImage) {
   //Update the PostIt note in the DB
   var query = userTable;
   query.where({ PID: divID, uid: userID }).read().then(function (postIts) {
@@ -380,12 +394,6 @@ function setBackground (video, divID, dcID, buttonID) {
     postIts[0].image = resizedImage;
     userTable.update(postIts[0]);
   });
-
-  var old_element = document.getElementById(buttonID);
-  var new_element = old_element.cloneNode(true);
-  old_element.parentNode.replaceChild(new_element, old_element);
-
-  document.getElementById(buttonID).addEventListener("click", function (e) { ( takePicture(divID, dcID, buttonID)); });
 }
 
 function deleteDiv(divID, dcID, buttonID) {
