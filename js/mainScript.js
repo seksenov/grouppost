@@ -32,24 +32,15 @@ $( document ).ready(function() {
 
 window.fbAsyncInit = function() {
 
-  console.log("Yo! ------------------ initializing FB");
-
   FB.init({
     appId      : '821945741172950',
     cookie     : true,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page
     version    : 'v2.1' // use version 2.1
-
-
   });
 
-  //FB.getLoginStatus(function(response) {
-  //  statusChangeCallback(response);
-  //});
-
-  console.log("Yo! ------------------ about to get the uid");
-
+  //Get the Facebook UserId
   FBuid();
 
 };
@@ -65,9 +56,8 @@ window.fbAsyncInit = function() {
 
 function FBLogout() {
   FB.logout(function(response) {
-        console.log("Person is now logged out");
+        //redirect the user to the login page
         window.location.href = "Index.html";
-        console.log("They should also be redirected");
   });
 }
 
@@ -75,13 +65,11 @@ function FBuid() {
 
   FB.getLoginStatus(function(response) {
     if (response.status === 'connected') {
+      //assign the Facebook UserId from the auth response
       userID = response.authResponse.userID;
-      console.log('Logged in.');
-      console.log('The user id is: ' + userID);
 
       //Get the name of the user
       FB.api('/me', {fields: 'name'}, function(response) {
-        console.log(response.name);
         userName = response.name;
       });
 
@@ -90,8 +78,7 @@ function FBuid() {
       initEventListeners();
     }
     else {
-      //FB.login();
-      console.log('Not logged in');
+      //This get executed if the user isn't logged in
       window.location.href = "Index.html";
     }
   });
@@ -101,29 +88,21 @@ function initEventListeners() {
   //Facebook logout button
   var logoutButton = document.getElementById('fbLogout');
   logoutButton.addEventListener("click", function (e) { FBLogout(); });
-  console.log("----ADDED EVENT LISTENERS----");
-
 }
-/*
-$(document).on('click', 'div', function () {
-    alert(this.id);
-});
-*/
+
 function getGeoLoc () {
   if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(setPosition);
   }
   else {
-    console.log("browser doesn't support position");
+    //browser doesn't support position
   }
 }
 
 function setPosition (position) {
+  //Set the lat long of the note
   loc.latitude = position.coords.latitude;
   loc.longitude = position.coords.longitude;
-  console.log("The geoloc of the note is:");
-  console.log(loc);
-
 }
 
 function selectDiv(divID, buttonID, isPlus, dcID)
@@ -133,9 +112,6 @@ function selectDiv(divID, buttonID, isPlus, dcID)
   var backColor = div.style.backgroundColor;
   var button = document.getElementById(buttonID);
 
-  console.log(backColor);
-  console.log(initialColor);
-  console.log(div.contentEditable);
   //Set the div to editable
   if (div.contentEditable === 'false'){
     //This is where the color is changed
@@ -156,11 +132,9 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       newButton.className = 'postButton fa fa-check';
       //newButton.innerHTML ='Post';
       newButton.addEventListener("click", function (e) { selectDiv(div.id, newButton.id, false, dcID); });
-      //console.log("This is dcID: " + dcID);
-      //console.log("This is the id of the container: " + $('#'+ dcID).id);
+
       $('#'+ dcID).append(newButton);
 
-      
       //Add the camera button
       var cButton = document.createElement('a');
       cButton.id = "cameraB" + buttonID;
@@ -191,7 +165,6 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     //Update the PostIt note in the DB
     var query = userTable;
     query.where({ PID: divID, uid: userID }).read().then(function (postIts) {
-      console.log(postIts[0].PostItNote);
       postIts[0].PostItNote = div.innerHTML;
       userTable.update(postIts[0]);
     });
@@ -204,17 +177,16 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     var tags = postMessage.split('#');
     if(tags[1]) {
       if (window.CommunicatorWinRT) {
-        console.log ("THE WINRT CLASS WAS FOUND");
+        //The WinRT was found
         windowsNotify(tags, window.CommunicatorWinRT);  
       }
       else {
-        console.log ("ERROR THE WINRT CLASS WASN'T FOUND");
+        //The WinRT class wasn't found add a fallback
       }
     }
 
     //Check if this is the last post it and if so add another one
     var lastDiv = "div" + (idNum);
-    console.log("This is the last div: " + lastDiv);
     if(divID == lastDiv)
     {     
       addPostIt(false, "", true);
@@ -229,14 +201,11 @@ function selectDiv(divID, buttonID, isPlus, dcID)
 }
 
 function windowsNotify (tags, object) {
-  console.log("YO The notification message is-----: " + tags[0]);
-  console.log("YO The notification delay is-------: " + tags[1]);
   //Multiply the delay by 1000
   var d = +tags[1];
   var delay = d * 1000; 
   var notifyText = tags[0];
-  console.log("This is the delay: " + delay);
-  //Call the WinRT class
+  //Call the WinRT class-----------------------------
   object.toastMessage(notifyText, delay);
 }
 
@@ -247,22 +216,22 @@ function hasGetUserMedia() {
 }
 
 var errorCallback = function(e) {
-    console.log('Reeeejected!', e);
+    //GetUserMediaHasBeen Rejected
 };
 
 //Complete feature detection to determin how to capture the image
 function takePicture(divID, dcID, buttonID) {
   console.log('Take picture invoked');
   if (window.cameraWinRT) {
-    console.log("Taking the picture using the WinRT API");
+    //Taking a pic using the WinRT APIs
     windowsCapture(window.cameraWinRT, divID);
   }
   else if (hasGetUserMedia()) {
-    console.log("Taking the picture using getUserMedia");
+    //Taking a pic using GetUserMedia
     gumCapture(divID, dcID, buttonID);
   }
   else {
-    console.log("There is no way to take a picture");
+    //There is no way to take a pic
   }
 }
 
@@ -295,11 +264,6 @@ function windowsCapture (object, divID) {
     storeImage(divID, resizedImage);
   }, function(err) {
     //Taking the picture failed
-    console.log("There was an error: ");
-    console.log(err);
-    //var output = document.createElement("p");
-    //output.innerHTML = "Failure";
-    //document.body.appendChild(output);
   });
 }
 
@@ -318,7 +282,7 @@ function gumCapture (divID, dcID, buttonID) {
   var videoId = "v" + divID;
   //Get the position of the div
   var rect = document.getElementById(divID).getBoundingClientRect();
-  console.log(rect);
+
   //Set the position of the video to overlay the div
   video.style.position = "absolute";
   video.style.top = "-38px";
@@ -358,22 +322,17 @@ function gumCapture (divID, dcID, buttonID) {
   );
 
   document.getElementById(buttonID).addEventListener("click", function (e) { setBackground(video, divID, dcID, buttonID); });
-  console.log("-------A VIDEO IS BEING APPENDED-----------VIDEO ADDED----------");
+  //video is being added
   document.getElementById(divID).appendChild(video);
 }
 
 function setBackground (video, divID, dcID, buttonID) {
-
-  console.log("YO!----------- The image background was set -------------YO!");
-
-
+  //Setting the background image of a div
   document.getElementById(divID).removeChild(video);
 
   var resizedImage = imageToDataUri(video, 300, 300);
   $("#"+divID).css("background-image", "url(" + resizedImage + ")");
 
-  //video.pause();
-  //video.src = null;
   //Add the image to the DB
   storeImage(divID, resizedImage);
 
@@ -396,15 +355,13 @@ function storeImage (divID, resizedImage) {
 }
 
 function deleteDiv(divID, dcID, buttonID) {
-  console.log("deleting div");
+  //Delete the selected div
 
   var lastDiv = "div" + (idNum);
   if(divID != lastDiv)
   {
     var query = userTable;
      query.where({ PID: divID, uid: userID }).read().then(function (postIts) {
-      console.log(postIts[0].PostItNote);
-      console.log(postIts[0].id);
       userTable.del(postIts[0]);
      });
 
@@ -458,8 +415,8 @@ function addPostIt (isInit, postText, plusOne, imageString){
   notesArray.push(div.id);
 
   //Log the id of the newly created div to the console
-  console.log("Here logging the div ID: " + div.id);
-  console.log(div.className);
+  //console.log("Here logging the div ID: " + div.id);
+  //console.log(div.className);
 
   //div.style.backgroundColor = '#FFFF99';
   div.style.backgroundColor = '#f39c12';
