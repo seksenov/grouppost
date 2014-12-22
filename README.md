@@ -2,6 +2,8 @@
 
 Note taking application designed to scale well on multiple different screen sizes.
 
+[Visit GroupPost!](https://grouppost.azurewebsites.net)
+
 ## Notes
 
 Notes are taken within a "PostIt Note" and are of text input (letters and numbers). The note background can be set to a picture taken from webcam.
