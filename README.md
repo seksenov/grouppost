@@ -1,8 +1,6 @@
 # GroupPost
 
-Note taking application designed to scale well on multiple different screen sizes.
-
-[Visit GroupPost!](https://grouppost.azurewebsites.net)
+Note taking application designed to scale well on multiple different screen sizes. [Visit GroupPost!](https://grouppost.azurewebsites.net)
 
 ## Notes
 
