@@ -170,7 +170,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     });
     //Get the location
     getGeoLoc();
-    //Update the firebase
+    //Update the firebase DB
     firebaseDataRef.push({name: userName, text: div.innerHTML, uid: userID, picture: null, location: loc});
     
     //This is where the windows notification goes -----------------------------------------------------------------
