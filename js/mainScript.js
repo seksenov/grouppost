@@ -95,7 +95,7 @@ function getGeoLoc () {
     navigator.geolocation.getCurrentPosition(setPosition);
   }
   else {
-    //browser doesn't support position
+    console.log("browser doesn't support position");
   }
 }
 
@@ -171,7 +171,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     //Get the location
     getGeoLoc();
     //Update the firebase
-    firebaseDataRef.push({name: userName, text: div.innerHTML, location: loc});
+    firebaseDataRef.push({name: userName, text: div.innerHTML, uid: userID, location: loc});
     
     //This is where the windows notification goes -----------------------------------------------------------------
     var tags = postMessage.split('#');
