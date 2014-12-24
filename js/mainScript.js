@@ -221,7 +221,7 @@ var errorCallback = function(e) {
 
 //Complete feature detection to determin how to capture the image
 function takePicture(divID, dcID, buttonID) {
-  console.log('Take picture invoked');
+  //Take picture invoked
   if (window.cameraWinRT) {
     //Taking a pic using the WinRT APIs
     windowsCapture(window.cameraWinRT, divID);
@@ -414,10 +414,6 @@ function addPostIt (isInit, postText, plusOne, imageString){
   //add the div ID to the array of divs
   notesArray.push(div.id);
 
-  //Log the id of the newly created div to the console
-  //console.log("Here logging the div ID: " + div.id);
-  //console.log(div.className);
-
   //div.style.backgroundColor = '#FFFF99';
   div.style.backgroundColor = '#f39c12';
 
@@ -484,7 +480,6 @@ function addPostIt (isInit, postText, plusOne, imageString){
 
 function changeColor (color) {
   for (var i = 0; i < notesArray.length; i++) {
-    console.log(notesArray[i]);
      var div = document.getElementById(notesArray[i]);
      div.style.backgroundColor = color;
   }
@@ -500,43 +495,26 @@ $("#someInput").keyup(function(event){
 //Read the DB and pull old PostITs
 function getPostIts(){ 
   var query = userTable; //Give it column name
-  console.log("Retrieving POST PostITs");
-  //console.log("type of element: "+element);
   //Retrieve the post it's in LIFO order
   idNum = 0;
 
   query.where({ uid: userID }).read().then(function (postIts) {
-    console.log("Yo the number of PostITs is: " + postIts.length);
-    console.log("This is ater the post its number");
-    //console.log("THis is what the first post it says: " + postIts[0].PostItNote);
-    console.log("This is the line after what the first post it says");
-    
+    //the number of PostITs is: postIts.length  
     for (var i = 0; i < postIts.length; i++) {
-      console.log("here in the loop");
-      //console.log(postIts[i].PostItNote);
-      //console.log(postIts[i].divnum);
-      //console.log(postIts[i].uid);
       idNum = postIts[i].divnum;
       if(i == postIts.length-1) {
         //TODO: add args for last post
         addPostIt(true, '', true, null);
-        console.log("-----YO! in the loop i is #: " + i);
       }
       else {
         addPostIt(true, postIts[i].PostItNote, false, postIts[i].image);
       }
-      console.log("Running through the loop!!");
     }
-    console.log("here --------------");
-    console.log("---------------THis is the lenght of postit's: " + postIts.length);
     if(postIts.length == 0) {
       //TODO add args for last post
       addPostIt(false,"",true);
     }
-    console.log("Got past the if.....................");
   });
-
-  console.log("FINISHED GETTING PostIts");
 }
 
 //Namespace management idea from http://enterprisejquery.com/2010/10/how-good-c-habits-can-encourage-bad-javascript-habits-part-1/
