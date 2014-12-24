@@ -171,7 +171,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     //Get the location
     getGeoLoc();
     //Update the firebase
-    firebaseDataRef.push({name: userName, text: div.innerHTML, uid: userID, location: loc});
+    firebaseDataRef.push({name: userName, text: div.innerHTML, uid: userID, picture: null, location: loc});
     
     //This is where the windows notification goes -----------------------------------------------------------------
     var tags = postMessage.split('#');
@@ -232,6 +232,7 @@ function takePicture(divID, dcID, buttonID) {
   }
   else {
     //There is no way to take a pic
+    console.log("This host does not support camara capabilities");
   }
 }
 
@@ -264,6 +265,7 @@ function windowsCapture (object, divID) {
     storeImage(divID, resizedImage);
   }, function(err) {
     //Taking the picture failed
+    console.log("Taking the picture on Windows was canceled");
   });
 }
 
@@ -352,6 +354,8 @@ function storeImage (divID, resizedImage) {
     postIts[0].image = resizedImage;
     userTable.update(postIts[0]);
   });
+
+
 }
 
 function deleteDiv(divID, dcID, buttonID) {
