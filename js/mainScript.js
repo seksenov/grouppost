@@ -28,6 +28,8 @@ $( document ).ready(function() {
   "hyCoAnJjoajhcntTKrzmnBPJaxKCiw45");
   //init the Azure table
   userTable=client.getTable("userTable");
+  //Set the location for the notes
+  getGeoLoc();
 });
 
 window.fbAsyncInit = function() {
@@ -169,9 +171,9 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       userTable.update(postIts[0]);
     });
     //Get the location
-    getGeoLoc();
+    //getGeoLoc(); //the navigator get geo loc is async and won't return seynchronously
     //Update the firebase DB
-    firebaseDataRef.push({name: userName, text: div.innerHTML, uid: userID, picture: null, location: loc});
+    firebaseDataRef.push({name: userName, text: div.innerHTML, uid: userID, picture: "empty", location: loc});
     
     //This is where the windows notification goes -----------------------------------------------------------------
     var tags = postMessage.split('#');
@@ -354,7 +356,7 @@ function storeImage (divID, resizedImage) {
     postIts[0].image = resizedImage;
     userTable.update(postIts[0]);
   });
-
+  //Store the image in the firebase DB
 
 }
 
