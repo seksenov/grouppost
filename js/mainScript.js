@@ -22,6 +22,9 @@ var firebaseDataRef; //Firebase data reference
 $( document ).ready(function() {
   //init firebase data ref
   firebaseDataRef = new Firebase('https://test-chat-ks.firebaseio.com/');
+  //check if the FB User Id has been set up in Firebase and set it if it hasn't
+  firebaseDataRef.set({notes});
+  //-------------------------------------------------------------------------
   //init AMS client
   client = new WindowsAzure.MobileServiceClient(
   "https://grouppostbetadb.azure-mobile.net/",
@@ -173,7 +176,8 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     //Get the location
     //getGeoLoc(); //the navigator get geo loc is async and won't return seynchronously
     //Update the firebase DB
-    firebaseDataRef.push({name: userName, text: div.innerHTML, uid: userID, picture: "empty", location: loc});
+    firebaseDataRef.push({name: userName, text: div.innerHTML, uid: userID, image: null, location: loc});
+
     
     //This is where the windows notification goes -----------------------------------------------------------------
     var tags = postMessage.split('#');
