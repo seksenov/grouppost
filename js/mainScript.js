@@ -23,7 +23,13 @@ $( document ).ready(function() {
   //init firebase data ref
   firebaseDataRef = new Firebase('https://test-chat-ks.firebaseio.com/');
   //check if the FB User Id has been set up in Firebase and set it if it hasn't
-  firebaseDataRef.set({notes});
+  var notesRef = firebaseDataRef.child("test-chat-ks");
+  notesRef.set({
+    notes: {
+      uid: userID,
+      empty: 0
+    }
+  });
   //-------------------------------------------------------------------------
   //init AMS client
   client = new WindowsAzure.MobileServiceClient(
