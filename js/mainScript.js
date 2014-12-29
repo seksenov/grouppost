@@ -95,10 +95,11 @@ function FBuid() {
 
       firebaseDataRef.child(userID).once('value', function(snapshot) {
         if (snapshot.val() !== null) {
-            console.log("The useID " + userID + " Exists! ");
+          //The user already exists in the is in the Firebase DB
         }  
         else {
-          console.log("The userID soesn't exist");
+          //New user set up the initial userID node
+          firebaseDataRef.child(userID).set(null);
         }
       });
 
