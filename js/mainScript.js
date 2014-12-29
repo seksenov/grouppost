@@ -420,7 +420,7 @@ function storeImage (divID, resizedImage) {
   });
   //Store the image in the firebase DB +firebase
   firebaseDataRef.child(userID).child(divID).update({
-    picture: resizedImage;
+    picture: resizedImage
   });
 
 }
