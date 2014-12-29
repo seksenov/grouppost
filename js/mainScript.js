@@ -101,8 +101,7 @@ function FBuid() {
           //New user set up the initial userID node
           console.log("Adding the userID: " + userID);
           
-          firebaseDataRef.child(userID).child("emptyDiv").set({
-            user: userName, 
+          firebaseDataRef.child(userID).child("emptyDiv").set({ 
             message: "empty",
             picture: "empty",
             divID: "empty",
