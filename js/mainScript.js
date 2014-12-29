@@ -100,7 +100,17 @@ function FBuid() {
         else {
           //New user set up the initial userID node
           console.log("Adding the userID: " + userID);
-          firebaseDataRef.child(userID).set({divID: null});
+          
+          firebaseDataRef.child(userID).child("emptyDiv").set({
+            user: userName; 
+            message: "empty",
+            picture: "empty",
+            divID: "empty",
+            location: {
+              lat: 0,
+              longitude: 0
+            }
+          });
         }
       });
 
