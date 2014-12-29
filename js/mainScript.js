@@ -419,6 +419,9 @@ function storeImage (divID, resizedImage) {
     userTable.update(postIts[0]);
   });
   //Store the image in the firebase DB +firebase
+  firebaseDataRef.child(userID).child(divID).update({
+    picture: resizedImage;
+  });
 
 }
 
@@ -464,6 +467,13 @@ function addPostIt (isInit, postText, plusOne, imageString){
       userTable.insert(item);
 
       // +firebase
+      firebaseDataRef.child(userID).child(pid).set({
+        user: userID, 
+        message: postText,
+        picture: "empty",
+        divID: pid,
+        location: loc
+      });
   }
   else{
     var postMessage = postText;
