@@ -74,7 +74,36 @@ function FBuid() {
       //assign the Facebook UserId from the auth response
       userID = response.authResponse.userID;
 
+      //Get the name of the user
+      FB.api('/me', {fields: 'name'}, function(response) {
+        userName = response.name;
+      });
+
       //Check if the userID is in the FirebaseDB and add it if
+      /*
+      console.log("The userID is: " + userID);
+      firebaseDataRef.child(userID).child("divTest").set({
+        message: "test",
+        picture: "test",
+        divID: "test",
+        location: {
+          lat: 0,
+          longitude: 0
+        }
+      });
+      */
+
+      firebaseDataRef.child(userID).once('value', function(snapshot) {
+        if (snapshot.val() !== null) {
+            console.log("The useID " + userID + " Exists! ");
+        }  
+        else {
+          console.log("The userID soesn't exist");
+        }
+      });
+
+      /*
+        //Check if the userID is in the FirebaseDB and add it if
       console.log("The userID is: " + userID);
       firebaseDataRef.child(userID).child("divTest").set({
         message: "test",
@@ -86,10 +115,12 @@ function FBuid() {
         }
       });
 
-      //Get the name of the user
-      FB.api('/me', {fields: 'name'}, function(response) {
-        userName = response.name;
-      });
+      usersRef.child(userId).once('value', function(snapshot) {
+          var exists = (snapshot.val() !== null);
+          userExistsCallback(userId, exists);
+        });
+
+      */
 
       //Get all the post it's from the DB and display them on the page
       getPostIts();
