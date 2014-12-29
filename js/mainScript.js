@@ -76,17 +76,13 @@ function FBuid() {
 
       //Set up the Firebase DB if user ID has not been seen before
       console.log("The userID is: " + userID);
-      firebaseDataRef.set({
-        userID: {
-          divTest: {
-            message: "test",
-            picture: "test",
-            divID: "test",
-            location: {
-              lat: 0,
-              longitude: 0
-            }
-          }
+      firebaseDataRef.child(userID).child("divTest").set({
+        message: "test",
+        picture: "test",
+        divID: "test",
+        location: {
+          lat: 0,
+          longitude: 0
         }
       });
 
