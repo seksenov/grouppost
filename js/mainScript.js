@@ -102,7 +102,7 @@ function FBuid() {
           console.log("Adding the userID: " + userID);
           
           firebaseDataRef.child(userID).child("emptyDiv").set({
-            user: userName; 
+            user: userName, 
             message: "empty",
             picture: "empty",
             divID: "empty",
