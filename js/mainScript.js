@@ -99,7 +99,7 @@ function FBuid() {
         }  
         else {
           //New user set up the initial userID node
-          firebaseDataRef.child(userID).set(null);
+          firebaseDataRef.child(userID).set();
         }
       });
 
