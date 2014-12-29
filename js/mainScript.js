@@ -74,6 +74,7 @@ function FBuid() {
       //assign the Facebook UserId from the auth response
       userID = response.authResponse.userID;
 
+      //Check if the userID is in the FirebaseDB and add it hasn't
       //Check if the userID is in the FirebaseDB and add it hasn't been in there before
       console.log("The userID is: " + userID);
 
