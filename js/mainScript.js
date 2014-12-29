@@ -100,7 +100,7 @@ function FBuid() {
         else {
           //New user set up the initial userID node
           console.log("Adding the userID: " + userID);
-          firebaseDataRef.child(userID).set(null);
+          firebaseDataRef.child(userID).set({null});
         }
       });
 
@@ -222,6 +222,8 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     //Get the location
     //getGeoLoc(); //the navigator get geo loc is async and won't return seynchronously
     //Update the firebase DB
+
+    // +firebase
     firebaseDataRef.push({name: userName, text: div.innerHTML, uid: userID, image: null, location: loc});
 
     
@@ -406,7 +408,7 @@ function storeImage (divID, resizedImage) {
     postIts[0].image = resizedImage;
     userTable.update(postIts[0]);
   });
-  //Store the image in the firebase DB
+  //Store the image in the firebase DB +firebase
 
 }
 
@@ -420,6 +422,8 @@ function deleteDiv(divID, dcID, buttonID) {
      query.where({ PID: divID, uid: userID }).read().then(function (postIts) {
       userTable.del(postIts[0]);
      });
+
+     //+firebase
 
       $('#' + dcID).addClass('animated flipOutX'); //zoomOutLeft
       // wait for animation end
@@ -448,6 +452,8 @@ function addPostIt (isInit, postText, plusOne, imageString){
       var pid = "div" + idNum;
       var item = { PostItNote: postText, PID: pid, divnum: idNum, uid: userID, image: null};
       userTable.insert(item);
+
+      // +firebase
   }
   else{
     var postMessage = postText;
@@ -571,6 +577,9 @@ function getPostIts(){
       addPostIt(false,"",true);
     }
   });
+
+  // +firebase
+
 }
 
 //Namespace management idea from http://enterprisejquery.com/2010/10/how-good-c-habits-can-encourage-bad-javascript-habits-part-1/
