@@ -74,15 +74,26 @@ function FBuid() {
       //assign the Facebook UserId from the auth response
       userID = response.authResponse.userID;
 
-      //Set up the Firebase DB if user ID has not been seen before
+      //Check if the userID is in the FirebaseDB and add it hasn't been in there before
       console.log("The userID is: " + userID);
-      firebaseDataRef.child(userID).child("divTest").set({
-        message: "test",
-        picture: "test",
-        divID: "test",
-        location: {
-          lat: 0,
-          longitude: 0
+
+      firebaseDataRef.child(userId).once('value', function(snapshot) {
+        if (snapshot.val() !== null) {
+          //The userId exists in the Firebase data ref
+          console.log("UserId " + userID + " Exists!");
+        }
+        else {
+          //New user set up the userID
+          console.log("UserId " + userID + " does not exist...");
+          firebaseDataRef.child(userID).child("initialDiv").set({
+            message: "initialMessage",
+            picture: "initialPic",
+            divID: "InitialDiv",
+            location: {
+              lat: 0,
+              longitude: 0
+            } 
+          });
         }
       });
 
