@@ -24,20 +24,7 @@ $( document ).ready(function() {
   firebaseDataRef = new Firebase('https://test-chat-ks.firebaseio.com/');
   //check if the FB User Id has been set up in Firebase and set it if it hasn't
   //var notesRef = firebaseDataRef.child("test-chat-ks");
-  console.log("The userID is: " + userID);
-  firebaseDataRef.set({
-    userID: {
-      divTest: {
-        message: "test",
-        picture: "test",
-        divID: "test",
-        location: {
-          lat: 0,
-          longitude: 0
-        }
-      }
-    }
-  });
+
   //-------------------------------------------------------------------------
   //init AMS client
   client = new WindowsAzure.MobileServiceClient(
@@ -86,6 +73,22 @@ function FBuid() {
     if (response.status === 'connected') {
       //assign the Facebook UserId from the auth response
       userID = response.authResponse.userID;
+
+      //Set up the Firebase DB if user ID has not been seen before
+      console.log("The userID is: " + userID);
+      firebaseDataRef.set({
+        userID: {
+          divTest: {
+            message: "test",
+            picture: "test",
+            divID: "test",
+            location: {
+              lat: 0,
+              longitude: 0
+            }
+          }
+        }
+      });
 
       //Get the name of the user
       FB.api('/me', {fields: 'name'}, function(response) {
