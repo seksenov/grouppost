@@ -100,7 +100,7 @@ function FBuid() {
         else {
           //New user set up the initial userID node
           console.log("Adding the userID: " + userID);
-          firebaseDataRef.child(userID).set({null});
+          firebaseDataRef.child(userID).set({divID: null});
         }
       });
 
