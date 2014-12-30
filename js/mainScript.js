@@ -134,6 +134,9 @@ function FBuid() {
 
       */
 
+      // +firebase this is where the check should be made to see if the user id exists and add the plus note
+      getPostItsFB();
+
       //Get all the post it's from the DB and display them on the page
       getPostIts();
       initEventListeners();
@@ -643,9 +646,6 @@ function getPostIts(){
       addPostIt(false,"",true);
     }
   });
-
-  // +firebase this is where the check should be made to see if the user id exists and add the plus note
-  getPostItsFB();
 
 }
 
