@@ -613,7 +613,18 @@ function getPostIts(){
     }
   });
 
-  // +firebase
+  // +firebase this is where the check should be made to see if the user id exists and add the plus note
+
+}
+
+//Get the PostITs from Firebase
+function getPostItsFB () {
+
+  firebaseDataRef.once("value", function(data) { 
+    console.log("---------------------LOGGING THE DATA----------------------------------------");
+    console.log(data);
+
+  });
 
 }
 
