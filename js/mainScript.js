@@ -595,17 +595,44 @@ function getPostIts(){
   //Retrieve the post it's in LIFO order
   idNum = 0;
 
+  var _divID,
+      text,
+      image;
+
   query.where({ uid: userID }).read().then(function (postIts) {
     //the number of PostITs is: postIts.length  
     for (var i = 0; i < postIts.length; i++) {
       idNum = postIts[i].divnum;
+      _divID = "div" + idNum;
+      text = postIts[i].PostItNote;
+      image = postIts[i].image;
       if(i == postIts.length-1) {
         //TODO: add args for last post
         addPostIt(true, '', true, null);
+
+        firebaseDataRef.child(userID).child(divID).update({
+          divID: _divID,
+          message: "Empty",
+          picture: "Plus Logo",
+          user: userName
+        });
+        
+
+
       }
       else {
         addPostIt(true, postIts[i].PostItNote, false, postIts[i].image);
+
+        firebaseDataRef.child(userID).child(divID).update({
+          divID: _divID,
+          message: text,
+          picture: image,
+          user: userName
+        });
       }
+
+
+
     }
     if(postIts.length == 0) {
       //TODO add args for last post
