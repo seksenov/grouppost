@@ -138,7 +138,7 @@ function FBuid() {
       getPostItsFB();
 
       //Get all the post it's from the DB and display them on the page
-      getPostIts();
+      //getPostIts();
       initEventListeners();
     }
     else {
@@ -609,9 +609,9 @@ function getPostIts(){
     //the number of PostITs is: postIts.length  
     for (var i = 0; i < postIts.length; i++) {
       idNum = postIts[i].divnum;
-      _divID = "div" + idNum;
-      text = postIts[i].PostItNote;
-      image = postIts[i].image;
+      //_divID = "div" + idNum;
+      //text = postIts[i].PostItNote;
+      //image = postIts[i].image;
       if(i == postIts.length-1) {
         //TODO: add args for last post
         addPostIt(true, '', true, null);
@@ -654,6 +654,7 @@ function getPostIts(){
 
 //Get the PostITs from Firebase
 function getPostItsFB () {
+  idNum = 0;
 
   console.log("---------------------LOGGING THE DATA----------------------------------------");
 
@@ -666,6 +667,7 @@ function getPostItsFB () {
 
     for (var key in posts) {
       if (posts.hasOwnProperty(key)) {
+        
         console.log(key + " -> " + posts[key].message);
       }
     }
