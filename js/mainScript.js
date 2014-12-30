@@ -463,6 +463,11 @@ function addPostIt (isInit, postText, plusOne, imageString){
       var postMessage = postText;
       idNum++;
       var pid = "div" + idNum;
+
+      console.log("This is the pid: "  + pid);
+      console.log("This is the divnum: " + idNum);
+      console.log("This is the post message: " postText);
+
       var item = { PostItNote: postText, PID: pid, divnum: idNum, uid: userID, image: null};
       userTable.insert(item);
 
