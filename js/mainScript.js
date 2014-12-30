@@ -233,8 +233,18 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     //getGeoLoc(); //the navigator get geo loc is async and won't return seynchronously
     //Update the firebase DB
 
-    // +firebase
+    //This is where the new post is actually added it's previosly added as the empty plus one
+
+    // +firebase --this is where a new note gets added
     firebaseDataRef.push({name: userName, text: div.innerHTML, uid: userID, image: null, location: loc});
+
+    firebaseDataRef.child(userID).child(divID).update({
+      //user: userID, 
+      message: postMessage,
+      //picture: "Plus Logo",
+      //divID: divID,
+      location: loc
+    });
 
     
     //This is where the windows notification goes -----------------------------------------------------------------
@@ -464,9 +474,9 @@ function addPostIt (isInit, postText, plusOne, imageString){
       idNum++;
       var pid = "div" + idNum;
 
-      console.log("This is the pid: "  + pid);
-      console.log("This is the divnum: " + idNum);
-      console.log("This is the post message: " + postText);
+      //This is where a new blank note is added to the DB
+      //The message will be empty
+      //This is the note with the plus on it
 
       var item = { PostItNote: postText, PID: pid, divnum: idNum, uid: userID, image: null};
       userTable.insert(item);
@@ -475,7 +485,7 @@ function addPostIt (isInit, postText, plusOne, imageString){
       firebaseDataRef.child(userID).child(pid).set({
         user: userID, 
         message: postText,
-        picture: "empty",
+        picture: "Plus Logo",
         divID: pid,
         location: loc
       });
