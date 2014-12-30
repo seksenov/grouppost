@@ -624,7 +624,7 @@ function getPostItsFB () {
   console.log("---------------------LOGGING THE DATA----------------------------------------");
 
   firebaseDataRef.child(userID).once("value", function(data) { 
-    console.log(data);
+    console.log(data.val());
 
   });
 
