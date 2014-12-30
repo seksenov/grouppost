@@ -621,8 +621,9 @@ function getPostIts(){
 //Get the PostITs from Firebase
 function getPostItsFB () {
 
+  console.log("---------------------LOGGING THE DATA----------------------------------------");
+
   firebaseDataRef.once("value", function(data) { 
-    console.log("---------------------LOGGING THE DATA----------------------------------------");
     console.log(data);
 
   });
