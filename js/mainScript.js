@@ -628,7 +628,7 @@ function getPostItsFB () {
     var posts = data.val();
 
     console.log(posts);
-    console.log("This is the length of post its: " + posts.length());
+    //console.log("This is the length of post its: " + posts.length());
 
     for (var key in posts) {
       if (posts.hasOwnProperty(key)) {
