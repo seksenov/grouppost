@@ -245,7 +245,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       //user: userID, 
       message: postMessage,
       //picture: "Plus Logo",
-      //divID: divID,
+      divID: divID,
       location: loc
     });
 
@@ -449,7 +449,8 @@ function deleteDiv(divID, dcID, buttonID) {
       userTable.del(postIts[0]);
      });
 
-     //+firebase
+     //Delete the div from Firebase
+     firebaseDataRef.child(userID).child(divID).remove();
 
       $('#' + dcID).addClass('animated flipOutX'); //zoomOutLeft
       // wait for animation end
@@ -484,7 +485,7 @@ function addPostIt (isInit, postText, plusOne, imageString){
       var item = { PostItNote: postText, PID: pid, divnum: idNum, uid: userID, image: null};
       userTable.insert(item);
 
-      // +firebase
+      //Add the post it to fire base this will be the blank plus note
       firebaseDataRef.child(userID).child(pid).update({
         user: userID, 
         message: postText,
