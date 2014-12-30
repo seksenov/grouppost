@@ -236,7 +236,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     //This is where the new post is actually added it's previosly added as the empty plus one
 
     // +firebase --this is where a new note gets added
-    firebaseDataRef.push({name: userName, text: div.innerHTML, uid: userID, image: null, location: loc});
+    //firebaseDataRef.push({name: userName, text: div.innerHTML, uid: userID, image: null, location: loc});
 
     firebaseDataRef.child(userID).child(divID).update({
       //user: userID, 
@@ -482,7 +482,7 @@ function addPostIt (isInit, postText, plusOne, imageString){
       userTable.insert(item);
 
       // +firebase
-      firebaseDataRef.child(userID).child(pid).set({
+      firebaseDataRef.child(userID).child(pid).update({
         user: userID, 
         message: postText,
         picture: "Plus Logo",
@@ -610,18 +610,21 @@ function getPostIts(){
         //TODO: add args for last post
         addPostIt(true, '', true, null);
 
+        /*
         firebaseDataRef.child(userID).child(divID).update({
           divID: _divID,
           message: "Empty",
           picture: "Plus Logo",
           user: userName
         });
-        
+        */
 
 
       }
       else {
         addPostIt(true, postIts[i].PostItNote, false, postIts[i].image);
+
+        /*
 
         firebaseDataRef.child(userID).child(divID).update({
           divID: _divID,
@@ -629,6 +632,7 @@ function getPostIts(){
           picture: image,
           user: userName
         });
+        */
       }
 
 
