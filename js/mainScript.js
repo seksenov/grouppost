@@ -450,8 +450,9 @@ function deleteDiv(divID, dcID, buttonID) {
      });
 
      //Delete the div from Firebase
-     firebaseDataRef.child(userID).child(divID).remove();
+     //firebaseDataRef.child(userID).child(divID).remove();
 
+      //this is the animation that happens wehn a div is deleted
       $('#' + dcID).addClass('animated flipOutX'); //zoomOutLeft
       // wait for animation end
       $('#' + dcID).one('webkitAnimationEnd oanimationend msAnimationEnd animationend',   
@@ -461,6 +462,7 @@ function deleteDiv(divID, dcID, buttonID) {
       });
   }
   else {
+    //animation occurs if the plus one note is atempted to be deleted
     $('#' + dcID).addClass('animated bounce');   
       // wait for animation end
       $('#' + dcID).one('webkitAnimationEnd oanimationend msAnimationEnd animationend',   
