@@ -624,7 +624,17 @@ function getPostItsFB () {
   console.log("---------------------LOGGING THE DATA----------------------------------------");
 
   firebaseDataRef.child(userID).once("value", function(data) { 
-    console.log(data.val());
+    
+    var posts = data.val();
+
+    console.log(posts);
+    console.log("This is the length of post its: " + posts.length());
+
+    for (var key in posts) {
+      if (posts.hasOwnProperty(key)) {
+        console.log(key + " -> " + posts[key]);
+      }
+    }
 
   });
 
