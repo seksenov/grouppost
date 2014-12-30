@@ -632,7 +632,7 @@ function getPostItsFB () {
 
     for (var key in posts) {
       if (posts.hasOwnProperty(key)) {
-        console.log(key + " -> " + posts[key]);
+        console.log(key + " -> " + posts[key].message);
       }
     }
 
