@@ -614,6 +614,7 @@ function getPostIts(){
   });
 
   // +firebase this is where the check should be made to see if the user id exists and add the plus note
+  getPostItsFB();
 
 }
 
