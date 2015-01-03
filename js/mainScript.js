@@ -450,7 +450,7 @@ function deleteDiv(divID, dcID, buttonID) {
      });
 
      //Delete the div from Firebase
-     //firebaseDataRef.child(userID).child(divID).remove();
+     firebaseDataRef.child(userID).child(divID).remove();
 
       //this is the animation that happens wehn a div is deleted
       $('#' + dcID).addClass('animated flipOutX'); //zoomOutLeft
