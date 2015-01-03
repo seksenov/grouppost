@@ -660,7 +660,7 @@ function getPostItsFB () {
     for (var note in posts) {
       if (posts.hasOwnProperty(note)) {
         
-        console.log(note message + " -> " + posts[note].message);
+        console.log(note + " -> " + posts[note].message);
       }
     }
 
