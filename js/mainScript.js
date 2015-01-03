@@ -243,14 +243,16 @@ function selectDiv(divID, buttonID, isPlus, dcID)
 
     //Check if a new not "plusOne" if being added and change the picture to Empty
     var picString = firebaseDataRef.child(userID).child(divID).picture;
+    console.log("This is what the name of the pic is: " + picString);
     if (isPlus && picString === "Plus Logo") {
+      console.log("the picString is being set to empty");
       picString = "Empty";
     };
 
     firebaseDataRef.child(userID).child(divID).update({
       //user: userID, 
       message: postMessage,
-      picture: picString,
+      //picture: picString,
       divID: divID,
       location: loc
     });
