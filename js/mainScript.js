@@ -668,9 +668,11 @@ function getPostItsFB () {
       }
     }
 
+    console.log("The final id num that was read from Firebase is: " + idNum);
+
   });
 
-  console.log("The final id num that was read from Firebase is: " + idNum);
+
 
 }
 
