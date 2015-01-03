@@ -259,7 +259,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
         picture: picString,
         divID: divID,
         location: loc,
-        divnum: idNum
+        //divnum: idNum
       });
     });
 
@@ -510,7 +510,8 @@ function addPostIt (isInit, postText, plusOne, imageString){
         message: postText,
         picture: "Plus Logo",
         divID: pid,
-        location: loc
+        location: loc,
+        divnum: idNum
       });
   }
   else{
