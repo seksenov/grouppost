@@ -678,12 +678,19 @@ function getPostItsFB () {
     console.log(posts);
     //console.log("This is the length of post its: " + posts.length());
 
+    var postsLength = Object.keys(posts).length;
+
+    console.log("The number of post its is: " + postsLength);
+
     for (var note in posts) {
       if (posts.hasOwnProperty(note)) {
         //find the max id
         idNum = posts[note].divnum;
         console.log("The final id num that was read from Firebase is: " + idNum);
         console.log(note + " -> " + posts[note].message);
+        //Check if this is the last post it
+
+
       }
     }
 
