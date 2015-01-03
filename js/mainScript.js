@@ -680,11 +680,12 @@ function getPostItsFB () {
       if (posts.hasOwnProperty(note)) {
         //find the max id
         idNum = posts[note].divnum;
+        console.log("The final id num that was read from Firebase is: " + idNum);
         console.log(note + " -> " + posts[note].message);
       }
     }
 
-    console.log("The final id num that was read from Firebase is: " + idNum);
+    
 
   });
 
