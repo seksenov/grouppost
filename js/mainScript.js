@@ -195,7 +195,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       newButton.id = buttonID;
       newButton.className = 'postButton fa fa-check';
       //newButton.innerHTML ='Post';
-      newButton.addEventListener("click", function (e) { selectDiv(div.id, newButton.id, false, dcID); });
+      newButton.addEventListener("click", function (e) { selectDiv(div.id, newButton.id, true, dcID); });
 
       $('#'+ dcID).append(newButton);
 
@@ -241,10 +241,16 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     // +firebase --this is where a new note gets added
     //firebaseDataRef.push({name: userName, text: div.innerHTML, uid: userID, image: null, location: loc});
 
+    //Check if a new not "plusOne" if being added and change the picture to Empty
+    var picString = firebaseDataRef.child(userID).child(divID).picture;
+    if (isPlus && picString === "Plus Logo") {
+      picString = "Empty";
+    };
+
     firebaseDataRef.child(userID).child(divID).update({
       //user: userID, 
       message: postMessage,
-      //picture: "Plus Logo",
+      picture: picString,
       divID: divID,
       location: loc
     });
