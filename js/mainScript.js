@@ -258,7 +258,8 @@ function selectDiv(divID, buttonID, isPlus, dcID)
         message: postMessage,
         picture: picString,
         divID: divID,
-        location: loc
+        location: loc,
+        divnum: idNum
       });
     });
 
