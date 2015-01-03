@@ -242,9 +242,9 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     //firebaseDataRef.push({name: userName, text: div.innerHTML, uid: userID, image: null, location: loc});
 
     //Check if a new not "plusOne" if being added and change the picture to Empty
-    firebaseDataRef.child(userID).child(divID).child(picture).once("value", function(data) { 
+    firebaseDataRef.child(userID).child(divID).once("value", function(data) { 
     
-      var picString = data.val();
+      var picString = data.val().picture;
 
       //var picString = post.picture;
       console.log("This is what the name of the pic is: " + picString);
