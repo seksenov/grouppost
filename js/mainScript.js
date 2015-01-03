@@ -450,7 +450,7 @@ function deleteDiv(divID, dcID, buttonID) {
      });
 
      //Delete the div from Firebase
-     firebaseDataRef.child(userID).child(divID).remove();
+     //firebaseDataRef.child(userID).child(divID).remove();
 
       //this is the animation that happens wehn a div is deleted
       $('#' + dcID).addClass('animated flipOutX'); //zoomOutLeft
@@ -616,29 +616,21 @@ function getPostIts(){
         //TODO: add args for last post
         addPostIt(true, '', true, null);
 
-        /*
+        
         firebaseDataRef.child(userID).child(divID).update({
-          divID: _divID,
-          message: "Empty",
-          picture: "Plus Logo",
-          user: userName
+          divnum: idNum
         });
-        */
+        
 
 
       }
       else {
         addPostIt(true, postIts[i].PostItNote, false, postIts[i].image);
 
-        /*
-
         firebaseDataRef.child(userID).child(divID).update({
-          divID: _divID,
-          message: text,
-          picture: image,
-          user: userName
+          divnum: idNum
         });
-        */
+        
       }
 
 
@@ -654,7 +646,7 @@ function getPostIts(){
 
 //Get the PostITs from Firebase
 function getPostItsFB () {
-  idNum = 0;
+  //idNum = 0;
 
   console.log("---------------------LOGGING THE DATA----------------------------------------");
 
@@ -665,10 +657,10 @@ function getPostItsFB () {
     console.log(posts);
     //console.log("This is the length of post its: " + posts.length());
 
-    for (var key in posts) {
-      if (posts.hasOwnProperty(key)) {
+    for (var note in posts) {
+      if (posts.hasOwnProperty(note)) {
         
-        console.log(key + " -> " + posts[key].message);
+        console.log(note message + " -> " + posts[note].message);
       }
     }
 
