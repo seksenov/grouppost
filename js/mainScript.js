@@ -508,7 +508,7 @@ function addPostIt (isInit, postText, plusOne, imageString){
       firebaseDataRef.child(userID).child(pid).update({
         user: userID, 
         message: postText,
-        picture: "Plus Logo",
+        picture: null,
         divID: pid,
         location: loc,
         divnum: idNum
@@ -682,14 +682,23 @@ function getPostItsFB () {
 
     console.log("The number of post its is: " + postsLength);
 
+    var count = 0;
     for (var note in posts) {
       if (posts.hasOwnProperty(note)) {
+        count++;
         //find the max id
         idNum = posts[note].divnum;
         console.log("The final id num that was read from Firebase is: " + idNum);
         console.log(note + " -> " + posts[note].message);
         //Check if this is the last post it
+        if (count >= postsLength) {
+          //This is the last post it
+          console.log("This is the last post it note");
 
+        }
+        else {
+          //This is not the last post it
+        }
 
       }
     }
