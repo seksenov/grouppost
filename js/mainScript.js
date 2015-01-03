@@ -616,20 +616,23 @@ function getPostIts(){
         //TODO: add args for last post
         addPostIt(true, '', true, null);
 
-        
+
+        /*        
         firebaseDataRef.child(userID).child(divID).update({
           divnum: idNum
         });
-        
+        */
 
 
       }
       else {
         addPostIt(true, postIts[i].PostItNote, false, postIts[i].image);
 
+        /*
         firebaseDataRef.child(userID).child(divID).update({
           divnum: idNum
         });
+        */
         
       }
 
