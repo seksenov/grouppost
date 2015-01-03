@@ -138,7 +138,7 @@ function FBuid() {
       getPostItsFB();
 
       //Get all the post it's from the DB and display them on the page
-      getPostIts();
+      //getPostIts();
       initEventListeners();
     }
     else {
@@ -508,7 +508,7 @@ function addPostIt (isInit, postText, plusOne, imageString){
       firebaseDataRef.child(userID).child(pid).update({
         user: userID, 
         message: postText,
-        picture: null,
+        picture: "Plus Logo",
         divID: pid,
         location: loc,
         divnum: idNum
@@ -683,6 +683,8 @@ function getPostItsFB () {
     console.log("The number of post its is: " + postsLength);
 
     var count = 0;
+    var image = null;
+    //Read the post it notes from the data snapshot and add them to the document (addPostIt)
     for (var note in posts) {
       if (posts.hasOwnProperty(note)) {
         count++;
@@ -694,17 +696,26 @@ function getPostItsFB () {
         if (count >= postsLength) {
           //This is the last post it
           console.log("This is the last post it note");
-
+          addPostIt(true, '', true, null);
         }
         else {
           //This is not the last post it
+          if(posts[note].picture === "Empty") {
+            image = null;
+          }
+          else {
+            image = posts[note].picture;
+          }
+          addPostIt(true, postIts[i].PostItNote, false, image);
         }
 
       }
     }
-
-    
-
+    //Check if there are no notes for the user and add the note with the plus logo
+    if(count === 0) {
+      //TODO add args for last post
+      addPostIt(false,"",true);
+    }
   });
 
 
