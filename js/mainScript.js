@@ -138,7 +138,7 @@ function FBuid() {
       getPostItsFB();
 
       //Get all the post it's from the DB and display them on the page
-      //getPostIts();
+      getPostIts();
       initEventListeners();
     }
     else {
