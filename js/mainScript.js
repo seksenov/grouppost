@@ -706,7 +706,7 @@ function getPostItsFB () {
           else {
             image = posts[note].picture;
           }
-          addPostIt(true, postIts[i].PostItNote, false, image);
+          addPostIt(true, posts[note].message, false, image);
         }
 
       }
