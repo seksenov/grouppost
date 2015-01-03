@@ -649,7 +649,7 @@ function getPostIts(){
 
 //Get the PostITs from Firebase
 function getPostItsFB () {
-  //idNum = 0;
+  idNum = 0;
 
   console.log("---------------------LOGGING THE DATA----------------------------------------");
 
@@ -662,12 +662,15 @@ function getPostItsFB () {
 
     for (var note in posts) {
       if (posts.hasOwnProperty(note)) {
-        
+        //find the max id
+        idNum = posts[note].divnum;
         console.log(note + " -> " + posts[note].message);
       }
     }
 
   });
+
+  console.log("The final id num that was read from Firebase is: " + idNum);
 
 }
 
