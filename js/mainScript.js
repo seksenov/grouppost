@@ -242,20 +242,28 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     //firebaseDataRef.push({name: userName, text: div.innerHTML, uid: userID, image: null, location: loc});
 
     //Check if a new not "plusOne" if being added and change the picture to Empty
-    var picString = firebaseDataRef.child(userID).child(divID).picture;
-    console.log("This is what the name of the pic is: " + picString);
-    if (isPlus && picString === "Plus Logo") {
-      console.log("the picString is being set to empty");
-      picString = "Empty";
-    };
+    firebaseDataRef.child(userID).child(divID).child(picture).once("value", function(data) { 
+    
+      var picString = data.val();
 
-    firebaseDataRef.child(userID).child(divID).update({
-      //user: userID, 
-      message: postMessage,
-      //picture: picString,
-      divID: divID,
-      location: loc
+      //var picString = post.picture;
+      console.log("This is what the name of the pic is: " + picString);
+      if (isPlus && picString === "Plus Logo") {
+        console.log("the picString is being set to empty");
+        picString = "Empty";
+      };
+
+      firebaseDataRef.child(userID).child(divID).update({
+        //user: userID, 
+        message: postMessage,
+        picture: picString,
+        divID: divID,
+        location: loc
+      });
     });
+
+
+    
 
     
     //This is where the windows notification goes -----------------------------------------------------------------
