@@ -713,7 +713,7 @@ function getPostItsFB () {
         //Add a child changed callback
         firebaseDataRef.child(userID).child(posts[note].divID).on('child_changed', function(childSnapshot) {
           var note = childSnapshot.val();
-          console.log("This is what the changed child was: ");
+          console.log("This is what the changed child was: " + note.key() + " -> it was changed to: ");
           console.log(note);
         });
 
