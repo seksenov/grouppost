@@ -96,6 +96,10 @@ function FBuid() {
       firebaseDataRef.child(userID).once('value', function(snapshot) {
         if (snapshot.val() !== null) {
           //The user already exists in the is in the Firebase DB
+          firebaseDataRef.child(userID).on('child_added', function(childSnapshot) {
+            var note = childSnapshot.val();
+            console.log(note);
+          });
         }  
         else {
           //New user set up the initial userID node
@@ -103,9 +107,10 @@ function FBuid() {
           
           firebaseDataRef.child(userID).child("emptyDiv").set({
             user: userID, 
-            message: "empty",
-            picture: "empty",
-            divID: "empty",
+            message: "Empty",
+            picture: "Empty",
+            divID: "Empty",
+            divnum: 0,
             location: {
               lat: 0,
               longitude: 0
@@ -681,6 +686,10 @@ function getPostItsFB () {
     var postsLength = Object.keys(posts).length;
 
     console.log("The number of post its is: " + postsLength);
+
+    //Add the Firebase event listeners for child changed here they must go into the loop
+    //I will need to know if the child was changed from this instance
+    //I don't wan't to add the child twice
 
     var count = 0;
     var image = null;
