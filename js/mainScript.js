@@ -714,7 +714,7 @@ function getPostItsFB () {
         firebaseDataRef.child(userID).child(posts[note].divID).on('child_changed', function(childSnapshot) {
           //var changedSnap = childSnapshot.val();
           console.log("This is what the changed child was: ");
-          console.log(childSnapshot.key();
+          console.log(childSnapshot.key());
           console.log(" -> it was changed to: ");
           console.log(childSnapshot.val());
         });
