@@ -102,11 +102,12 @@ function FBuid() {
             var note = childSnapshot.val();
             console.log(note);
           });
-
+          /*
           firebaseDataRef.child(userID).on('child_changed', function(childSnapshot) {
             var note = childSnapshot.val();
             console.log(note);
           });
+          */
 
         }  
         else {
@@ -709,6 +710,13 @@ function getPostItsFB () {
         idNum = posts[note].divnum;
         console.log("The final id num that was read from Firebase is: " + idNum);
         console.log(note + " -> " + posts[note].message);
+        //Add a child changed callback
+        firebaseDataRef.child(userID).child(posts[note].divID).on('child_changed', function(childSnapshot) {
+          var note = childSnapshot.val();
+          console.log("This is what the changed child was: ");
+          console.log(note);
+        });
+
         //Check if this is the last post it
         if (count >= postsLength) {
           //This is the last post it
