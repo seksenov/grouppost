@@ -679,19 +679,18 @@ function getPostIts(){
 
 }
 
-//Function to handle change callbacks
+//Function to handle change callbacks, name is the property name, value is the property value
 function updatePosts (divID, name, value) {
-
+  //Check if the postIt message changed, the value is the message
   if (name === "message") {
     console.log("The message of div: " + divID + " has changed to: " + value);
-  }
+  } //Check if the background picture chaged, the value is the base64 pic
   else if (name === "picture") {
     console.log("The picture of div: " + divID + " has changed to: " + value);
   }
-
 }
 
-function getParent(snapshot) {
+function getParentName(snapshot) {
   var ref = snapshot.ref();
   return ref.parent().name();
 }
@@ -730,13 +729,12 @@ function getPostItsFB () {
         
         //Add a child changed callback and call a function that handles changes
         firebaseDataRef.child(userID).child(posts[note].divID).on('child_changed', function(childSnapshot) {
-          //var changedSnap = childSnapshot.val();
-          //console.log("This is what the changed child was: ");
-          //console.log(childSnapshot.name());
-          //console.log(" -> it was changed to: ");
-          //console.log(childSnapshot.val());
           //call the change handler function that handles changes to notes 
-          updatePosts(getParent(childSnapshot), childSnapshot.name(), childSnapshot.val());
+          updatePosts(getParentName(childSnapshot), childSnapshot.name(), childSnapshot.val());
+        });
+        //Add a child removed callback and call a funtion that handle the delete
+        firebaseDataRef.child(userID).on('child_removed', function(oldChildSnapshot) {
+          console.log("Div: " + oldChildSnapshot.name() + " was removed");
         });
 
         //Check if this is the last post it
