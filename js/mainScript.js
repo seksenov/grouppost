@@ -736,8 +736,7 @@ function getPostItsFB () {
           //console.log(" -> it was changed to: ");
           //console.log(childSnapshot.val());
           //call the change handler function that handles changes to notes 
-          console.log(getParent(childSnapshot)); 
-          updatePosts(getParent(childSnapshot).val(), childSnapshot.name(), childSnapshot.val());
+          updatePosts(getParent(childSnapshot), childSnapshot.name(), childSnapshot.val());
         });
 
         //Check if this is the last post it
