@@ -712,8 +712,15 @@ function getPostItsFB () {
 
     console.log("The number of post its is: " + postsLength);
 
-    //Add the Firebase event listeners for child changed here they must go into the loop
-    //I will need to know if the child was changed from this instance
+    //Add a child removed callback and call a funtion that handle the delete
+    //This needs to be out of the loop as it's only needed for the user
+    firebaseDataRef.child(userID).on('child_removed', function(oldChildSnapshot) {
+      console.log("Div: " + oldChildSnapshot.name() + " was removed");
+    });
+
+
+    //I will need to know if the child was changed from this instance - this can be mitigated by calling the change anytume a child is changed again it won't screw up the current instace
+    //Same goes with delete
     //I don't wan't to add the child twice
 
     var count = 0;
@@ -732,10 +739,7 @@ function getPostItsFB () {
           //call the change handler function that handles changes to notes 
           updatePosts(getParentName(childSnapshot), childSnapshot.name(), childSnapshot.val());
         });
-        //Add a child removed callback and call a funtion that handle the delete
-        firebaseDataRef.child(userID).on('child_removed', function(oldChildSnapshot) {
-          console.log("Div: " + oldChildSnapshot.name() + " was removed");
-        });
+
 
         //Check if this is the last post it
         if (count >= postsLength) {
