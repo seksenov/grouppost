@@ -735,7 +735,8 @@ function getPostItsFB () {
           //console.log(childSnapshot.name());
           //console.log(" -> it was changed to: ");
           //console.log(childSnapshot.val());
-          //call the change handler function that handles changes to notes  
+          //call the change handler function that handles changes to notes 
+          console.log(getParent(childSnapshot)); 
           updatePosts(getParent(childSnapshot).val(), childSnapshot.name(), childSnapshot.val());
         });
 
