@@ -723,7 +723,7 @@ function getPostItsFB () {
     firebaseDataRef.child(userID).on('child_removed', function(oldChildSnapshot) {
       console.log("Div: " + oldChildSnapshot.name() + " was removed");
       //Get divnum and call delete div with the correct dcID dc+divNum
-      var dcID = "dc" + oldChildSnapshot.divnum;
+      var dcID = "dc" + oldChildSnapshot.val().divnum;
       console.log("This is the dcID: " + dcID);
       //call deleteDivHelper here
     });
