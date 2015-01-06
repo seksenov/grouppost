@@ -226,7 +226,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       dButton.id = "deleteB" + buttonID;
       dButton.className = 'deleteButton fa fa-times';
       //dButton.innerHTML ='Delete';
-      dButton.addEventListener("click", function (e) { deleteDiv(div.id, dcID, dButton.id); });
+      dButton.addEventListener("click", function (e) { deleteDiv(div.id); });
       $('#'+ dcID).append(dButton);
 
     }
@@ -470,14 +470,13 @@ function storeImage (divID, resizedImage) {
 }
 
 //Use this function to remove a note from firebase the delete div will be called from the callback
-function deleteDivFirebase (divID, dcID) {
-
+function deleteDiv (divID) {
+  //Delete the div from Firebase (this needs to call in the delete divHelper)
+  firebaseDataRef.child(userID).child(divID).remove();
 }
 
-function deleteDiv(divID, dcID, buttonID) {
+function deleteDivHelper(divID, dcID) {
   //Delete the selected div
-  console.log("Deleting the div the dcID is: " + dcID);
-
   var lastDiv = "div" + (idNum);
   if(divID != lastDiv)
   {
@@ -485,9 +484,6 @@ function deleteDiv(divID, dcID, buttonID) {
      query.where({ PID: divID, uid: userID }).read().then(function (postIts) {
       userTable.del(postIts[0]);
      });
-
-     //Delete the div from Firebase (this needs to call in the delete divHelper)
-     firebaseDataRef.child(userID).child(divID).remove();
 
       //this is the animation that happens wehn a div is deleted
       $('#' + dcID).addClass('animated flipOutX'); //zoomOutLeft
@@ -606,7 +602,7 @@ function addPostIt (isInit, postText, plusOne, imageString){
     dButton.id = "deleteB" + idNum;
     dButton.className = 'deleteButton fa fa-times';
     //dButton.innerHTML ='';
-    dButton.addEventListener("click", function (e) { deleteDiv(div.id, dcID, dButton.id); });
+    dButton.addEventListener("click", function (e) { deleteDiv(div.id); });
     dContainer.appendChild(dButton);
   }
   //Set the backround of the div if one exists imageString
@@ -724,8 +720,10 @@ function getPostItsFB () {
       console.log("Div: " + oldChildSnapshot.name() + " was removed");
       //Get divnum and call delete div with the correct dcID dc+divNum
       var dcID = "dc" + oldChildSnapshot.val().divnum;
+      var divID = oldChildSnapshot.name();
       console.log("This is the dcID: " + dcID);
       //call deleteDivHelper here
+      deleteDivHelper(divID, dcID);
     });
 
 
