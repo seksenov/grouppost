@@ -469,8 +469,14 @@ function storeImage (divID, resizedImage) {
 
 }
 
+//Use this function to remove a note from firebase the delete div will be called from the callback
+function deleteDivFirebase (divID, dcID) {
+
+}
+
 function deleteDiv(divID, dcID, buttonID) {
   //Delete the selected div
+  console.log("Deleting the div the dcID is: " + dcID);
 
   var lastDiv = "div" + (idNum);
   if(divID != lastDiv)
@@ -480,7 +486,7 @@ function deleteDiv(divID, dcID, buttonID) {
       userTable.del(postIts[0]);
      });
 
-     //Delete the div from Firebase
+     //Delete the div from Firebase (this needs to call in the delete divHelper)
      firebaseDataRef.child(userID).child(divID).remove();
 
       //this is the animation that happens wehn a div is deleted
@@ -721,7 +727,7 @@ function getPostItsFB () {
 
     //I will need to know if the child was changed from this instance - this can be mitigated by calling the change anytume a child is changed again it won't screw up the current instace
     //Same goes with delete
-    //I don't wan't to add the child twice
+    //I don't wan't to add the child twice the child won't be added twice the callback will either add an image or change the text in a div
 
     var count = 0;
     var image = null;
