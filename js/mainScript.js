@@ -691,6 +691,11 @@ function updatePosts (divID, name, value) {
 
 }
 
+function getParent(snapshot) {
+  var ref = snapshot.ref();
+  return ref.parent().name();
+}
+
 //Get the PostITs from Firebase
 function getPostItsFB () {
   idNum = 0;
@@ -731,7 +736,7 @@ function getPostItsFB () {
           //console.log(" -> it was changed to: ");
           //console.log(childSnapshot.val());
           //call the change handler function that handles changes to notes  
-          updatePosts(posts[note].divID, childSnapshot.name(), childSnapshot.val());
+          updatePosts(getParent(childSnapshot).val(), childSnapshot.name(), childSnapshot.val());
         });
 
         //Check if this is the last post it
