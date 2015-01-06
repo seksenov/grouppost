@@ -679,6 +679,18 @@ function getPostIts(){
 
 }
 
+//Function to handle change callbacks
+function updatePosts (divID, name, value) {
+
+  if (name === "message") {
+    console.log("The message of div: " + divID + " has changed to: " + value);
+  }
+  else if (name === "picture") {
+    console.log("The picture of div: " + divID + " has changed to: " + value);
+  }
+
+}
+
 //Get the PostITs from Firebase
 function getPostItsFB () {
   idNum = 0;
@@ -710,13 +722,16 @@ function getPostItsFB () {
         idNum = posts[note].divnum;
         console.log("The final id num that was read from Firebase is: " + idNum);
         console.log(note + " -> " + posts[note].message);
-        //Add a child changed callback
+        
+        //Add a child changed callback and call a function that handles changes
         firebaseDataRef.child(userID).child(posts[note].divID).on('child_changed', function(childSnapshot) {
           //var changedSnap = childSnapshot.val();
-          console.log("This is what the changed child was: ");
-          console.log(childSnapshot.name());
-          console.log(" -> it was changed to: ");
-          console.log(childSnapshot.val());
+          //console.log("This is what the changed child was: ");
+          //console.log(childSnapshot.name());
+          //console.log(" -> it was changed to: ");
+          //console.log(childSnapshot.val());
+          //call the change handler function that handles changes to notes  
+          updatePosts(posts[note].divID, childSnapshot.name(), childSnapshot.val());
         });
 
         //Check if this is the last post it
