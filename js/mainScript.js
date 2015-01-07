@@ -686,9 +686,12 @@ function updatePosts (divID, name, value) {
   //Check if the postIt message changed, the value is the message
   if (name === "message") {
     console.log("The message of div: " + divID + " has changed to: " + value);
-  } //Check if the background picture chaged, the value is the base64 pic
+    $("#"+divID).html(value); 
+  } 
+  //Check if the background picture chaged, the value is the base64 pic
   else if (name === "picture") {
     console.log("The picture of div: " + divID + " has changed to: " + value);
+    $("#"+divID).css("background-image", "url(" + value + ")");
   }
 }
 
