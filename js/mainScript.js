@@ -316,7 +316,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
 
       //var picString = post.picture;
       console.log("This is what the name of the pic is: " + picString);
-      if (isPlus && picString === "Plus Logo") {
+      if (picString === "Plus Logo") {
         console.log("the picString is being set to empty");
         picString = "Empty";
       };
@@ -574,7 +574,7 @@ function addPostIt (isInit, postText, plusOne, imageString){
       var item = { PostItNote: postText, PID: pid, divnum: idNum, uid: userID, image: null};
       userTable.insert(item);
 
-      //Add the post it to fire base this will be the blank plus note
+      //Add the post it to firebase this will be the blank plus note
       firebaseDataRef.child(userID).child(pid).update({
         user: userID, 
         message: postText,
