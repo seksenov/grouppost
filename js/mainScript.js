@@ -116,7 +116,7 @@ function FBuid() {
             console.log(note);
           });
           */
-          
+
         /*
         }  
         else {
@@ -134,8 +134,9 @@ function FBuid() {
               longitude: 0
             }
           });
+           */
         }
-        */
+       
       });
 
       /*
