@@ -123,7 +123,7 @@ function FBuid() {
         });
     
         //Check if this is the last post it
-        if (note.picture === "Plus Logo"h) {
+        if (note.picture === "Plus Logo") {
           //This is the last post it
           idNum = note.divnum;
           console.log("This is the last post it note");
