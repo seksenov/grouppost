@@ -134,7 +134,7 @@ function FBuid() {
               longitude: 0
             }
           });
-           */
+           
         }
        
       });
