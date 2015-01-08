@@ -126,7 +126,7 @@ function FBuid() {
         if (note.picture === "Plus Logo") {
           //This is the last post it
           idNum = note.divnum;
-          console.log("This is the last post it note");
+          console.log("This is the last post it note the idNum of the last note is: " + idNum);
           addPostIt(true, '', true, null);
         }
         else {
