@@ -10,6 +10,8 @@ var userName; //FB User Name
 
 var notesArray = [];
 
+var isPostsLoaded = false;
+
 app.controller('PostItController', function($scope) {
   
 });
@@ -97,6 +99,11 @@ function FBuid() {
       firebaseDataRef.child(userID).on('child_added', function(childSnapshot) {
         var note = childSnapshot.val();
         console.log(note);
+
+        if (note.picture === "Plus Logo") {
+          isPostsLoaded = true;
+        }
+
       });
 
       /*
@@ -220,7 +227,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       newButton.id = buttonID;
       newButton.className = 'postButton fa fa-check';
       //newButton.innerHTML ='Post';
-      newButton.addEventListener("click", function (e) { selectDiv(div.id, newButton.id, true, dcID); });
+      newButton.addEventListener("click", function (e) { selectDiv(div.id, newButton.id, false, dcID); });
 
       $('#'+ dcID).append(newButton);
 
