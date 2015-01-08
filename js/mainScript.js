@@ -93,22 +93,31 @@ function FBuid() {
       });
       */
 
+      //Putting the on child added before the snapshot to check if this works
+      firebaseDataRef.child(userID).on('child_added', function(childSnapshot) {
+        var note = childSnapshot.val();
+        console.log(note);
+      });
+
+      /*
       firebaseDataRef.child(userID).once('value', function(snapshot) {
         if (snapshot.val() !== null) {
           //The user already exists in the is in the Firebase DB
 
-          //Adding the on child added this will work but not directly for updated this will be good for initial load
+          //Adding the child
           firebaseDataRef.child(userID).on('child_added', function(childSnapshot) {
             var note = childSnapshot.val();
             console.log(note);
           });
+
           /*
           firebaseDataRef.child(userID).on('child_changed', function(childSnapshot) {
             var note = childSnapshot.val();
             console.log(note);
           });
           */
-
+          
+        /*
         }  
         else {
           //New user set up the initial userID node
@@ -126,6 +135,7 @@ function FBuid() {
             }
           });
         }
+        */
       });
 
       /*
