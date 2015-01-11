@@ -133,7 +133,7 @@ function FBuid() {
           isFirst = true;
           addPostIt(true, '', true, null);
         }
-        else {
+        else if (note.picture != "Plus Logo") {
           //This is not the last post it
           if(note.picture === "Empty") {
             image = null;
@@ -564,6 +564,7 @@ function deleteDivHelper(divID, dcID) {
   }
 }
 
+
 function addPostIt (isInit, postText, plusOne, imageString){
 
   if(!isInit) {
@@ -621,6 +622,8 @@ function addPostIt (isInit, postText, plusOne, imageString){
 
   
   if(plusOne) {
+
+
     var plus = document.createElement("input");
     plus.id = "editB" + idNum; 
     plus.src = "images/AddNote.png"; 
