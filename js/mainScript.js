@@ -351,7 +351,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     var lastDiv = "div" + (idNum);
     if(divID == lastDiv)
     {     
-      addPostIt(false, "", true);
+      //addPostIt(false, "", true);
     }
     //filter_newlines(divID);
     //unselected div
