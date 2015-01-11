@@ -3,6 +3,8 @@ var app = angular.module('postItApp', []);
 
 var idNum;
 
+var isFirst = false;
+
 var loc = {}; //stores note location
 
 var userID; //FB User ID
@@ -123,11 +125,12 @@ function FBuid() {
         });
     
         //Check if this is the last post it
-        if (note.picture === "Plus Logo") {
+        if (note.picture === "Plus Logo" && !isFirst) {
           //This is the last post it
           idNum = note.divnum;
           console.log("This is the last post it note the idNum of the last note is: " + idNum);
           console.log("Adding a note from the on chiled added event ------------------------");
+          isFirst = true;
           addPostIt(true, '', true, null);
         }
         else {
