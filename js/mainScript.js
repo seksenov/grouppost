@@ -127,6 +127,7 @@ function FBuid() {
           //This is the last post it
           idNum = note.divnum;
           console.log("This is the last post it note the idNum of the last note is: " + idNum);
+          console.log("Adding a note from the on chiled added event ------------------------");
           addPostIt(true, '', true, null);
         }
         else {
