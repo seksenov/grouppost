@@ -25,7 +25,7 @@ var firebaseDataRef; //Firebase data reference
 
 $( document ).ready(function() {
   //init firebase data ref
-  firebaseDataRef = new Firebase('https://test-chat-ks.firebaseio.com/');
+  firebaseDataRef = new Firebase('https://group-post.firebaseio.com/');
   //check if the FB User Id has been set up in Firebase and set it if it hasn't
   //var notesRef = firebaseDataRef.child("test-chat-ks");
 
@@ -815,6 +815,8 @@ function getPostItsFB () {
         //Add a child changed callback and call a function that handles changes
         firebaseDataRef.child(userID).child(posts[note].divID).on('child_changed', function(childSnapshot) {
           //call the change handler function that handles changes to notes 
+          console.log();
+
           updatePosts(getParentName(childSnapshot), childSnapshot.name(), childSnapshot.val());
         });
 
