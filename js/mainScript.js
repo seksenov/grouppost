@@ -1,5 +1,4 @@
-
-var app = angular.module('postItApp', []);
+// var app = angular.module('postItApp', []);
 
 var idNum;
 
@@ -14,9 +13,9 @@ var notesArray = [];
 
 var isPostsLoaded = false;
 
-app.controller('PostItController', function($scope) {
+// app.controller('PostItController', function($scope) {
   
-});
+// });
 
 var client; //Azure Mobile Services Client
 var userTable=null; //Azure DB table
@@ -847,7 +846,7 @@ function getPostItsFB () {
     }
   });
 
-
+  
 
 }
 
