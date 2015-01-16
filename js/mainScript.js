@@ -2,7 +2,7 @@
 
 var idNum;
 
-var isFirst = false;
+var isFirst = true;
 
 var loc = {}; //stores note location
 
@@ -133,8 +133,8 @@ function FBuid() {
           idNum = note.divnum;
           console.log("This is the last post it note the idNum of the last note is: " + idNum);
           console.log("Adding a note from the on chiled added event ------------------------");
-          isFirst = true;
-          addPostIt(true, '', true, null);
+          isFirst = false;
+          addPostIt(isFirst, '', true, null);
         }
         else if (note.picture != "Plus Logo") {
           //This is not the last post it
@@ -144,7 +144,7 @@ function FBuid() {
           else {
             image = note.picture;
           }
-          addPostIt(true, note.message, false, image);
+          addPostIt(isFirst, note.message, false, image);
         }
   
       });
