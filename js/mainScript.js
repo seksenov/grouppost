@@ -102,52 +102,52 @@ function FBuid() {
       //This needs to be out of the child added callback as it's the same for the user
 
       //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-      // firebaseDataRef.child(userID).on('child_removed', function(oldChildSnapshot) {
-      //   console.log("Div: " + oldChildSnapshot.name() + " was removed");
-      //   //Get divnum and call delete div with the correct dcID dc+divNum
-      //   var dcID = "dc" + oldChildSnapshot.val().divnum;
-      //   var divID = oldChildSnapshot.name();
-      //   console.log("This is the dcID: " + dcID);
-      //   //call deleteDivHelper here
-      //   deleteDivHelper(divID, dcID);
-      // });
+      firebaseDataRef.child(userID).on('child_removed', function(oldChildSnapshot) {
+        console.log("Div: " + oldChildSnapshot.name() + " was removed");
+        //Get divnum and call delete div with the correct dcID dc+divNum
+        var dcID = "dc" + oldChildSnapshot.val().divnum;
+        var divID = oldChildSnapshot.name();
+        console.log("This is the dcID: " + dcID);
+        //call deleteDivHelper here
+        deleteDivHelper(divID, dcID);
+      });
 
-      // //Putting the on child added before the snapshot to check if this works
-      // //This is where add post it will be called
-      // firebaseDataRef.child(userID).on('child_added', function(childSnapshot) {
+      //Putting the on child added before the snapshot to check if this works
+      //This is where add post it will be called
+      firebaseDataRef.child(userID).on('child_added', function(childSnapshot) {
 
-      //   var note = childSnapshot.val();
-      //   var image = null;
-      //   console.log("A NEW NOTE HAS BEEN ADDED HERE IS THE NOTE OBJECT:");
-      //   console.log(note);
+        var note = childSnapshot.val();
+        var image = null;
+        console.log("A NEW NOTE HAS BEEN ADDED HERE IS THE NOTE OBJECT:");
+        console.log(note);
 
-      //   //Add a child changed callback and call a function that handles changes
-      //   firebaseDataRef.child(userID).child(note.divID).on('child_changed', function(childSnapshot) {
-      //     //call the change handler function that handles changes to notes 
-      //     updatePosts(getParentName(childSnapshot), childSnapshot.name(), childSnapshot.val());
-      //   });
+        //Add a child changed callback and call a function that handles changes
+        firebaseDataRef.child(userID).child(note.divID).on('child_changed', function(childSnapshot) {
+          //call the change handler function that handles changes to notes 
+          updatePosts(getParentName(childSnapshot), childSnapshot.name(), childSnapshot.val());
+        });
     
-      //   //Check if this is the last post it
-      //   if (note.picture === "Plus Logo") {
-      //     //This is the last post it
-      //     idNum = note.divnum;
-      //     console.log("This is the last post it note the idNum of the last note is: " + idNum);
-      //     console.log("Adding a note from the on chiled added event ------------------------");
-      //     isFirst = true;
-      //     addPostIt(true, '', true, null);
-      //   }
-      //   else if (note.picture != "Plus Logo") {
-      //     //This is not the last post it
-      //     if(note.picture === "Empty") {
-      //       image = null;
-      //     }
-      //     else {
-      //       image = note.picture;
-      //     }
-      //     addPostIt(true, note.message, false, image);
-      //   }
+        //Check if this is the last post it
+        if (note.picture === "Plus Logo") {
+          //This is the last post it
+          idNum = note.divnum;
+          console.log("This is the last post it note the idNum of the last note is: " + idNum);
+          console.log("Adding a note from the on chiled added event ------------------------");
+          isFirst = true;
+          addPostIt(true, '', true, null);
+        }
+        else if (note.picture != "Plus Logo") {
+          //This is not the last post it
+          if(note.picture === "Empty") {
+            image = null;
+          }
+          else {
+            image = note.picture;
+          }
+          addPostIt(true, note.message, false, image);
+        }
   
-      // });
+      });
 
       //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -212,7 +212,11 @@ function FBuid() {
       */
 
       // +firebase this is where the check should be made to see if the user id exists and add the plus note
-      getPostItsFB();
+      // ------------------------------------------------------------------------------------------------------------------------------------
+      
+      // getPostItsFB();
+
+      // ------------------------------------------------------------------------------------------------------------------------------------
 
       //Get all the post it's from the DB and display them on the page
       //getPostIts();
