@@ -343,10 +343,6 @@ function selectDiv(divID, buttonID, isPlus, dcID)
         //divnum: idNum
       });
     });
-
-
-    
-
     
     //This is where the windows notification goes -----------------------------------------------------------------
     var tags = postMessage.split('#');
@@ -401,6 +397,10 @@ function takePicture(divID, dcID, buttonID) {
     //Taking a pic using the WinRT APIs
     windowsCapture(window.cameraWinRT, divID);
   }
+  else if (Windows.Media.Capture) {
+    //Take a capture by directly calling WinRT
+    winRTCapture(divID);
+  }
   else if (hasGetUserMedia()) {
     //Taking a pic using GetUserMedia
     gumCapture(divID, dcID, buttonID);
@@ -442,6 +442,25 @@ function windowsCapture (object, divID) {
     //Taking the picture failed
     console.log("Taking the picture on Windows was canceled");
   });
+}
+
+function winRTCapture (divID) {
+  // var Capture = Windows.Media.Capture;
+  // var Storage = Windows.Storage;
+
+  var captureUI = new Windows.Media.Capture.CameraCaptureUI();
+      captureUI.captureFileAsync(Windows.Media.Capture.CameraCaptureUIMode.photo).then(function (capturedItem) {
+         if (capturedItem) {
+            //The user has succeeded in getting a picture
+            $("#"+divID).css("background-image", "url(" + imageToDataUri(capturedItem, 300, 300) + ")");
+            
+         }
+         else {
+            //Taking a picture has failed
+             console.log("Taking the picture with WinRT failed");
+         }
+      });
+
 }
 
 //Take the picture through GUM API
@@ -818,7 +837,7 @@ function getPostItsFB () {
         //Add a child changed callback and call a function that handles changes
         firebaseDataRef.child(userID).child(posts[note].divID).on('child_changed', function(childSnapshot) {
           //call the change handler function that handles changes to notes 
-          console.log();
+          console.log("Child changed was called from the plus one note");
 
           updatePosts(getParentName(childSnapshot), childSnapshot.name(), childSnapshot.val());
         });
