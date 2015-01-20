@@ -449,17 +449,18 @@ function winRTCapture (divID) {
   // var Storage = Windows.Storage;
 
   var captureUI = new Windows.Media.Capture.CameraCaptureUI();
-      captureUI.captureFileAsync(Windows.Media.Capture.CameraCaptureUIMode.photo).then(function (capturedItem) {
-         if (capturedItem) {
-            //The user has succeeded in getting a picture
-            $("#"+divID).css("background-image", "url(" + imageToDataUri(capturedItem, 300, 300) + ")");
-            
-         }
-         else {
-            //Taking a picture has failed
-             console.log("Taking the picture with WinRT failed");
-         }
-      });
+  captureUI.captureFileAsync(Windows.Media.Capture.CameraCaptureUIMode.photo).then(function (capturedItem) {
+     if (capturedItem) {
+        var resizedImage = imageToDataUri(capturedItem, 300, 300);
+        //The user has succeeded in getting a picture
+        $("#"+divID).css("background-image", "url(" + resizedImage + ")");
+        storeImage(divID, resizedImage);
+     }
+     else {
+        //Taking a picture has failed
+         console.log("Taking the picture with WinRT failed");
+     }
+  });
 
 }
 
