@@ -452,7 +452,7 @@ function winRTCapture (divID) {
   captureUI.captureFileAsync(Windows.Media.Capture.CameraCaptureUIMode.photo).then(function (capturedItem) {
      if (capturedItem) {
 
-        document.writeln(capturedItem);
+        document.getElementById(divID).innerHTML = "User captured a photo.";
         var resizedImage = imageToDataUri(capturedItem, 300, 300);
         //The user has succeeded in getting a picture
         $("#"+divID).css("background-image", "url(" + resizedImage + ")");
@@ -460,6 +460,7 @@ function winRTCapture (divID) {
      }
      else {
         //Taking a picture has failed
+        document.getElementById(divID).innerHTML = "Failed";
          console.log("Taking the picture with WinRT failed");
      }
   });
