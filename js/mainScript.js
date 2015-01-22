@@ -449,6 +449,8 @@ function winRTCapture (divID) {
   // var Storage = Windows.Storage;
 
   var captureUI = new Windows.Media.Capture.CameraCaptureUI();
+  captureUI.photoSettings.format = Windows.Media.Capture.CameraCaptureUIPhotoFormat.jpeg;
+  
   captureUI.captureFileAsync(Windows.Media.Capture.CameraCaptureUIMode.photo).then(function (capturedItem) {
      if (capturedItem) {
 
