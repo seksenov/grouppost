@@ -22,6 +22,8 @@ var userTable=null; //Azure DB table
 
 var firebaseDataRef; //Firebase data reference
 
+window.location.reload(true);
+
 $( document ).ready(function() {
   //init firebase data ref
   firebaseDataRef = new Firebase('https://group-post.firebaseio.com/');
@@ -394,6 +396,7 @@ var errorCallback = function(e) {
 function takePicture(divID, dcID, buttonID) {
   //Take picture invoked
   if (window.cameraWinRT) {
+
     //Taking a pic using the WinRT APIs
     windowsCapture(window.cameraWinRT, divID);
   }
@@ -468,6 +471,7 @@ function winRTCapture (divID) {
         }
 
         // -----------------------------------------------------------------
+
 
         var photoB = document.createElement("img");
         photoB.setAttribute("src", blob);
