@@ -464,27 +464,10 @@ function winRTCapture (divID) {
   captureUI.captureFileAsync(Windows.Media.Capture.CameraCaptureUIMode.photo).then(function (capturedItem) {
      if (capturedItem) {
 
-        //window.location.reload();
-
-        
-
-        
-        // ---var blob = URL.createObjectURL(capturedItem, { oneTimeOnly: true });
-
-        
-
-        // var photoB = document.createElement("img");
-        // photoB.setAttribute("src", blob);
-        // document.body.appendChild(photoB);
-
-        document.getElementById(divID).innerHTML = "Success image taken: "; // + blob;
-
-        var base64pic;
-
         var reader = new window.FileReader();
         reader.readAsDataURL(capturedItem); 
         reader.onloadend = function() {
-          base64pic = reader.result;                
+          var base64pic = reader.result;                
           //document.getElementById(divID).innerHTML = "Blob Converted: " + base64pic;
 
           //--------------------------------------------
@@ -495,36 +478,6 @@ function winRTCapture (divID) {
           $("#"+divID).css("background-image", "url(" + resizedImage + ")");
           storeImage(divID, resizedImage);
         }
-
-
-        //Blob to base64 string
-
-        // var reader = new window.FileReader();
-        // reader.readAsDataURL(blob); 
-        // reader.onloadend = function() {
-        //   base64pic = reader.result;                
-        //   console.log(base64pic );
-        // }
-
-        // -----------------------------------------------------------------
-
-
-        
-
-        // document.getElementById(divID).innerHTML = "Success Picture Taken: " + base64pic;
-
-        // var h = document.createElement("p");                
-        // var t = document.createTextNode(base64pic);     
-        // h.appendChild(t);  
-        // document.body.appendChild(h);
-
-        // var p = document.createElement("p");
-        // p.innerHTML = "Hello!";
-        // document.body.appendChild(p);
-
-        // var resizedImage = imageToDataUri(photo, 300, 300);
-
-        
      }
      else {
         //Taking a picture has failed
