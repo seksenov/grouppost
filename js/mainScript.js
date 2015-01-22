@@ -455,15 +455,31 @@ function winRTCapture (divID) {
      if (capturedItem) {
 
         
-        var photoBlobUrl = URL.createObjectURL(capturedItem, { oneTimeOnly: true });
+        var blob = URL.createObjectURL(capturedItem, { oneTimeOnly: true });
+        var base64pic;
+
+        //Blob to base64 string
+
+        var reader = new window.FileReader();
+        reader.readAsDataURL(blob); 
+        reader.onloadend = function() {
+          base64pic = reader.result;                
+          console.log(base64pic );
+        }
+
+        // -----------------------------------------------------------------
+
+        // var photo = document.createElement("img");
+        // photo.setAttribute("src", photoBlobUrl);
+
+        // document.body.appendChild(photo);
+
+        // document.getElementById(divID).innerHTML = photoBlobUrl;
+
+        // var resizedImage = imageToDataUri(photo, 300, 300);
 
         var photo = document.createElement("img");
-        photo.setAttribute("src", photoBlobUrl);
-
-        document.body.appendChild(photo);
-
-        document.getElementById(divID).innerHTML = photoBlobUrl;
-
+        photo.setAttribute('src', "data:image/png;base64,"+base64pic);
         var resizedImage = imageToDataUri(photo, 300, 300);
         //The user has succeeded in getting a picture
         $("#"+divID).css("background-image", "url(" + resizedImage + ")");
