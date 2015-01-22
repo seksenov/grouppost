@@ -466,10 +466,12 @@ function winRTCapture (divID) {
 
         //window.location.reload();
 
-        document.getElementById(divID).innerHTML = "Success Picture Taken: ";
+        
 
         
         var blob = URL.createObjectURL(capturedItem, { oneTimeOnly: true });
+
+        document.getElementById(divID).innerHTML = "Success Picture Taken: " + blob;
         var base64pic;
 
         //Blob to base64 string
