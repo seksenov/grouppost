@@ -469,15 +469,15 @@ function winRTCapture (divID) {
         
 
         
-        var blob = URL.createObjectURL(capturedItem, { oneTimeOnly: true });
+        // ---var blob = URL.createObjectURL(capturedItem, { oneTimeOnly: true });
 
         
 
-        var photoB = document.createElement("img");
-        photoB.setAttribute("src", blob);
-        document.body.appendChild(photoB);
+        // var photoB = document.createElement("img");
+        // photoB.setAttribute("src", blob);
+        // document.body.appendChild(photoB);
 
-        document.getElementById(divID).innerHTML = "Success image taken: " + blob;
+        document.getElementById(divID).innerHTML = "Success image taken: "; // + blob;
 
         var base64pic;
 
