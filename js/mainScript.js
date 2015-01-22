@@ -482,7 +482,7 @@ function winRTCapture (divID) {
         var base64pic;
 
         var reader = new window.FileReader();
-        reader.readAsDataURL(blob); 
+        reader.readAsDataURL(capturedItem); 
         reader.onloadend = function() {
           base64pic = reader.result;                
           document.getElementById(divID).innerHTML = "Blob Converted: " + base64pic;
