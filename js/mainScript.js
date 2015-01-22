@@ -503,21 +503,21 @@ function winRTCapture (divID) {
 
         
 
-        document.getElementById(divID).innerHTML = "Success Picture Taken: " + base64pic;
+        // document.getElementById(divID).innerHTML = "Success Picture Taken: " + base64pic;
 
-        var h = document.createElement("p");                
-        var t = document.createTextNode(base64pic);     
-        h.appendChild(t);  
-        document.body.appendChild(h);
+        // var h = document.createElement("p");                
+        // var t = document.createTextNode(base64pic);     
+        // h.appendChild(t);  
+        // document.body.appendChild(h);
 
-        var p = document.createElement("p");
-        p.innerHTML = "Hello!";
-        document.body.appendChild(p);
+        // var p = document.createElement("p");
+        // p.innerHTML = "Hello!";
+        // document.body.appendChild(p);
 
         // var resizedImage = imageToDataUri(photo, 300, 300);
 
         var photo = document.createElement("img");
-        photo.setAttribute('src', "data:image/png;base64,"+base64pic);
+        photo.setAttribute('src', base64pic);
         var resizedImage = imageToDataUri(photo, 300, 300);
         //The user has succeeded in getting a picture
         $("#"+divID).css("background-image", "url(" + resizedImage + ")");
