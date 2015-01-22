@@ -455,37 +455,34 @@ function windowsCapture (object, divID) {
 }
 
 function winRTCapture (divID) {
-  // var Capture = Windows.Media.Capture;
-  // var Storage = Windows.Storage;
-
+  //Initialize windows media camera capture
   var captureUI = new Windows.Media.Capture.CameraCaptureUI();
+  //Set the format of the picture that's going to be captured (.png or .jpg)
   captureUI.photoSettings.format = Windows.Media.Capture.CameraCaptureUIPhotoFormat.png;
 
+  //Pop up the camera UI to take a picture
   captureUI.captureFileAsync(Windows.Media.Capture.CameraCaptureUIMode.photo).then(function (capturedItem) {
      if (capturedItem) {
-
+        //Convert the blob file to a base 64 string
         var reader = new window.FileReader();
         reader.readAsDataURL(capturedItem); 
         reader.onloadend = function() {
           var base64pic = reader.result;                
-          //document.getElementById(divID).innerHTML = "Blob Converted: " + base64pic;
-
-          //--------------------------------------------
+          //Resize the base64 image
           var photo = document.createElement("img");
           photo.setAttribute('src', base64pic);
           var resizedImage = imageToDataUri(photo, 300, 300);
-          //The user has succeeded in getting a picture
+          //Set the picture as the background of the div
           $("#"+divID).css("background-image", "url(" + resizedImage + ")");
+          //Store the image in the DB
           storeImage(divID, resizedImage);
         }
      }
      else {
         //Taking a picture has failed
-        document.getElementById(divID).innerHTML = "Failed";
-         console.log("Taking the picture with WinRT failed");
+        console.log("Taking the picture with WinRT failed");
      }
   });
-
 }
 
 //Take the picture through GUM API
