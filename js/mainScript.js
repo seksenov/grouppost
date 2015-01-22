@@ -22,7 +22,7 @@ var userTable=null; //Azure DB table
 
 var firebaseDataRef; //Firebase data reference
 
-window.location.reload(true);
+
 
 $( document ).ready(function() {
   //init firebase data ref
@@ -231,10 +231,17 @@ function FBuid() {
   });
 }
 
+function reloadClearCache() {
+  window.location.reload(true);
+}
+
 function initEventListeners() {
   //Facebook logout button
   var logoutButton = document.getElementById('fbLogout');
   logoutButton.addEventListener("click", function (e) { FBLogout(); });
+  //Clear the cache
+  var logoutButton = document.getElementById('Reload');
+  logoutButton.addEventListener("click", function (e) { reloadClearCache(); });
 }
 
 function getGeoLoc () {
