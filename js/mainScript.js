@@ -454,12 +454,13 @@ function winRTCapture (divID) {
   captureUI.captureFileAsync(Windows.Media.Capture.CameraCaptureUIMode.photo).then(function (capturedItem) {
      if (capturedItem) {
 
-        //document.getElementById(divID).innerHTML = capturedItem;
+        
         var photoBlobUrl = URL.createObjectURL(capturedItem, { oneTimeOnly: true });
 
         var photo = document.createElement("img");
         photo.setAttribute("src", photoBlobUrl);
 
+        document.getElementById(divID).innerHTML = photoBlobUrl;
 
         var resizedImage = imageToDataUri(photo, 300, 300);
         //The user has succeeded in getting a picture
