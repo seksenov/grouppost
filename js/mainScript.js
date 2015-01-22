@@ -460,6 +460,8 @@ function winRTCapture (divID) {
         var photo = document.createElement("img");
         photo.setAttribute("src", photoBlobUrl);
 
+        document.body.appendChild(photo);
+
         document.getElementById(divID).innerHTML = photoBlobUrl;
 
         var resizedImage = imageToDataUri(photo, 300, 300);
