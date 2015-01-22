@@ -456,7 +456,12 @@ function winRTCapture (divID) {
 
         //document.getElementById(divID).innerHTML = capturedItem;
         var photoBlobUrl = URL.createObjectURL(capturedItem, { oneTimeOnly: true });
-        var resizedImage = imageToDataUri(photoBlobUrl, 300, 300);
+
+        var photo = document.createElement("img");
+        photo.setAttribute("src", photoBlobUrl);
+
+
+        var resizedImage = imageToDataUri(photo, 300, 300);
         //The user has succeeded in getting a picture
         $("#"+divID).css("background-image", "url(" + resizedImage + ")");
         storeImage(divID, resizedImage);
