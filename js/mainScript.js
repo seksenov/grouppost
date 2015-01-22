@@ -474,7 +474,7 @@ function winRTCapture (divID) {
 
         document.body.appendChild(photoB);
 
-        document.getElementById(divID).innerHTML = base64pic;
+        document.getElementById(divID).innerHTML = "Success Picture Taken: " + base64pic;
 
         var h = document.createElement("p");                
         var t = document.createTextNode(base64pic);     
