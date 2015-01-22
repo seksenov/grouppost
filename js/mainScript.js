@@ -486,6 +486,14 @@ function winRTCapture (divID) {
         reader.onloadend = function() {
           base64pic = reader.result;                
           document.getElementById(divID).innerHTML = "Blob Converted: " + base64pic;
+
+          //--------------------------------------------
+          var photo = document.createElement("img");
+          photo.setAttribute('src', base64pic);
+          var resizedImage = imageToDataUri(photo, 300, 300);
+          //The user has succeeded in getting a picture
+          $("#"+divID).css("background-image", "url(" + resizedImage + ")");
+          storeImage(divID, resizedImage);
         }
 
 
@@ -516,12 +524,7 @@ function winRTCapture (divID) {
 
         // var resizedImage = imageToDataUri(photo, 300, 300);
 
-        var photo = document.createElement("img");
-        photo.setAttribute('src', base64pic);
-        var resizedImage = imageToDataUri(photo, 300, 300);
-        //The user has succeeded in getting a picture
-        $("#"+divID).css("background-image", "url(" + resizedImage + ")");
-        storeImage(divID, resizedImage);
+        
      }
      else {
         //Taking a picture has failed
