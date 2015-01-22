@@ -476,6 +476,15 @@ function winRTCapture (divID) {
 
         document.getElementById(divID).innerHTML = base64pic;
 
+        var h = document.createElement("p");                
+        var t = document.createTextNode(base64pic);     
+        h.appendChild(t);  
+        document.body.appendChild(h);
+
+        var p = document.createElement("p");
+        p.innerHTML = "Hello!";
+        document.body.appendChild(p);
+
         // var resizedImage = imageToDataUri(photo, 300, 300);
 
         var photo = document.createElement("img");
