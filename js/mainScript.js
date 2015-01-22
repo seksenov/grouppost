@@ -464,7 +464,7 @@ function winRTCapture (divID) {
   captureUI.captureFileAsync(Windows.Media.Capture.CameraCaptureUIMode.photo).then(function (capturedItem) {
      if (capturedItem) {
 
-        window.location.reload();
+        //window.location.reload();
 
         document.getElementById(divID).innerHTML = "Success Picture Taken: ";
 
