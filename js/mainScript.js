@@ -450,12 +450,13 @@ function winRTCapture (divID) {
 
   var captureUI = new Windows.Media.Capture.CameraCaptureUI();
   captureUI.photoSettings.format = Windows.Media.Capture.CameraCaptureUIPhotoFormat.jpeg;
-  
+
   captureUI.captureFileAsync(Windows.Media.Capture.CameraCaptureUIMode.photo).then(function (capturedItem) {
      if (capturedItem) {
 
-        document.getElementById(divID).innerHTML = capturedItem;
-        var resizedImage = imageToDataUri(capturedItem, 300, 300);
+        //document.getElementById(divID).innerHTML = capturedItem;
+        var photoBlobUrl = URL.createObjectURL(capturedItem, { oneTimeOnly: true });
+        var resizedImage = imageToDataUri(photoBlobUrl, 300, 300);
         //The user has succeeded in getting a picture
         $("#"+divID).css("background-image", "url(" + resizedImage + ")");
         storeImage(divID, resizedImage);
