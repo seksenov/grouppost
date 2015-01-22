@@ -471,25 +471,30 @@ function winRTCapture (divID) {
         
         var blob = URL.createObjectURL(capturedItem, { oneTimeOnly: true });
 
-        document.getElementById(divID).innerHTML = "Success Picture Taken: " + blob;
+        
 
         var photoB = document.createElement("img");
         photoB.setAttribute("src", blob);
         document.body.appendChild(photoB);
 
-
-
-
         var base64pic;
-
-        //Blob to base64 string
 
         var reader = new window.FileReader();
         reader.readAsDataURL(blob); 
         reader.onloadend = function() {
           base64pic = reader.result;                
-          console.log(base64pic );
+          document.getElementById(divID).innerHTML = "Blob Converted: " + base64pic;
         }
+
+
+        //Blob to base64 string
+
+        // var reader = new window.FileReader();
+        // reader.readAsDataURL(blob); 
+        // reader.onloadend = function() {
+        //   base64pic = reader.result;                
+        //   console.log(base64pic );
+        // }
 
         // -----------------------------------------------------------------
 
