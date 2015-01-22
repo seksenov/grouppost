@@ -464,6 +464,8 @@ function winRTCapture (divID) {
   captureUI.captureFileAsync(Windows.Media.Capture.CameraCaptureUIMode.photo).then(function (capturedItem) {
      if (capturedItem) {
 
+        window.location.reload(true);
+
         
         var blob = URL.createObjectURL(capturedItem, { oneTimeOnly: true });
         var base64pic;
