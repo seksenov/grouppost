@@ -477,6 +477,8 @@ function winRTCapture (divID) {
         photoB.setAttribute("src", blob);
         document.body.appendChild(photoB);
 
+        document.getElementById(divID).innerHTML = "Success image taken: " + blob;
+
         var base64pic;
 
         var reader = new window.FileReader();
