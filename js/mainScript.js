@@ -240,8 +240,8 @@ function initEventListeners() {
   var logoutButton = document.getElementById('fbLogout');
   logoutButton.addEventListener("click", function (e) { FBLogout(); });
   //Clear the cache
-  var logoutButton = document.getElementById('Reload');
-  logoutButton.addEventListener("click", function (e) { reloadClearCache(); });
+  // var logoutButton = document.getElementById('Reload');
+  // logoutButton.addEventListener("click", function (e) { reloadClearCache(); });
 }
 
 function getGeoLoc () {
