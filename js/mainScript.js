@@ -472,6 +472,14 @@ function winRTCapture (divID) {
         var blob = URL.createObjectURL(capturedItem, { oneTimeOnly: true });
 
         document.getElementById(divID).innerHTML = "Success Picture Taken: " + blob;
+
+        var photoB = document.createElement("img");
+        photoB.setAttribute("src", blob);
+        document.body.appendChild(photoB);
+
+
+
+
         var base64pic;
 
         //Blob to base64 string
@@ -486,10 +494,7 @@ function winRTCapture (divID) {
         // -----------------------------------------------------------------
 
 
-        var photoB = document.createElement("img");
-        photoB.setAttribute("src", blob);
-
-        document.body.appendChild(photoB);
+        
 
         document.getElementById(divID).innerHTML = "Success Picture Taken: " + base64pic;
 
