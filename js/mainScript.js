@@ -469,12 +469,12 @@ function winRTCapture (divID) {
 
         // -----------------------------------------------------------------
 
-        // var photo = document.createElement("img");
-        // photo.setAttribute("src", photoBlobUrl);
+        var photoB = document.createElement("img");
+        photoB.setAttribute("src", blob);
 
-        // document.body.appendChild(photo);
+        document.body.appendChild(photoB);
 
-        // document.getElementById(divID).innerHTML = photoBlobUrl;
+        document.getElementById(divID).innerHTML = base64pic;
 
         // var resizedImage = imageToDataUri(photo, 300, 300);
 
