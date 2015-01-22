@@ -485,7 +485,7 @@ function winRTCapture (divID) {
         reader.readAsDataURL(capturedItem); 
         reader.onloadend = function() {
           base64pic = reader.result;                
-          document.getElementById(divID).innerHTML = "Blob Converted: " + base64pic;
+          //document.getElementById(divID).innerHTML = "Blob Converted: " + base64pic;
 
           //--------------------------------------------
           var photo = document.createElement("img");
