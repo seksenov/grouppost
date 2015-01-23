@@ -360,7 +360,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
         //The WinRT was found
         windowsNotify(tags, window.CommunicatorWinRT);  
       }
-      else if (typeof Windows.UI.Notifications != 'undefined') {
+      else if (typeof Windows != 'undefined') {
         //document.getElementById(divID).innerHTML = "Success going to try and send a Windows notification";
         var d = +tags[1];
         var delay = d * 1000;
@@ -447,7 +447,7 @@ function takePicture(divID, dcID, buttonID) {
     //Taking a pic using the WinRT APIs
     windowsCapture(window.cameraWinRT, divID);
   }
-  else if (typeof Windows.Media.Capture != 'undefined') {
+  else if (typeof Windows != 'undefined') {
     //Take a capture by directly calling WinRT
     winRTCapture(divID);
   }
