@@ -440,13 +440,14 @@ var errorCallback = function(e) {
 
 //Complete feature detection to determin how to capture the image
 function takePicture(divID, dcID, buttonID) {
+  var winRT = Windows.Media.Capture;
   //Take picture invoked
   if (window.cameraWinRT) {
 
     //Taking a pic using the WinRT APIs
     windowsCapture(window.cameraWinRT, divID);
   }
-  else if (Windows.Media.Capture != undefined) {
+  else if (winRT != undefined) {
     //Take a capture by directly calling WinRT
     winRTCapture(divID);
   }
