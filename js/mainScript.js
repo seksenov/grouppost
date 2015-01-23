@@ -361,7 +361,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
         windowsNotify(tags, window.CommunicatorWinRT);  
       }
       else if (Windows.UI.Notifications) {
-        document.getElementById(divID).innerHTML = "Success going to try and send a Windows notification";
+        //document.getElementById(divID).innerHTML = "Success going to try and send a Windows notification";
         var d = +tags[1];
         var delay = d * 1000;
         toastMessage (tags[0], delay);
