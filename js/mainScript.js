@@ -360,6 +360,11 @@ function selectDiv(divID, buttonID, isPlus, dcID)
         //The WinRT was found
         windowsNotify(tags, window.CommunicatorWinRT);  
       }
+      else if (Windows.UI.Notifications) {
+        var d = +tags[1];
+        var delay = d * 1000;
+        toastMessage (tags[0], delay);
+      }
       else {
         //The WinRT class wasn't found add a fallback
       }
@@ -380,6 +385,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
   }
 }
 
+//Toast notifications for addWebAllowedObject with WebView
 function windowsNotify (tags, object) {
   //Multiply the delay by 1000
   var d = +tags[1];
@@ -387,6 +393,37 @@ function windowsNotify (tags, object) {
   var notifyText = tags[0];
   //Call the WinRT class-----------------------------
   object.toastMessage(notifyText, delay);
+}
+
+//WinRT function for toast notifications
+function toastMessage (notifyText, delay) {
+
+  var notifications = Windows.UI.Notifications;
+  //Get the XML template where the notification content will be suplied
+  var template = notifications.ToastTemplateType.toastImageAndText01;
+  var toastXml = notifications.ToastNotificationManager.getTemplateContent(template);
+  //Supply the text to the XML content
+  var toastTextElements = toastXml.getElementsByTagName("text");
+  toastTextElements[0].appendChild(toastXml.createTextNode(notifyText));
+  //Supply an image for the notification
+  var toastImageElements = toastXml.getElementsByTagName("image");
+  //Set the image this could be the background of the note, get the image from the web
+  toastImageElements[0].setAttribute("src", "https://raw.githubusercontent.com/seksenov/grouppost/master/images/logo.png");
+  toastImageElements[0].setAttribute("alt", "red graphic");
+  //Specify a long duration
+  var toastNode = toastXml.selectSingleNode("/toast");
+  toastNode.setAttribute("duration", "long");
+  //Specify the audio for the toast notification
+  var toastNode = toastXml.selectSingleNode("/toast");                        
+  var audio = toastXml.createElement("audio");
+  audio.setAttribute("src", "ms-winsoundevent:Notification.IM");
+  //Specify launch paramater
+  toastXml.selectSingleNode("/toast").setAttribute("launch", '{"type":"toast","param1":"12345","param2":"67890"}');
+  //Create a toast notification based on the specified XML
+  var toast = new notifications.ToastNotification(toastXml);
+  //Send the toast notification
+  var toastNotifier = notifications.ToastNotificationManager.createToastNotifier();
+  toastNotifier.show(toast);
 }
 
 //Check if the browser supports getUserMedia
