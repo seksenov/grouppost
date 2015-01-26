@@ -10,6 +10,12 @@ Notes are taken within a "PostIt Note" and are of text input (letters and number
 
 Currently only supports Facebook login. Once logged in the user will be able to add notes. No one but the user will be able to see the notes that they've added.
 
+```javascript
+function codeExample () {
+	var webview = document.getElementByID('webview');
+}
+```
+
 ## Storage
 
 The notes and backgtound pictures are store on Azure using Azure Mobile Services.
