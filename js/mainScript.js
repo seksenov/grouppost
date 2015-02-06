@@ -116,9 +116,33 @@ function FBuid() {
 
       // //Putting the on child added before the snapshot to check if this works
       // //This is where add post it will be called
-      firebaseDataRef.child(userID).on('child_added', function(childSnapshot) {
 
+      // ToDo - If there are no post its for the user he/she has to be set up and run
+      firebaseDataRef.child(userID).on('child_added', function(childSnapshot) {
+        //A new child has been loaded
         console.log("new child added the child is: " + childSnapshot.name());
+
+        var image = null;
+        // This will always be the value of the latest note when a new note is added post the initial load
+        // Even at initial load it will be the value of the one that is loaded last so that case is covered too
+        idNum = childSnapshot.val().divnum;
+        //Check if this is indeed the last note over the picture value
+        if (childSnapshot.val().picture === "Plus Logo") {
+          console.log("This is the last note the one with the Plus Logo Picture");
+          //Call the client side add
+          addPostIt(true, '', true, null);           
+        }
+        // This is not the last note
+        else {
+          //This is not the last post it
+          if(childSnapshot.val().picture === "Empty") {
+            image = null;
+          }
+          else {
+            image = childSnapshot.val().picture;
+          }
+          addPostIt(true, childSnapshot.val().message, false, image);
+        }
 
       });
 
@@ -220,7 +244,7 @@ function FBuid() {
       // +firebase this is where the check should be made to see if the user id exists and add the plus note
       // ------------------------------------------------------------------------------------------------------------------------------------
       
-      getPostItsFB();
+      // getPostItsFB();
 
       // ------------------------------------------------------------------------------------------------------------------------------------
 
