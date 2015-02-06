@@ -426,8 +426,16 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     var lastDiv = "div" + (idNum);
     if(divID == lastDiv)
     {     
-      addPostIt(false, "", true);
+      //addPostIt(false, "", true);
       // ----------------------------------Add code in here-----------------------------------
+      firebaseDataRef.child(userID).child(pid).update({
+        user: userID, 
+        message: postText,
+        picture: "Plus Logo",
+        divID: pid,
+        location: loc,
+        divnum: idNum
+      });
       // -------------------------------------------------------------------------------------
     }
     //filter_newlines(divID);
@@ -725,14 +733,14 @@ function addPostIt (isInit, postText, plusOne, imageString){
       //Add the post it to firebase this will be the blank plus note
       // This will need to be added in the selctDiv adding the last post it code
       // --------------------------------------------------------------------------------------------------------
-      firebaseDataRef.child(userID).child(pid).update({
-        user: userID, 
-        message: postText,
-        picture: "Plus Logo",
-        divID: pid,
-        location: loc,
-        divnum: idNum
-      });
+      // firebaseDataRef.child(userID).child(pid).update({
+      //   user: userID, 
+      //   message: postText,
+      //   picture: "Plus Logo",
+      //   divID: pid,
+      //   location: loc,
+      //   divnum: idNum
+      // });
       // ---------------------------------------------------------------------------------------------------------
   }
   else{
