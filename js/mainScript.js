@@ -377,10 +377,13 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     }
 
     //Check if this is the last post it and if so add another one
+    //This will just have to be replace with an Update call to add a new post it in firebase
     var lastDiv = "div" + (idNum);
     if(divID == lastDiv)
     {     
       addPostIt(false, "", true);
+      // ----------------------------------Add code in here-----------------------------------
+      // -------------------------------------------------------------------------------------
     }
     //filter_newlines(divID);
     //unselected div
@@ -673,7 +676,10 @@ function addPostIt (isInit, postText, plusOne, imageString){
       var item = { PostItNote: postText, PID: pid, divnum: idNum, uid: userID, image: null};
       userTable.insert(item);
 
+
       //Add the post it to firebase this will be the blank plus note
+      // This will need to be added in the selctDiv adding the last post it code
+      // --------------------------------------------------------------------------------------------------------
       firebaseDataRef.child(userID).child(pid).update({
         user: userID, 
         message: postText,
@@ -682,6 +688,7 @@ function addPostIt (isInit, postText, plusOne, imageString){
         location: loc,
         divnum: idNum
       });
+      // ---------------------------------------------------------------------------------------------------------
   }
   else{
     var postMessage = postText;
