@@ -431,6 +431,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       idNum++;
       var pid = "div" + idNum;
       //addPostIt(false, "", true);
+      var postText = "";
       // ----------------------------------Add code in here-----------------------------------
       firebaseDataRef.child(userID).child(pid).update({
         user: userID, 
