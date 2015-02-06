@@ -118,7 +118,7 @@ function FBuid() {
       // //This is where add post it will be called
       firebaseDataRef.child(userID).on('child_added', function(childSnapshot) {
 
-        console.log("new child added the child is: " + childSnapshot.val());
+        console.log("new child added the child is: " + childSnapshot.name());
 
       });
 
