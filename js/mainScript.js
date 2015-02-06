@@ -116,7 +116,11 @@ function FBuid() {
 
       // //Putting the on child added before the snapshot to check if this works
       // //This is where add post it will be called
-      // firebaseDataRef.child(userID).on('child_added', function(childSnapshot) {
+      firebaseDataRef.child(userID).on('child_added', function(childSnapshot) {
+
+        console.log("new child added the child is: " + childSnapshot.val());
+
+      });
 
       //   var note = childSnapshot.val();
       //   var image = null;
@@ -149,7 +153,7 @@ function FBuid() {
       //     addPostIt(isFirst, note.message, false, image);
       //   }
   
-      // });
+      //});
 
       //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
