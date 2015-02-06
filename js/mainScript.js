@@ -122,6 +122,15 @@ function FBuid() {
         //A new child has been loaded
         console.log("new child added the child is: " + childSnapshot.name());
 
+        // Add the child changed listener
+        //Add a child changed callback and call a function that handles changes
+        firebaseDataRef.child(userID).child(childSnapshot.val().divID).on('child_changed', function(changedChild) {
+          //call the change handler function that handles changes to notes 
+          console.log("Child changed was called from the plus one note");
+
+          updatePosts(getParentName(changedChild), changedChild.name(), changedChild.val());
+        });
+
         var image = null;
         // This will always be the value of the latest note when a new note is added post the initial load
         // Even at initial load it will be the value of the one that is loaded last so that case is covered too
@@ -145,6 +154,18 @@ function FBuid() {
         }
 
       });
+
+      // The on child removed listener
+      firebaseDataRef.child(userID).on('child_removed', function(oldChildSnapshot) {
+        console.log("Div: " + oldChildSnapshot.name() + " was removed");
+        //Get divnum and call delete div with the correct dcID dc+divNum
+        var dcID = "dc" + oldChildSnapshot.val().divnum;
+        var divID = oldChildSnapshot.name();
+        console.log("This is the dcID: " + dcID);
+        //call deleteDivHelper here
+        deleteDivHelper(divID, dcID);
+      });
+
 
       //   var note = childSnapshot.val();
       //   var image = null;
