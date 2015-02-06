@@ -424,8 +424,12 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     //Check if this is the last post it and if so add another one
     //This will just have to be replace with an Update call to add a new post it in firebase
     var lastDiv = "div" + (idNum);
+
+    
     if(divID == lastDiv)
     {     
+      idNum++;
+      var pid = "div" + idNum;
       //addPostIt(false, "", true);
       // ----------------------------------Add code in here-----------------------------------
       firebaseDataRef.child(userID).child(pid).update({
@@ -719,8 +723,8 @@ function addPostIt (isInit, postText, plusOne, imageString){
 
   if(!isInit) {
       var postMessage = postText;
-      idNum++;
-      var pid = "div" + idNum;
+      //idNum++;
+      //var pid = "div" + idNum;
 
       //This is where a new blank note is added to the DB
       //The message will be empty
