@@ -949,7 +949,7 @@ function updatePosts (divID, name, value, dcID) {
 
   //Check if the plus button is still lingering
   console.log("About to do the if check for the plus button class");
-  console.log("The ID in question is: " + dcID +" -The output value is: " + $('#'+ dcID).hasClass("plusButton"));
+  console.log("The ID in question is: " + dcID +" -The output value is: " + $('#'+ dcID).has("input"));
   if( $('#'+ dcID).has("input") ) {
     // This is where the remove plus needs to be called
     console.log("The input element is still present!!!! Should only show up in non promary");
