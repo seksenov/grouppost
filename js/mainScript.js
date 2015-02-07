@@ -130,7 +130,7 @@ function FBuid() {
 
           //var dcID = "dc" + getParent(changedChild).val().divNum;
 
-          console.log("This is the parent: ---+++---+++___+++___++___++___+++___++_+++" + getParent(changedChild);
+          console.log("This is the parent: ---+++---+++___+++___++___++___+++___++_+++" + getParent(changedChild));
           var idArray = getParent(changedChild).split('v');
           var dcID = "dc" + idArray[1];
           console.log("This is what the dcID is: " + dcID);
