@@ -284,6 +284,15 @@ function FBuid() {
   });
 }
 
+//Get the parent of a firebase snapshot
+function getParent(snapshot) {
+  // You can get the reference (A Firebase object) from a snapshot
+  // using .ref().
+  var ref = snapshot.ref();
+  // Now simply find the parent and return the name.
+  return ref.parent();
+}
+
 function reloadClearCache() {
   window.location.reload(true);
 }
