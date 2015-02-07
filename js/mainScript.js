@@ -442,6 +442,12 @@ function selectDiv(divID, buttonID, isPlus, dcID)
         divnum: idNum
       });
       // -------------------------------------------------------------------------------------
+      // if checker to see if this is not the main client and the plus logo needs to be removed
+      if($('#'+ dcID.has('input')) ) {
+        // This is where the remove plus needs to be called
+        console.log("The input element is still present");
+
+      }
     }
     //filter_newlines(divID);
     //unselected div
@@ -721,8 +727,9 @@ function deleteDivHelper(divID, dcID) {
 }
 
 // This needs to be made to fix sync issues
-function removePlus (divID) {
-  document.getElementById();
+function removePlus (divID, divnum) {
+  var dcID = "dc" + divnum;
+  var divContainer = $('#' + dcID);
 
 }
 
