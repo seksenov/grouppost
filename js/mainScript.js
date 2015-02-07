@@ -128,11 +128,11 @@ function FBuid() {
           //call the change handler function that handles changes to notes 
           console.log("Child changed was called from the plus one note");
 
-          var dcID = "dc" + getParent(changedChild).val().divNum;
+          //var dcID = "dc" + getParent(changedChild).val().divNum;
 
           console.log("This is the parent: ---+++---+++___+++___++___++___+++___++_+++" + getParent(changedChild));
 
-          updatePosts(getParentName(changedChild), changedChild.name(), changedChild.val(), dcID);
+          updatePosts(getParentName(changedChild), changedChild.name(), changedChild.val());
         });
 
         var image = null;
