@@ -290,7 +290,7 @@ function getParent(snapshot) {
   // using .ref().
   var ref = snapshot.ref();
   // Now simply find the parent and return the name.
-  return ref.parent();
+  return ref.parent().name();
 }
 
 function reloadClearCache() {
