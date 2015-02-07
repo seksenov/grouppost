@@ -346,6 +346,8 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     //PLus Post it note
     if(isPlus) {
 
+      console.log("This is what a buttonID looks like: YOOOOOOOOOOOOOOOO_+++_+_+_+_+_++_+_+_+_+_+_+_+: " + buttonID);
+
       $('#' + buttonID).remove();
       //Add a Post button
       var newButton=document.createElement('a');
@@ -750,6 +752,32 @@ function deleteDivHelper(divID, dcID) {
 function removePlus (divID, divnum) {
   var dcID = "dc" + divnum;
   var divContainer = $('#' + dcID);
+
+  $('#' + buttonID).remove();
+  //Add a Post button
+  var newButton=document.createElement('a');
+  newButton.id = buttonID;
+  newButton.className = 'postButton fa fa-check';
+  //newButton.innerHTML ='Post';
+  newButton.addEventListener("click", function (e) { selectDiv(div.id, newButton.id, false, dcID); });
+
+  $('#'+ dcID).append(newButton);
+
+  //Add the camera button
+  var cButton = document.createElement('a');
+  cButton.id = "cameraB" + buttonID;
+  cButton.className = 'cameraButton fa fa-camera';
+  cButton.addEventListener("click", function (e) { takePicture(div.id, dcID, cButton.id) });
+  $('#'+ dcID).append(cButton); 
+  
+
+  //Add the delete button
+  var dButton=document.createElement('a');
+  dButton.id = "deleteB" + buttonID;
+  dButton.className = 'deleteButton fa fa-times';
+  //dButton.innerHTML ='Delete';
+  dButton.addEventListener("click", function (e) { deleteDiv(div.id); });
+  $('#'+ dcID).append(dButton);
 
 }
 
