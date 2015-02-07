@@ -719,6 +719,11 @@ function deleteDivHelper(divID, dcID) {
   }
 }
 
+// This needs to be made to fix sync issues
+function removePlus (divID) {
+  document.getElementById();
+
+}
 
 function addPostIt (isInit, postText, plusOne, imageString){
 
