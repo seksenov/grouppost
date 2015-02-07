@@ -128,7 +128,9 @@ function FBuid() {
           //call the change handler function that handles changes to notes 
           console.log("Child changed was called from the plus one note");
 
-          updatePosts(getParentName(changedChild), changedChild.name(), changedChild.val());
+          var dcID = "dc" + changedChild.parent().val().divNum;
+
+          updatePosts(getParentName(changedChild), changedChild.name(), changedChild.val(), dcID);
         });
 
         var image = null;
@@ -917,7 +919,7 @@ function getPostIts(){
 }
 
 //Function to handle change callbacks, name is the property name, value is the property value
-function updatePosts (divID, name, value) {
+function updatePosts (divID, name, value, dcID) {
   //Check if the postIt message changed, the value is the message
   if (name === "message") {
     console.log("The message of div: " + divID + " has changed to: " + value);
