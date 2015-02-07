@@ -443,13 +443,13 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       });
       // -------------------------------------------------------------------------------------
       // if checker to see if this is not the main client and the plus logo needs to be removed
-      console.log("About to do the if check for the plus button class");
-      console.log("The ID in question is: " + dcID +" -The output value is: " + $('#'+ dcID).hasClass("plusButton"));
-      if( $('#'+ dcID).hasClass("plusButton") ) {
-        // This is where the remove plus needs to be called
-        console.log("The input element is still present!!!! Should only show up in non promary");
+      // console.log("About to do the if check for the plus button class");
+      // console.log("The ID in question is: " + dcID +" -The output value is: " + $('#'+ dcID).hasClass("plusButton"));
+      // if( $('#'+ dcID).hasClass("plusButton") ) {
+      //   // This is where the remove plus needs to be called
+      //   console.log("The input element is still present!!!! Should only show up in non promary");
 
-      }
+      // }
     }
     //filter_newlines(divID);
     //unselected div
@@ -921,13 +921,21 @@ function updatePosts (divID, name, value) {
   //Check if the postIt message changed, the value is the message
   if (name === "message") {
     console.log("The message of div: " + divID + " has changed to: " + value);
-    $("#"+divID).html(value); 
+    $("#"+divID).html(value);
   } 
   //Check if the background picture chaged, the value is the base64 pic
   else if (name === "picture") {
     console.log("The picture of div: " + divID + " has changed to: " + value);
     $("#"+divID).css("background-image", "url(" + value + ")");
   }
+
+  //Check if the plus button is still lingering
+  console.log("About to do the if check for the plus button class");
+  console.log("The ID in question is: " + dcID +" -The output value is: " + $('#'+ dcID).hasClass("plusButton"));
+  if( $('#'+ dcID).hasClass("plusButton") ) {
+    // This is where the remove plus needs to be called
+    console.log("The input element is still present!!!! Should only show up in non promary");
+  } 
 }
 
 function getParentName(snapshot) {
