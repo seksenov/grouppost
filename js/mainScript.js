@@ -445,7 +445,7 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       // if checker to see if this is not the main client and the plus logo needs to be removed
       if( $('#'+ dcID).hasClass("plusButton") ) {
         // This is where the remove plus needs to be called
-        console.log("The input element is still present");
+        console.log("The input element is still present!!!! Should only show up in non promary");
 
       }
     }
