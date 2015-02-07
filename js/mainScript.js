@@ -691,6 +691,7 @@ function deleteDiv (divID) {
 function deleteDivHelper(divID, dcID) {
   //Delete the selected div
   var lastDiv = "div" + (idNum);
+  console.log("This is what a dcID looks like:-------------------------------------" + dcID);
   if(divID != lastDiv)
   {
     var query = userTable;
