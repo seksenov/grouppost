@@ -756,12 +756,13 @@ function removePlus (divID, divnum) {
   var buttonID = "editB" + divnum;
 
   $('#' + buttonID).remove();
-  //Add a Post button
+  
+  //Add a edit button
   var newButton=document.createElement('a');
   newButton.id = buttonID;
-  newButton.className = 'postButton fa fa-check';
+  newButton.className = 'editButton fa fa-pencil-square-o';
   //newButton.innerHTML ='Post';
-  newButton.addEventListener("click", function (e) { selectDiv(div.id, newButton.id, false, dcID); });
+  newButton.addEventListener("click", function (e) { selectDiv(divID, newButton.id, false, dcID); });
 
   $('#'+ dcID).append(newButton);
 
@@ -769,7 +770,7 @@ function removePlus (divID, divnum) {
   var cButton = document.createElement('a');
   cButton.id = "cameraB" + buttonID;
   cButton.className = 'cameraButton fa fa-camera';
-  cButton.addEventListener("click", function (e) { takePicture(div.id, dcID, cButton.id) });
+  cButton.addEventListener("click", function (e) { takePicture(divID, dcID, cButton.id) });
   $('#'+ dcID).append(cButton); 
   
 
@@ -778,7 +779,7 @@ function removePlus (divID, divnum) {
   dButton.id = "deleteB" + buttonID;
   dButton.className = 'deleteButton fa fa-times';
   //dButton.innerHTML ='Delete';
-  dButton.addEventListener("click", function (e) { deleteDiv(div.id); });
+  dButton.addEventListener("click", function (e) { deleteDiv(divID); });
   $('#'+ dcID).append(dButton);
 
 }
