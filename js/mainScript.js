@@ -979,12 +979,12 @@ function updatePosts (divID, name, value, dcID) {
 
   //Check if the plus button is still lingering
   // console.log("About to do the if check for the plus button class");
-  console.log("The ID in question is: " + dcID +" -The output value is +_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+: " + $('#'+ dcID).has("#cameraBeditB"+divnum));
+  console.log("The ID in question is: " + dcID +" -The output value is +_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+: " + $('#'+ dcID).has("#cameraBeditB"+divnum).length);
 
   var idArray = divID.split('v');
   var divnum = idArray[1];
 
-  if( $('#'+ dcID).has("#cameraBeditB"+divnum) === 'undefined') {
+  if( $('#'+ dcID).has("#cameraBeditB"+divnum).length === 0) {
     // This is where the remove plus needs to be called
     
 
