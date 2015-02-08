@@ -979,7 +979,10 @@ function updatePosts (divID, name, value, dcID) {
 
   //Check if the plus button is still lingering
   // console.log("About to do the if check for the plus button class");
-  console.log( $.contains( document.getElementById(dcID) , document.getElementById("cameraBeditB"+divnum) );
+  var dc = document.getElementById(dcID);
+  var cameraB = document.getElementById("cameraBeditB"+divnum);
+
+  // console.log( $.contains( dc , cameraB) );
 
   var idArray = divID.split('v');
   var divnum = idArray[1];
