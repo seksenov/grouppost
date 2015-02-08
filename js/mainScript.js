@@ -977,6 +977,10 @@ function updatePosts (divID, name, value, dcID) {
     $("#"+divID).css("background-image", "url(" + value + ")");
   }
 
+  // Set the divnum
+  var idArray = divID.split('v');
+  var divnum = idArray[1];
+
   //Check if the plus button is still lingering
   // console.log("About to do the if check for the plus button class");
   var dc = document.getElementById(dcID);
@@ -986,8 +990,7 @@ function updatePosts (divID, name, value, dcID) {
   console.log("cameraB Element:" + cameraB + " The element id looking for: " + "cameraBeditB"+divnum);
   console.log( $.contains( dc , cameraB) );
 
-  var idArray = divID.split('v');
-  var divnum = idArray[1];
+  
 
   if( $('#'+ dcID).has("#cameraBeditB"+divnum).length === 0) {
     // This is where the remove plus needs to be called
