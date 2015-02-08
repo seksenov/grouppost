@@ -990,14 +990,13 @@ function updatePosts (divID, name, value, dcID) {
   console.log("cameraB Element:" + cameraB + " The element id looking for: " + "cameraBeditB"+divnum);
   console.log( $.contains( dc , cameraB) );
 
-  
-
-  if( $('#'+ dcID).has("#cameraBeditB"+divnum).length === 0) {
+  // This is for the synced board, check if the camera is present if not the plus must be present
+  if(!($.contains( dc , cameraB))) {
     // This is where the remove plus needs to be called
     
 
     console.log("The input element is still present!!!! Should only show up in non promary");
-    // removePlus(divID, divnum);
+    removePlus(divID, divnum);
   } 
 }
 
