@@ -98,25 +98,6 @@ function FBuid() {
       });
       */
 
-      //Uncomment this-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-      //Add a child removed callback and call a funtion that handles the delete of a post
-      //This needs to be out of the child added callback as it's the same for the user
-
-      //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-      // firebaseDataRef.child(userID).on('child_removed', function(oldChildSnapshot) {
-      //   console.log("Div: " + oldChildSnapshot.name() + " was removed");
-      //   //Get divnum and call delete div with the correct dcID dc+divNum
-      //   var dcID = "dc" + oldChildSnapshot.val().divnum;
-      //   var divID = oldChildSnapshot.name();
-      //   console.log("This is the dcID: " + dcID);
-      //   //call deleteDivHelper here
-      //   deleteDivHelper(divID, dcID);
-      // });
-
-      // //Putting the on child added before the snapshot to check if this works
-      // //This is where add post it will be called
-
       // ToDo - If there are no post its for the user he/she has to be set up and run
       firebaseDataRef.child(userID).on('child_added', function(childSnapshot) {
         //A new child has been loaded
@@ -174,109 +155,6 @@ function FBuid() {
         //call deleteDivHelper here
         deleteDivHelper(divID, dcID);
       });
-
-
-      //   var note = childSnapshot.val();
-      //   var image = null;
-      //   console.log("A NEW NOTE HAS BEEN ADDED HERE IS THE NOTE OBJECT:");
-      //   console.log(note);
-
-      //   //Add a child changed callback and call a function that handles changes
-      //   firebaseDataRef.child(userID).child(note.divID).on('child_changed', function(childSnapshot) {
-      //     //call the change handler function that handles changes to notes 
-      //     updatePosts(getParentName(childSnapshot), childSnapshot.name(), childSnapshot.val());
-      //   });
-    
-      //   //Check if this is the last post it
-      //   if (note.picture === "Plus Logo") {
-      //     //This is the last post it
-      //     idNum = note.divnum;
-      //     console.log("This is the last post it note the idNum of the last note is: " + idNum);
-      //     console.log("Adding a note from the on chiled added event ------------------------");
-      //     isFirst = false;
-      //     addPostIt(isFirst, '', true, null);
-      //   }
-      //   else if (note.picture != "Plus Logo") {
-      //     //This is not the last post it
-      //     if(note.picture === "Empty") {
-      //       image = null;
-      //     }
-      //     else {
-      //       image = note.picture;
-      //     }
-      //     addPostIt(isFirst, note.message, false, image);
-      //   }
-  
-      //});
-
-      //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-      /*
-      firebaseDataRef.child(userID).once('value', function(snapshot) {
-        if (snapshot.val() !== null) {
-          //The user already exists in the is in the Firebase DB
-
-          //Adding the child
-          firebaseDataRef.child(userID).on('child_added', function(childSnapshot) {
-            var note = childSnapshot.val();
-            console.log(note);
-          });
-
-          /*
-          firebaseDataRef.child(userID).on('child_changed', function(childSnapshot) {
-            var note = childSnapshot.val();
-            console.log(note);
-          });
-          */
-
-        /*
-        }  
-        else {
-          //New user set up the initial userID node
-          console.log("Adding the userID: " + userID);
-          
-          firebaseDataRef.child(userID).child("emptyDiv").set({
-            user: userID, 
-            message: "Empty",
-            picture: "Empty",
-            divID: "Empty",
-            divnum: 0,
-            location: {
-              lat: 0,
-              longitude: 0
-            }
-          });
-           
-        }
-       
-      });
-
-      /*
-        //Check if the userID is in the FirebaseDB and add it if
-      console.log("The userID is: " + userID);
-      firebaseDataRef.child(userID).child("divTest").set({
-        message: "test",
-        picture: "test",
-        divID: "test",
-        location: {
-          lat: 0,
-          longitude: 0
-        }
-      });
-
-      usersRef.child(userId).once('value', function(snapshot) {
-          var exists = (snapshot.val() !== null);
-          userExistsCallback(userId, exists);
-        });
-
-      */
-
-      // +firebase this is where the check should be made to see if the user id exists and add the plus note
-      // ------------------------------------------------------------------------------------------------------------------------------------
-      
-      // getPostItsFB();
-
-      // ------------------------------------------------------------------------------------------------------------------------------------
 
       //Get all the post it's from the DB and display them on the page
       //getPostIts();
@@ -346,9 +224,6 @@ function selectDiv(divID, buttonID, isPlus, dcID)
     //PLus Post it note
     if(isPlus) {
 
-      // console.log("This is what a buttonID looks like: YOOOOOOOOOOOOOOOO_+++_+_+_+_+_++_+_+_+_+_+_+_+: " + buttonID);
-
-
       $('#' + buttonID).remove();
       //Add a Post button
       var newButton=document.createElement('a');
@@ -392,14 +267,6 @@ function selectDiv(divID, buttonID, isPlus, dcID)
       postIts[0].PostItNote = div.innerHTML;
       userTable.update(postIts[0]);
     });
-    //Get the location
-    //getGeoLoc(); //the navigator get geo loc is async and won't return seynchronously
-    //Update the firebase DB
-
-    //This is where the new post is actually added it's previosly added as the empty plus one
-
-    // +firebase --this is where a new note gets added
-    //firebaseDataRef.push({name: userName, text: div.innerHTML, uid: userID, image: null, location: loc});
 
     //Check if a new not "plusOne" if being added and change the picture to Empty
     firebaseDataRef.child(userID).child(divID).once("value", function(data) { 
@@ -462,19 +329,8 @@ function selectDiv(divID, buttonID, isPlus, dcID)
         location: loc,
         divnum: idNum
       });
-      // -------------------------------------------------------------------------------------
-      // if checker to see if this is not the main client and the plus logo needs to be removed
-      // console.log("About to do the if check for the plus button class");
-      // console.log("The ID in question is: " + dcID +" -The output value is: " + $('#'+ dcID).hasClass("plusButton"));
-      // if( $('#'+ dcID).hasClass("plusButton") ) {
-      //   // This is where the remove plus needs to be called
-      //   console.log("The input element is still present!!!! Should only show up in non promary");
-
-      // }
     }
-    //filter_newlines(divID);
-    //unselected div
-    //div.style.backgroundColor = '#FFFF99';
+
     div.style.backgroundColor = '#f39c12';
     div.contentEditable = 'false'; 
     button.className = 'editButton fa fa-pencil-square-o';
@@ -788,8 +644,6 @@ function addPostIt (isInit, postText, plusOne, imageString){
 
   if(!isInit) {
       var postMessage = postText;
-      //idNum++;
-      //var pid = "div" + idNum;
 
       //This is where a new blank note is added to the DB
       //The message will be empty
@@ -798,19 +652,6 @@ function addPostIt (isInit, postText, plusOne, imageString){
       var item = { PostItNote: postText, PID: pid, divnum: idNum, uid: userID, image: null};
       userTable.insert(item);
 
-
-      //Add the post it to firebase this will be the blank plus note
-      // This will need to be added in the selctDiv adding the last post it code
-      // --------------------------------------------------------------------------------------------------------
-      // firebaseDataRef.child(userID).child(pid).update({
-      //   user: userID, 
-      //   message: postText,
-      //   picture: "Plus Logo",
-      //   divID: pid,
-      //   location: loc,
-      //   divnum: idNum
-      // });
-      // ---------------------------------------------------------------------------------------------------------
   }
   else{
     var postMessage = postText;
@@ -845,8 +686,6 @@ function addPostIt (isInit, postText, plusOne, imageString){
 
   
   if(plusOne) {
-
-
     var plus = document.createElement("input");
     plus.id = "editB" + idNum; 
     plus.src = "images/AddNote.png"; 
@@ -895,8 +734,6 @@ function addPostIt (isInit, postText, plusOne, imageString){
     $("#"+divID).css("background-image", "url(" + imageString + ")");
   }
 
-  //Clear the value of the input field
-  //document.getElementById("someInput").value = '';
 }
 
 function changeColor (color) {
@@ -912,58 +749,6 @@ $("#someInput").keyup(function(event){
     $("#postButton").click();
   }
 });
-
-//Read the DB and pull old PostITs
-function getPostIts(){ 
-  var query = userTable; //Give it column name
-  //Retrieve the post it's in LIFO order
-  idNum = 0;
-
-  var _divID,
-      text,
-      image;
-
-  query.where({ uid: userID }).read().then(function (postIts) {
-    //the number of PostITs is: postIts.length  
-    for (var i = 0; i < postIts.length; i++) {
-      idNum = postIts[i].divnum;
-      //_divID = "div" + idNum;
-      //text = postIts[i].PostItNote;
-      //image = postIts[i].image;
-      if(i == postIts.length-1) {
-        //TODO: add args for last post
-        addPostIt(true, '', true, null);
-
-
-        /*        
-        firebaseDataRef.child(userID).child(divID).update({
-          divnum: idNum
-        });
-        */
-
-
-      }
-      else {
-        addPostIt(true, postIts[i].PostItNote, false, postIts[i].image);
-
-        /*
-        firebaseDataRef.child(userID).child(divID).update({
-          divnum: idNum
-        });
-        */
-        
-      }
-
-
-
-    }
-    if(postIts.length == 0) {
-      //TODO add args for last post
-      addPostIt(false,"",true);
-    }
-  });
-
-}
 
 //Function to handle change callbacks, name is the property name, value is the property value
 function updatePosts (divID, name, value, dcID) {
@@ -1004,90 +789,6 @@ function updatePosts (divID, name, value, dcID) {
 function getParentName(snapshot) {
   var ref = snapshot.ref();
   return ref.parent().name();
-}
-
-//Get the PostITs from Firebase
-function getPostItsFB () {
-  idNum = 0;
-
-  console.log("---------------------LOGGING THE DATA----------------------------------------");
-
-  firebaseDataRef.child(userID).once("value", function(data) { 
-    
-    var posts = data.val();
-
-    console.log(posts);
-    //console.log("This is the length of post its: " + posts.length());
-
-    var postsLength = Object.keys(posts).length;
-
-    console.log("The number of post its is: " + postsLength);
-
-    //Add a child removed callback and call a funtion that handle the delete
-    //This needs to be out of the loop as it's only needed for the user
-    firebaseDataRef.child(userID).on('child_removed', function(oldChildSnapshot) {
-      console.log("Div: " + oldChildSnapshot.name() + " was removed");
-      //Get divnum and call delete div with the correct dcID dc+divNum
-      var dcID = "dc" + oldChildSnapshot.val().divnum;
-      var divID = oldChildSnapshot.name();
-      console.log("This is the dcID: " + dcID);
-      //call deleteDivHelper here
-      deleteDivHelper(divID, dcID);
-    });
-
-
-    //I will need to know if the child was changed from this instance - this can be mitigated by calling the change anytume a child is changed again it won't screw up the current instace
-    //Same goes with delete
-    //I don't wan't to add the child twice the child won't be added twice the callback will either add an image or change the text in a div
-
-    var count = 0;
-    var image = null;
-    //Read the post it notes from the data snapshot and add them to the document (addPostIt)
-    for (var note in posts) {
-      if (posts.hasOwnProperty(note)) {
-        count++;
-        //find the max id
-        idNum = posts[note].divnum;
-        console.log("The final id num that was read from Firebase is: " + idNum);
-        console.log(note + " -> " + posts[note].message);
-        
-        //Add a child changed callback and call a function that handles changes
-        firebaseDataRef.child(userID).child(posts[note].divID).on('child_changed', function(childSnapshot) {
-          //call the change handler function that handles changes to notes 
-          console.log("Child changed was called from the plus one note");
-
-          updatePosts(getParentName(childSnapshot), childSnapshot.name(), childSnapshot.val());
-        });
-
-
-        //Check if this is the last post it
-        if (count >= postsLength) {
-          //This is the last post it
-          console.log("This is the last post it note");
-          addPostIt(true, '', true, null);
-        }
-        else {
-          //This is not the last post it
-          if(posts[note].picture === "Empty") {
-            image = null;
-          }
-          else {
-            image = posts[note].picture;
-          }
-          addPostIt(true, posts[note].message, false, image);
-        }
-
-      }
-    }
-    //Check if there are no notes for the user and add the note with the plus logo
-    if(count === 0) {
-      //TODO add args for last post
-      addPostIt(false,"",true);
-    }
-  });
-
-  
-
 }
 
 //Namespace management idea from http://enterprisejquery.com/2010/10/how-good-c-habits-can-encourage-bad-javascript-habits-part-1/
