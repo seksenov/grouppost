@@ -982,6 +982,8 @@ function updatePosts (divID, name, value, dcID) {
   var dc = document.getElementById(dcID);
   var cameraB = document.getElementById("cameraBeditB"+divnum);
 
+  console.log("dc Element:" + dc);
+  console.log("cameraB Element:" + cameraB);
   console.log( $.contains( dc , cameraB) );
 
   var idArray = divID.split('v');
