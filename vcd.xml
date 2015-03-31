@@ -5,15 +5,15 @@
     <Example>Group Post add note</Example>
     <Command Name="addNote">
       <Example>add a note hello</Example>
-      <ListenFor>[please] [add] [a] note {noteSubject}</ListenFor>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase">[please] [add] [a] note [that] {noteSubject}</ListenFor>
       <Feedback>adding {noteSubject} to Group Post</Feedback>
-      <Navigate/>
+      <Navigate Target="/addNote.htm"/>
     </Command>
 	<Command Name="showNote">
 		<Example>Show Notes</Example>
-		<ListenFor>show [my] notes</ListenFor>
+		<ListenFor RequireAppName="BeforeOrAfterPhrase">show [my] notes</ListenFor>
 		<Feedback>Showing your notes</Feedback>
-		<Navigate/>
+		<Navigate Target="/showNote.htm"/>
 	</Command>
     <PhraseTopic Label="noteSubject" Scenario="Dictation">
     </PhraseTopic>

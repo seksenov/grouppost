@@ -772,6 +772,8 @@ function updatePosts (divID, name, value, dcID) {
   var dc = document.getElementById(dcID);
   var cameraB = document.getElementById("cameraBeditB"+divnum);
 
+  var numChildren = dc.childElementCount;
+
   console.log("dc Element:" + dc + " The element id looking for: " + dcID);
   console.log("cameraB Element:" + cameraB + " The element id looking for: " + "cameraBeditB"+divnum);
   console.log( $.contains( dc , cameraB) );
@@ -782,7 +784,7 @@ function updatePosts (divID, name, value, dcID) {
     
 
     console.log("The input element is still present!!!! Should only show up in non promary");
-    removePlus(divID, divnum);
+    // removePlus(divID, divnum);
   } 
 }
 
