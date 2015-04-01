@@ -1,6 +1,6 @@
 //Add cortana activation event listener
 if (window.Windows) {
-  var activation = Windows.ApplicationModel.Activation
+  var activation = Windows.ApplicationModel.Activation;
 
   Windows.UI.WebUI.WebUIApplication.addEventListener("activated", function (args) {
     
