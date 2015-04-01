@@ -6,12 +6,12 @@ if (typeof Windows != 'undefined') {
 
   Windows.UI.WebUI.WebUIApplication.addEventListener("activated", function (args) {
     
-    console.log("The activation kind: " + args.detail.kind);
+    console.log("The activation kind: " + args.kind);
 
     console.log("The args are: " + args);
 
     if (args.detail.kind === activation.ActivationKind.voiceCommand) {
-      var speechRecognitionResult = args.detail.result;
+      var speechRecognitionResult = args.result;
 
       // Speech reco result
       console.log("Thsi is the speech reco result: " + speechRecognitionResult);
