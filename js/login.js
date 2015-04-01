@@ -1,3 +1,29 @@
+//Add cortana activation event listener
+if (window.Windows) {
+  var activation = Windows.ApplicationModel.Activation
+
+  Windows.UI.WebUI.WebUIApplication.addEventListener("activated", function (args) {
+    
+    if (args.detail.kind === activation.ActivationKind.voiceCommand) {
+      var speechRecognitionResult = args.detail.result;
+
+      // Speech reco result
+      console.log("Thsi is the speech reco result: " + speechRecognitionResult);
+
+      // The name of the voice command
+      console.log("This is the name of the voice command: " + speechRecognitionResult.rulePath[0]);
+
+      // The actual text spoken
+      var textSpoken =
+        speechRecognitionResult.text !==
+        undefined ? speechRecognitionResult.text : "EXCEPTION";
+      
+      console.log("This is the actual spoken text: " + textSpoken);
+    }
+
+  });
+}
+
 //Force into https://
 if (window.location.protocol != "https:") {
 //  console.log("Forced the page to load into https://");
