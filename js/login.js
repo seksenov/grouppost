@@ -14,7 +14,12 @@ if (typeof Windows != 'undefined') {
 
     
 
-    var speechRecognitionResult = args.result;
+    if (args.kind === activation.ActivationKind.voiceCommand) {
+      //var speechRecognitionResult = args.result;
+
+      console.log("This is in the if!!");
+
+      var speechRecognitionResult = args.result;
 
       // Speech reco result
       console.log("Thsi is the speech reco test result: " + speechRecognitionResult.text);
@@ -23,12 +28,7 @@ if (typeof Windows != 'undefined') {
 
       console.log("This is the command: " + speechRecognitionResult.RulePath[0]);
 
-      console.log("Wooo");
-
-    if (args.detail.kind === activation.ActivationKind.voiceCommand) {
-      //var speechRecognitionResult = args.result;
-
-      console.log("This is in the if!!");
+      
 
       // Speech reco result
       console.log("Thsi is the speech reco result: " + speechRecognitionResult);
