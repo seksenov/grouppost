@@ -12,7 +12,7 @@ if (typeof Windows != 'undefined') {
 
     console.log("The args are: " + args);
 
-
+    
 
     var speechRecognitionResult = args.result;
 
@@ -22,6 +22,8 @@ if (typeof Windows != 'undefined') {
       console.log("This is the command: " + speechRecognitionResult.rulePath[0]);
 
       console.log("This is the command: " + speechRecognitionResult.RulePath[0]);
+
+      console.log("Wooo");
 
     if (args.detail.kind === activation.ActivationKind.voiceCommand) {
       //var speechRecognitionResult = args.result;
