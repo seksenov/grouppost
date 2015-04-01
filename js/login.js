@@ -1,5 +1,7 @@
 //Add cortana activation event listener
-if (window.Windows) {
+if (typeof Windows != 'undefined') {
+  console.log("Windows namespace is defined");
+
   var activation = Windows.ApplicationModel.Activation;
 
   Windows.UI.WebUI.WebUIApplication.addEventListener("activated", function (args) {
