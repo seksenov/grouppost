@@ -8,6 +8,8 @@ if (typeof Windows != 'undefined') {
     
     console.log("The activation kind: " + args.detail.kind);
 
+    console.log("The args are: " + args);
+
     if (args.detail.kind === activation.ActivationKind.voiceCommand) {
       var speechRecognitionResult = args.detail.result;
 
