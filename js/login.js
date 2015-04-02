@@ -24,9 +24,9 @@ if (typeof Windows != 'undefined') {
       // Speech reco result
       console.log("Thsi is the speech reco test result: " + speechRecognitionResult.text);
 
-      console.log("This is the command: " + speechRecognitionResult.rulePath[0]);
+      console.log("This is the command .rulePath: " + speechRecognitionResult.rulePath[0]);
 
-      console.log("This is the command: " + speechRecognitionResult.RulePath[0]);
+      //console.log("This is the command: " + speechRecognitionResult.RulePath[0]);
 
       
 
