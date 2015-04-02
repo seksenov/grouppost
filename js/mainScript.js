@@ -22,7 +22,57 @@ var userTable=null; //Azure DB table
 
 var firebaseDataRef; //Firebase data reference
 
+//Add cortana activation event listener
+if (typeof Windows != 'undefined') {
+  console.log("Windows namespace is defined");
 
+  var activation = Windows.ApplicationModel.Activation;
+
+  Windows.UI.WebUI.WebUIApplication.addEventListener("activated", function (args) {
+    
+    console.log("The activation kind: " + args.kind);
+
+    console.log("This is the kind for voice activation: " + activation.ActivationKind.voiceCommand);
+
+    console.log("The args are: " + args);
+
+    if (args.kind === activation.ActivationKind.voiceCommand) {
+      //var speechRecognitionResult = args.result;
+
+      console.log("This is in the if!!");
+
+      var speechRecognitionResult = args.result;
+
+      // Speech reco result
+      console.log("Thsi is the speech reco test result: " + speechRecognitionResult.text);
+
+      console.log("This is the command .rulePath: " + speechRecognitionResult.rulePath[0]);
+
+      //console.log("This is the command: " + speechRecognitionResult.RulePath[0]);
+
+      // Speech reco result
+      console.log("Thsi is the speech reco result: " + speechRecognitionResult);
+
+      // The name of the voice command
+      console.log("This is the name of the voice command: " + speechRecognitionResult.rulePath[0]);
+
+      if (speechRecognitionResult.rulePath[0] === "addNote") {
+
+        //selectDiv("div"+idNum, "editB"+idNum, true, "dc"+idNum);
+
+        console.log("Adding to Cortana: " + speechRecognitionResult.text);
+
+      }
+
+      // The actual text spoken
+      var textSpoken =
+        speechRecognitionResult.text !==
+        undefined ? speechRecognitionResult.text : "EXCEPTION";
+      
+      console.log("This is the actual spoken text: " + textSpoken);
+    }
+  });
+}
 
 $( document ).ready(function() {
   //init firebase data ref
@@ -167,6 +217,8 @@ function FBuid() {
   });
 }
 
+
+
 //Get the parent of a firebase snapshot
 function getParent(snapshot) {
   // You can get the reference (A Firebase object) from a snapshot
@@ -204,7 +256,7 @@ function setPosition (position) {
   loc.longitude = position.coords.longitude;
 }
 
-function selectDiv(divID, buttonID, isPlus, dcID)
+function selectDiv(divID, buttonID, isPlus, dcID, cortanaReco)
 {
   var initialColor = 'rgb(255, 255, 153)';
   var div = document.getElementById(divID);
