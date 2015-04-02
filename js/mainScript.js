@@ -89,6 +89,8 @@ $( document ).ready(function() {
   userTable=client.getTable("userTable");
   //Set the location for the notes
   getGeoLoc();
+
+  WinJS.UI.XYFocus.enableXYFocus();
 });
 
 window.fbAsyncInit = function() {

@@ -65,7 +65,7 @@ window.fbAsyncInit = function() {
 $( document ).ready(function() {
   var loginB = document.getElementById("loginB");
   loginB.addEventListener("click", loginFB);
-
+  WinJS.UI.XYFocus.enableXYFocus();
   //var logoPic = document.getElementById("logoPic");
   //logoPic.src = "images/logo.png";
 });
