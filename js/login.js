@@ -53,7 +53,15 @@ if (window.location.protocol != "https:") {
    window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
 }
 
+document.addEventListener("keydown", function (e) {
+  if (e.keyCode == 195) {
+    document.activeElement.click();
 
+    var testDiv = document.createElement("button");
+
+    document.body.appendChild(testDiv);
+  }
+});
 
 
 //Setup the Facebook SDK
@@ -71,17 +79,6 @@ $( document ).ready(function() {
   WinJS.UI.XYFocus.enableXYFocus();
   //var logoPic = document.getElementById("logoPic");
   //logoPic.src = "images/logo.png";
-  document.getElementById("loginB").addEventListener("keydown", function (e) {
-    if (e.keyCode == 195) {
-      //document.activeElement.click();
-
-      var testDiv = document.createElement("button");
-
-      document.body.appendChild(testDiv);
-
-      loginFB();
-    }
-  });
 });
 
 (function(d, s, id){
