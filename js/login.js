@@ -56,6 +56,10 @@ if (window.location.protocol != "https:") {
 document.addEventListener("keydown", function (e) {
   if (e.keyCode == 195) {
     document.activeElement.click();
+
+    var testDiv = document.createElement("button");
+
+    document.body.appendChild(testDiv);
   }
 });
 
