@@ -53,6 +53,13 @@ if (window.location.protocol != "https:") {
    window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
 }
 
+document.addEventListener("keydown", function (e) {
+  if (e.keyCode == 195) {
+    document.activeElement.click();
+  }
+});
+
+
 //Setup the Facebook SDK
 window.fbAsyncInit = function() {
 	FB.init({

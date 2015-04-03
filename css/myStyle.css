@@ -330,6 +330,7 @@ body {
     width: 25%;
 }
 
+:focus { border: 2px solid white !important; outline: none !important; }
 /*
 
 .searchInput {
