@@ -1,4 +1,4 @@
-
+﻿
 /*! Copyright (c) Microsoft Corporation.  All Rights Reserved. Licensed under the MIT License. See License.txt in the project root for license information. */
 (function (global) {
 
@@ -8948,10 +8948,10 @@ define('WinJS/XYFocus',["require", "exports", "./Core/_Global", "./Core/_Base", 
     * Gets the mapping object that maps keycodes to XYFocus actions.
     **/
     exports.keyCodeMap = {
-        left: [_ElementUtilities.Key.leftArrow],
-        right: [_ElementUtilities.Key.rightArrow],
-        up: [_ElementUtilities.Key.upArrow],
-        down: [_ElementUtilities.Key.downArrow]
+        left: [_ElementUtilities.Key.leftArrow,140,205,214],
+        right: [_ElementUtilities.Key.rightArrow,141,206,213],
+        up: [_ElementUtilities.Key.upArrow,138,203,211],
+        down: [_ElementUtilities.Key.downArrow,139,204,212]
     };
 
     /**
