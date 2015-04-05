@@ -884,12 +884,12 @@ function updatePosts (divID, name, value, dcID) {
   //Check if the plus button is still lingering
   // console.log("About to do the if check for the plus button class");
   var dc = document.getElementById(dcID);
-  var cameraB = document.getElementById("cameraBeditB"+divnum);
+  var cameraB = document.getElementById("cameraB"+divnum);
 
   var numChildren = dc.childElementCount;
 
   console.log("dc Element:" + dc + " The element id looking for: " + dcID);
-  console.log("cameraB Element:" + cameraB + " The element id looking for: " + "cameraBeditB"+divnum);
+  console.log("cameraB Element:" + cameraB + " The element id looking for: " + "cameraB"+divnum);
   console.log( $.contains( dc , cameraB) );
 
   // This is for the synced board, check if the camera is present if not the plus must be present
