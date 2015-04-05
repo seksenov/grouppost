@@ -280,6 +280,12 @@ function selectDiv(divID, buttonID, isPlus, dcID, cortanaReco)
       // Set up the plus post it note
       rmPlusAddBtns(divID, buttonID, dcID);
 
+      if (cortanaReco) {
+
+        selectDiv(divID, buttonID, isPlus, dcID, cortanaReco);
+
+      }
+
     }
     else {
       //Add the Post button
@@ -289,7 +295,14 @@ function selectDiv(divID, buttonID, isPlus, dcID, cortanaReco)
   //This is what gets executed when the post button is hit
   else{
     //Update the PostIt note in the DB
-    var postMessage = div.innerHTML;
+    var postMessage;
+    if (cortanaReco) {
+      postMessage = cortanaReco;
+    }
+    else {
+      postMessage = div.innerHTML;
+    }
+    
 
     //Update the PostIt note in the DB
     var query = userTable;
