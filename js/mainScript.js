@@ -381,7 +381,7 @@ function rmPlusAddBtns (divID, buttonID, dcID) {
       newButton.id = buttonID;
       newButton.className = 'postButton fa fa-check';
       //newButton.innerHTML ='Post';
-      newButton.addEventListener("click", function (e) { selectDiv(div.id, newButton.id, false, dcID); });
+      newButton.addEventListener("click", function (e) { selectDiv(divID, newButton.id, false, dcID); });
 
       $('#'+ dcID).append(newButton);
 
@@ -389,7 +389,7 @@ function rmPlusAddBtns (divID, buttonID, dcID) {
       var cButton = document.createElement('a');
       cButton.id = "cameraB" + buttonID;
       cButton.className = 'cameraButton fa fa-camera';
-      cButton.addEventListener("click", function (e) { takePicture(div.id, dcID, cButton.id) });
+      cButton.addEventListener("click", function (e) { takePicture(divID, dcID, cButton.id) });
       $('#'+ dcID).append(cButton); 
       
 
@@ -398,7 +398,7 @@ function rmPlusAddBtns (divID, buttonID, dcID) {
       dButton.id = "deleteB" + buttonID;
       dButton.className = 'deleteButton fa fa-times';
       //dButton.innerHTML ='Delete';
-      dButton.addEventListener("click", function (e) { deleteDiv(div.id); });
+      dButton.addEventListener("click", function (e) { deleteDiv(divID); });
       $('#'+ dcID).append(dButton);
 }
 
