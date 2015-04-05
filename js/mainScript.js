@@ -341,11 +341,11 @@ function selectDiv(divID, buttonID, isPlus, dcID, cortanaReco)
     
 
     //Update the PostIt note in the DB
-    var query = userTable;
-    query.where({ PID: divID, uid: userID }).read().then(function (postIts) {
-      postIts[0].PostItNote = div.innerHTML;
-      userTable.update(postIts[0]);
-    });
+    // var query = userTable;
+    // query.where({ PID: divID, uid: userID }).read().then(function (postIts) {
+    //   postIts[0].PostItNote = div.innerHTML;
+    //   userTable.update(postIts[0]);
+    // });
 
     //Check if a new not "plusOne" if being added and change the picture to Empty
     firebaseDataRef.child(userID).child(divID).once("value", function(data) { 
@@ -668,12 +668,12 @@ function setBackground (video, divID, dcID, buttonID) {
 //Add the image to the DB
 function storeImage (divID, resizedImage) {
   //Update the PostIt note in the DB
-  var query = userTable;
-  query.where({ PID: divID, uid: userID }).read().then(function (postIts) {
-    //Add the pic here
-    postIts[0].image = resizedImage;
-    userTable.update(postIts[0]);
-  });
+  // var query = userTable;
+  // query.where({ PID: divID, uid: userID }).read().then(function (postIts) {
+  //   //Add the pic here
+  //   postIts[0].image = resizedImage;
+  //   userTable.update(postIts[0]);
+  // });
   //Store the image in the firebase DB +firebase
   firebaseDataRef.child(userID).child(divID).update({
     picture: resizedImage
@@ -693,10 +693,10 @@ function deleteDivHelper(divID, dcID) {
   console.log("This is what a dcID looks like:-------------------------------------" + dcID);
   if(divID != lastDiv)
   {
-    var query = userTable;
-     query.where({ PID: divID, uid: userID }).read().then(function (postIts) {
-      userTable.del(postIts[0]);
-     });
+    // var query = userTable;
+    //  query.where({ PID: divID, uid: userID }).read().then(function (postIts) {
+    //   userTable.del(postIts[0]);
+    //  });
 
       //this is the animation that happens wehn a div is deleted
       $('#' + dcID).addClass('animated flipOutX'); //zoomOutLeft
@@ -764,7 +764,7 @@ function addPostIt (isInit, postText, plusOne, imageString){
       //This is the note with the plus on it
 
       var item = { PostItNote: postText, PID: pid, divnum: idNum, uid: userID, image: null};
-      userTable.insert(item);
+      //userTable.insert(item);
 
   }
   else{
