@@ -125,7 +125,7 @@ function FBLogout() {
 }
 
 function checkIfUserExists() {
-  firebaseDataRef.child(userId).once('value', function(snapshot) {
+  firebaseDataRef.child(userID).once('value', function(snapshot) {
     var exists = (snapshot.val() !== null);
     userExistsCallback(exists);
   });
@@ -164,7 +164,7 @@ function FBuid() {
       });
       */
 
-      //checkIfUserExists();
+      checkIfUserExists();
 
       // ToDo - If there are no post its for the user he/she has to be set up and run
       firebaseDataRef.child(userID).on('child_added', function(childSnapshot) {
