@@ -897,7 +897,7 @@ function updatePosts (divID, name, value, dcID) {
     // This is where the remove plus needs to be called
     
 
-    console.log("The input element is still present!!!! Should only show up in non promary");
+    console.log("The input element is still present!!!! Should only show up in non primary");
     // removePlus(divID, divnum);
   } 
 }
