@@ -82,11 +82,11 @@ $( document ).ready(function() {
 
   //-------------------------------------------------------------------------
   //init AMS client
-  client = new WindowsAzure.MobileServiceClient(
-  "https://grouppostbetadb.azure-mobile.net/",
-  "hyCoAnJjoajhcntTKrzmnBPJaxKCiw45");
-  //init the Azure table
-  userTable=client.getTable("userTable");
+  // client = new WindowsAzure.MobileServiceClient(
+  // "https://grouppostbetadb.azure-mobile.net/",
+  // "hyCoAnJjoajhcntTKrzmnBPJaxKCiw45");
+  // //init the Azure table
+  // userTable=client.getTable("userTable");
   //Set the location for the notes
   getGeoLoc();
 
@@ -124,6 +124,7 @@ function FBLogout() {
   });
 }
 
+// Check if the user exists
 function checkIfUserExists() {
   firebaseDataRef.child(userID).once('value', function(snapshot) {
     var exists = (snapshot.val() !== null);
@@ -131,6 +132,7 @@ function checkIfUserExists() {
   });
 }
 
+// User exists callback, if the user does not exist add a plus note
 function userExistsCallback (exists) {
   console.log ("Does the user exist: " + exists);
   if (!exists) {
@@ -326,7 +328,12 @@ function selectDiv(divID, buttonID, isPlus, dcID, cortanaReco)
     //Update the PostIt note in the DB
     var postMessage;
     if (cortanaReco) {
-      postMessage = cortanaReco;
+      var recoWordsArray = cortanaReco.split(" ");
+      var message = "";
+      for (int i = 2; i < recoWordsArray.length; i++) {
+        message += recoWordsArray[i] + " "; 
+      }
+      postMessage = message;
     }
     else {
       postMessage = div.innerHTML;
