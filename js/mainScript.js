@@ -136,17 +136,17 @@ function userExistsCallback (exists) {
   if (!exists) {
     idNum = 1;
     var postMessage = "";
-    var picString = "Empty";
+    var picString = "Plus Logo";
     var divID = "div" + idNum;
 
 
     firebaseDataRef.child(userID).child(divID).update({
-      //user: userID, 
+      user: userID, 
       message: postMessage,
       picture: picString,
       divID: divID,
       location: loc,
-      //divnum: idNum
+      divnum: idNum
     });         
   }
 }
