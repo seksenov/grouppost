@@ -282,7 +282,7 @@ function selectDiv(divID, buttonID, isPlus, dcID, cortanaReco)
 
       if (cortanaReco) {
 
-        selectDiv(divID, buttonID, isPlus, dcID, cortanaReco);
+        selectDiv(divID, buttonID, false, dcID, cortanaReco);
 
       }
 
