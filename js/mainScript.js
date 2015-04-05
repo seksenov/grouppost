@@ -277,32 +277,8 @@ function selectDiv(divID, buttonID, isPlus, dcID, cortanaReco)
     
     //PLus Post it note
     if(isPlus) {
-
-      $('#' + buttonID).remove();
-      //Add a Post button
-      var newButton=document.createElement('a');
-      newButton.id = buttonID;
-      newButton.className = 'postButton fa fa-check';
-      //newButton.innerHTML ='Post';
-      newButton.addEventListener("click", function (e) { selectDiv(div.id, newButton.id, false, dcID); });
-
-      $('#'+ dcID).append(newButton);
-
-      //Add the camera button
-      var cButton = document.createElement('a');
-      cButton.id = "cameraB" + buttonID;
-      cButton.className = 'cameraButton fa fa-camera';
-      cButton.addEventListener("click", function (e) { takePicture(div.id, dcID, cButton.id) });
-      $('#'+ dcID).append(cButton); 
-      
-
-      //Add the delete button
-      var dButton=document.createElement('a');
-      dButton.id = "deleteB" + buttonID;
-      dButton.className = 'deleteButton fa fa-times';
-      //dButton.innerHTML ='Delete';
-      dButton.addEventListener("click", function (e) { deleteDiv(div.id); });
-      $('#'+ dcID).append(dButton);
+      // Set up the plus post it note
+      rmPlusAddBtns(divID, buttonID, dcID);
 
     }
     else {
@@ -345,23 +321,9 @@ function selectDiv(divID, buttonID, isPlus, dcID, cortanaReco)
     });
     
     //This is where the windows notification goes -----------------------------------------------------------------
-    var tags = postMessage.split('#');
-    if(tags[1]) {
-      if (window.CommunicatorWinRT) {
-        //The WinRT was found
-        windowsNotify(tags, window.CommunicatorWinRT);  
-      }
-      else if (typeof Windows != 'undefined') {
-        //document.getElementById(divID).innerHTML = "Success going to try and send a Windows notification";
-        var d = +tags[1];
-        var delay = d * 1000;
-        toastMessage (tags[0], delay);
-
-      }
-      else {
-        //The WinRT class wasn't found add a fallback
-      }
-    }
+    windowsNotification (postMessage);
+    
+    
 
     //Check if this is the last post it and if so add another one
     //This will just have to be replace with an Update call to add a new post it in firebase
@@ -391,7 +353,56 @@ function selectDiv(divID, buttonID, isPlus, dcID, cortanaReco)
   }
 }
 
-//Toast notifications for addWebAllowedObject with WebView
+function windowsNotification (postMessage) {
+  var tags = postMessage.split('#');
+  if(tags[1]) {
+    if (window.CommunicatorWinRT) {
+      //The WinRT was found
+      windowsNotify(tags, window.CommunicatorWinRT);  
+    }
+    else if (typeof Windows != 'undefined') {
+      //document.getElementById(divID).innerHTML = "Success going to try and send a Windows notification";
+      var d = +tags[1];
+      var delay = d * 1000;
+      toastMessage (tags[0], delay);
+
+    }
+    else {
+      //The WinRT class wasn't found add a fallback
+    }
+  }
+}
+
+// Get Plus not ready for addition of new note
+function rmPlusAddBtns (divID, buttonID, dcID) {
+  $('#' + buttonID).remove();
+      //Add a Post button
+      var newButton=document.createElement('a');
+      newButton.id = buttonID;
+      newButton.className = 'postButton fa fa-check';
+      //newButton.innerHTML ='Post';
+      newButton.addEventListener("click", function (e) { selectDiv(div.id, newButton.id, false, dcID); });
+
+      $('#'+ dcID).append(newButton);
+
+      //Add the camera button
+      var cButton = document.createElement('a');
+      cButton.id = "cameraB" + buttonID;
+      cButton.className = 'cameraButton fa fa-camera';
+      cButton.addEventListener("click", function (e) { takePicture(div.id, dcID, cButton.id) });
+      $('#'+ dcID).append(cButton); 
+      
+
+      //Add the delete button
+      var dButton=document.createElement('a');
+      dButton.id = "deleteB" + buttonID;
+      dButton.className = 'deleteButton fa fa-times';
+      //dButton.innerHTML ='Delete';
+      dButton.addEventListener("click", function (e) { deleteDiv(div.id); });
+      $('#'+ dcID).append(dButton);
+}
+
+// Toast notifications for addWebAllowedObject with WebView
 function windowsNotify (tags, object) {
   //Multiply the delay by 1000
   var d = +tags[1];
