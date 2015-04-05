@@ -895,6 +895,8 @@ function updatePosts (divID, name, value, dcID) {
   // This is for the synced board, check if the camera is present if not the plus must be present
   if(!($.contains( dc , cameraB))) {
     // This is where the remove plus needs to be called
+    var buttonID = "editB" + divnum;
+    rmPlusAddBtns (divID, buttonID, dcID);
     
 
     console.log("The input element is still present!!!! Should only show up in non primary");
