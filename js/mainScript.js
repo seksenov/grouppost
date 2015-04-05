@@ -134,7 +134,18 @@ function checkIfUserExists() {
 function userExistsCallback (exists) {
   console.log ("Does the user exist: " + exists);
   if (!exists) {
+    var postMessage = "";
+    var picString = "Empty";
 
+
+    firebaseDataRef.child(userID).child(divID).update({
+      //user: userID, 
+      message: postMessage,
+      picture: picString,
+      divID: divID,
+      location: loc,
+      //divnum: idNum
+    });         
   }
 }
 
