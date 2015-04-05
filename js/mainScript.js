@@ -423,7 +423,7 @@ function windowsNotification (postMessage) {
 }
 
 // Get Plus not ready for addition of new note
-function rmPlusAddBtns (divID, buttonID, dcID) {
+function rmPlusAddBtns (divID, buttonID, dcID, sync) {
   $('#' + buttonID).remove();
       var idArray = divID.split('v');
       var divnum = idArray[1];
@@ -431,7 +431,13 @@ function rmPlusAddBtns (divID, buttonID, dcID) {
       //Add a Post button
       var newButton=document.createElement('a');
       newButton.id = buttonID;
-      newButton.className = 'postButton fa fa-check';
+      if (sync) {
+        newButton.className = 'editButton fa fa-pencil-square-o';
+      }
+      else
+      {
+        newButton.className = 'postButton fa fa-check';  
+      }
       //newButton.innerHTML ='Post';
       newButton.addEventListener("click", function (e) { selectDiv(divID, newButton.id, false, dcID); });
 
@@ -899,7 +905,7 @@ function updatePosts (divID, name, value, dcID) {
   if(!($.contains( dc , cameraB))) {
     // This is where the remove plus needs to be called
     var buttonID = "editB" + divnum;
-    rmPlusAddBtns (divID, buttonID, dcID);
+    rmPlusAddBtns (divID, buttonID, dcID, true);
     
 
     console.log("The input element is still present!!!! Should only show up in non primary");
