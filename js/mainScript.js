@@ -330,7 +330,7 @@ function selectDiv(divID, buttonID, isPlus, dcID, cortanaReco)
     if (cortanaReco) {
       var recoWordsArray = cortanaReco.split(" ");
       var message = "";
-      for (int i = 2; i < recoWordsArray.length; i++) {
+      for (var i = 2; i < recoWordsArray.length; i++) {
         message += recoWordsArray[i] + " "; 
       }
       postMessage = message;
