@@ -124,6 +124,20 @@ function FBLogout() {
   });
 }
 
+function checkIfUserExists() {
+  firebaseDataRef.child(userId).once('value', function(snapshot) {
+    var exists = (snapshot.val() !== null);
+    userExistsCallback(exists);
+  });
+}
+
+function userExistsCallback (exists) {
+  console.log ("Does the user exist: " + exists);
+  if (!exists) {
+
+  }
+}
+
 function FBuid() {
 
   FB.getLoginStatus(function(response) {
@@ -149,6 +163,8 @@ function FBuid() {
         }
       });
       */
+
+      checkIfUserExists();
 
       // ToDo - If there are no post its for the user he/she has to be set up and run
       firebaseDataRef.child(userID).on('child_added', function(childSnapshot) {
