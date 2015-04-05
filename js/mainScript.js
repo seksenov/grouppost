@@ -425,6 +425,9 @@ function windowsNotification (postMessage) {
 // Get Plus not ready for addition of new note
 function rmPlusAddBtns (divID, buttonID, dcID) {
   $('#' + buttonID).remove();
+      var idArray = divID.split('v');
+      var divnum = idArray[1];
+
       //Add a Post button
       var newButton=document.createElement('a');
       newButton.id = buttonID;
@@ -436,7 +439,7 @@ function rmPlusAddBtns (divID, buttonID, dcID) {
 
       //Add the camera button
       var cButton = document.createElement('a');
-      cButton.id = "cameraB" + buttonID;
+      cButton.id = "cameraB" + divnum;
       cButton.className = 'cameraButton fa fa-camera';
       cButton.addEventListener("click", function (e) { takePicture(divID, dcID, cButton.id) });
       $('#'+ dcID).append(cButton); 
@@ -444,7 +447,7 @@ function rmPlusAddBtns (divID, buttonID, dcID) {
 
       //Add the delete button
       var dButton=document.createElement('a');
-      dButton.id = "deleteB" + buttonID;
+      dButton.id = "deleteB" + divnum;
       dButton.className = 'deleteButton fa fa-times';
       //dButton.innerHTML ='Delete';
       dButton.addEventListener("click", function (e) { deleteDiv(divID); });
