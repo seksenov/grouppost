@@ -58,9 +58,8 @@ if (typeof Windows != 'undefined') {
 
       if (speechRecognitionResult.rulePath[0] === "addNote") {
 
-        //selectDiv("div"+idNum, "editB"+idNum, true, "dc"+idNum);
-
-        console.log("Adding to Cortana: " + speechRecognitionResult.text);
+        console.log("Adding this note from Cortana: " + speechRecognitionResult.text);
+        selectDiv("div"+idNum, "editB"+idNum, true, "dc"+idNum, speechRecognitionResult.text);
 
       }
 
