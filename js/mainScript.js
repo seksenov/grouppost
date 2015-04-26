@@ -329,8 +329,11 @@ function selectDiv(divID, buttonID, isPlus, dcID, cortanaReco)
     if (cortanaReco) {
       var recoWordsArray = cortanaReco.split(" ");
       var message = "";
-      for (var i = 2; i < recoWordsArray.length; i++) {
+      for (var i = 3; i < recoWordsArray.length; i++) {
         message += recoWordsArray[i] + " "; 
+        if (recoWordsArray[i+1] == "using") {
+          break;
+        }
       }
       postMessage = message;
     }
