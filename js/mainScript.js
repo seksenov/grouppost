@@ -152,6 +152,8 @@ function userExistsCallback (exists) {
   }
 }
 
+//hello
+
 function FBuid() {
 
   FB.getLoginStatus(function(response) {
