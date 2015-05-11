@@ -21,7 +21,7 @@ if (typeof Windows != "undefined") {
 }
 ```
 
-### Notifications
+### Camera Capture
 
 ```javascript
 function winRTCapture (divID) {
