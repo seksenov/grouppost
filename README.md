@@ -1,6 +1,8 @@
 # GroupPost
 ## [Visit GroupPost!](https://grouppost.azurewebsites.net)
 
+<a href="https://azuredeploy.net/" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a>
+
 Responsive note taking single page application designed to perform well as a native hosted web application on Windows. Feature detection and access to Windows APIs directly from JS when running as an application on Windows with browser fallbacks. 
 
 ## Notes
