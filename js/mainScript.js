@@ -23,7 +23,7 @@ var userTable=null; //Azure DB table
 var firebaseDataRef; //Firebase data reference
 
 //Add cortana activation event listener
-if (typeof Windows != 'undefined') {
+if (typeof Windows !== 'undefined') {
   console.log("Windows namespace is defined");
 
   var activation = Windows.ApplicationModel.Activation;
