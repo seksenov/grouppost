@@ -17,4 +17,38 @@
     </Command>
     <PhraseTopic Label="noteSubject" Scenario="Dictation"></PhraseTopic>
   </CommandSet>
+  <CommandSet xml:lang="zh-cn" Name="ChineseGroupPost">
+    <CommandPrefix>群交</CommandPrefix>
+    <Example>组文章加注</Example>
+    <Command Name="addNote">
+      <Example>添加备注[消息]使用[组文章]</Example>
+      <ListenFor RequireAppName="BeforePhrase">添加备注{noteSubject}</ListenFor>
+      <Feedback>加入{noteSubject} 到邮政集团</Feedback>
+      <Navigate Target="/addNote.htm"/>
+    </Command>
+    <Command Name="showNote">
+      <Example>在组展后的注意事项</Example>
+      <ListenFor RequireAppName="BeforePhrase">显示票据</ListenFor>
+      <Feedback>显示您的笔记</Feedback>
+      <Navigate Target="/showNote.htm"/>
+    </Command>
+    <PhraseTopic Label="noteSubject" Scenario="Dictation"></PhraseTopic>
+  </CommandSet>
+  <CommandSet xml:lang="fr-fr" Name="FrenchGroupPost">
+    <CommandPrefix>Group Post</CommandPrefix>
+    <Example>Group Post add note</Example>
+    <Command Name="addNote">
+      <Example>add a note {message} using group post</Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase">[s'il vous plaît] ajouter une note [que] {noteSubject}</ListenFor>
+      <Feedback>ajoutant</Feedback>
+      <Navigate Target="/addNote.htm"/>
+    </Command>
+    <Command Name="showNote">
+      <Example>Voir les Notes sur Group Post</Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase">montrer [mes] notes</ListenFor>
+      <Feedback>Afficher vos notes</Feedback>
+      <Navigate Target="/showNote.htm"/>
+    </Command>
+    <PhraseTopic Label="noteSubject" Scenario="Dictation"></PhraseTopic>
+  </CommandSet>
 </VoiceCommands>
